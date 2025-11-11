@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI in Boston | Artificial Intelligence, Robotics & Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LGBJ3SWK04"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-LGBJ3SWK04");
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body > section {
+        scroll-margin-top: 70px;
+        scroll-padding-bottom: 100px;
+      }
+      p.text-subtitl_size {
+        font-size: 17px;
+      }
+      :root {
+        --brand: #007a33;
+        --brand-hover: #007a33;
+        --ai: #f1f1f1;
+        --text: #000000;
+      }
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="relative">
+    <!-- Overlay with Popup -->
+    <div class="overlay" id="popupOverlay" style="display: none">
+      <div
+        class="popup max-w-3xl mx-auto shadow-2xl rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border"
+      >
+        <span class="close-btn" id="closePopup">×</span>
+        <div>
+          <h1>GALABRIEF</h1>
+          <form id="newsletter-form" class="space-y-6">
+            <div class="relative">
+              <label
+                for="email"
+                class="block text-sm font-medium text-white mb-1"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required=""
+                class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-black font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg"
+            >
+              🤖 Subscribe Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <header class="site-header header">
+      <div class="header__logo">
+        <a href="index.html" class="logo">
+          <img src="Boston-Galaverse-AI.svg" />
+        </a>
+      </div>
+      <div class="header__components">
+        <div class="header__navbar">
+          <nav class="header-links">
+            <ul class="header-links__list">
+              <li class="header-links__item">
+                <a
+                  href="#omniversemap"
+                  title="News"
+                  class="header-links__link anchorlink"
+                  >Galaverse</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniversecompanies"
+                  title="Blog"
+                  class="header-links__link anchorlink"
+                  >Visionaries</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniverseconnect"
+                  title="Events"
+                  class="header-links__link anchorlink"
+                  >Connect</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  target="_blank"
+                  href="https://news.google.com/search?q=boston+artificial+intelligence"
+                  title="Companies"
+                  class="header-links__link_externallink"
+                  >News</a
+                >
+              </li>
+            </ul>
+            <!-- tag content - may be ignored! -->
+          </nav>
+        </div>
+        <div class="header__letter-button">
+          <a
+            id="OpenNewsLetterr"
+            data-hash="newsLetter"
+            class="letter-button usw"
+          >
+            <span class="letter-button__desktop-text">Galabrief</span>
+            <span class="letter-button__mobile-text">
+              <svg
+                width="14"
+                height="10"
+                viewBox="0 0 16 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M0.5 0.658593H5.5333L8.1751 6.08002L5.5333 11.3414H0.5L3.42632 6.08003L0.5 0.658593Z"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M7.5 0.658593H12.5333L15.1751 6.08002L12.5333 11.3414H7.5L10.4263 6.08003L7.5 0.658593Z"
+                ></path>
+              </svg>
+              Subscribe to our newsletter
+            </span>
+          </a>
+        </div>
+        <div class="header__control">
+          <button
+            id="menuToggle"
+            type="button"
+            class="menu-toggle is-desktop-visible"
+          >
+            <span class="menu-toggle__bar-wrapper">
+              <span class="menu-toggle__bar"></span>
+              <span class="menu-toggle__bar"></span>
+              <span class="menu-toggle__bar"></span>
+            </span>
+            <p class="ghost">Open menu</p>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="navbar">
+      <div class="navbar__inner">
+        <div class="navbar__links">
+          <nav class="header-links">
+            <ul class="header-links__list">
+              <li class="header-links__item">
+                <a
+                  href="#omniversemap"
+                  title="News"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Galaverse
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniversecompanies"
+                  title="Companies"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Visionaries
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniverseconnect"
+                  title="Connect"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Connect
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  class="header-links__link_externallink drawermenu__link"
+                  href="https://news.google.com/search?q=boston+ai"
+                  title="News"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >News</a
+                >
+              </li>
+            </ul>
+            <!-- tag content - may be ignored! -->
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <section
+      id="policies_header"
+      class="bg-white relative z-10 w-fullmob-mt-0 text-left"
+    >
+      <div class="warranty-banner">
+        <div class="ratio-box"></div>
+        <div class="warranty-overlay overlay">
+          <h2 class="main-page-title page-title h0 warranty-overlay__text">
+            California Consumer Privacy Act (CCPA)
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section
+      id="policies"
+      class="bg-white relative z-10 w-full mt-0 mob-mt-0 pt-8 text-left"
+    >
+      <div class="rte">
+        <p dir="ltr">
+          <i><b>Last Updated:</b><span> October 1st, 2025</span></i>
+        </p>
+        <br />
+        <p dir="ltr">
+          <span
+            >This statement applies to California residents under the California
+            Consumer Privacy Act (CCPA).</span
+          >
+        </p>
+        <h3>Information We Collect</h3>
+        <p dir="ltr">
+          <span
+            >We collect the categories of personal information listed in our
+            Privacy Policy, including identifiers (name, email), commercial
+            information (purchases, service history), internet activity
+            (browsing history, interactions), and professional information (job
+            title, company).</span
+          >
+        </p>
+        <h3>Your Rights Under the CCPA</h3>
+        <p dir="ltr"><span>California residents have the right to:</span></p>
+        <ul>
+          <li dir="ltr" aria-level="1">
+            <p dir="ltr" role="presentation">
+              <span>Access:</span
+              ><span>
+                Request details about the personal information we have
+                collected.</span
+              ><span><br /><br /></span>
+            </p>
+          </li>
+          <li dir="ltr" aria-level="1">
+            <p dir="ltr" role="presentation">
+              <span>Delete:</span
+              ><span>
+                Request that we delete personal information, subject to legal
+                exceptions.</span
+              ><span><br /><br /></span>
+            </p>
+          </li>
+          <li dir="ltr" aria-level="1">
+            <p dir="ltr" role="presentation">
+              <span>Opt-Out:</span
+              ><span>
+                We do not sell personal information, but you may request
+                confirmation of this.</span
+              ><span><br /><br /></span>
+            </p>
+          </li>
+          <li dir="ltr" aria-level="1">
+            <p dir="ltr" role="presentation">
+              <span>Non-Discrimination:</span
+              ><span>
+                You will not be discriminated against for exercising your
+                privacy rights.</span
+              ><span><br /><br /></span>
+            </p>
+          </li>
+        </ul>
+        <h3>How to Exercise Your Rights</h3>
+        <p dir="ltr">
+          <span>Submit a request to </span
+          ><a href="mailto:galaverseai@gmail.com"
+            ><span>galaverseai@gmail.com</span></a
+          ><span
+            >. We will verify your identity before processing your
+            request.</span
+          >
+        </p>
+        <h3>Data Sharing</h3>
+        <p dir="ltr">
+          <span
+            >We do not sell personal information. We may share limited data with
+            service providers for business purposes, as outlined in our Privacy
+            Policy.</span
+          >
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="text-center text-gray-600 text-sm mt-8 pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200">
+      <div class="text-sm footer__links">
+        <a href="legal-disclaimer.html" title="Legal" class="footer__link"
+          >Legal Disclaimer</a
+        >
+        <a
+          href="website-disclaimer.html"
+          title="website-disclaimer"
+          class="footer__link"
+          >Website Disclaimer</a
+        >
+        <a
+          href="ai-content-technology-disclaimer.html"
+          title="AI Content & Technology disclaimer"
+          class="footer__link"
+          >AI Content & Technology Disclaimer</a
+        >
+        <a
+          href="privacy-policy.html"
+          title="Privacy Policy"
+          class="footer__link"
+          >Privacy Policy</a
+        >
+        <a
+          href="terms-of-service.html"
+          title="Terms of Service"
+          class="footer__link"
+          >Terms of Service</a
+        >
+        <a
+          href="california-consumer-privacy-act.html"
+          title="California Consumer Privacy Act (CCPA)"
+          class="footer__link"
+          >California Consumer Privacy Act (CCPA)</a
+        >
+        <a
+          href="web-accessibility-disclaimer.html"
+          title="California Consumer Privacy Act (CCPA)"
+          class="footer__link"
+          >Web Accessibility Disclaimer</a
+        >
+      </div>
+      <div class="footer_copyright">
+        &copy; 2025 Boston, Galaverse AI. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      function setHeaderOffset() {
+  const header = document.querySelector('.site-header');
+  const firstSection = document.querySelector('section:first-of-type');
+
+  if(header && firstSection) {
+    const headerHeight = header.offsetHeight;
+    firstSection.style.setProperty('--header-offset', `${headerHeight}px`);
+  }
+}
+
+window.addEventListener('load', setHeaderOffset);
+window.addEventListener('resize', setHeaderOffset);
+
+
+      const menuToggle = document.getElementById("menuToggle");
+      const nav = document.querySelector(".navbar .header-links");
+
+      function closeMenu() {
+        menuToggle?.classList.remove("is-active");
+        document.body.classList.remove("navbar-open");
+      }
+
+      menuToggle?.addEventListener("click", () => {
+        menuToggle.classList.toggle("is-active");
+        document.body.classList.toggle("navbar-open");
+      });
+
+      // Delegate clicks from the nav (works for all links inside)
+      nav?.addEventListener("click", (e) => {
+        const link = e.target.closest("a.header-links__link");
+        if (!link) return;
+
+        const openInNewTab = link.target === "_blank" || e.ctrlKey || e.metaKey;
+
+        if (openInNewTab) {
+          // Force-open the new tab, then close the menu
+          window.open(link.href, "_blank", "noopener");
+          e.preventDefault();
+        }
+
+        // Close the menu after the click has been handled
+        requestAnimationFrame(closeMenu);
+      });
+
+      // Middle-click (auxclick) also opens in a new tab on most browsers
+      nav?.addEventListener("auxclick", (e) => {
+        if (e.button !== 1) return; // only middle button
+        const link = e.target.closest("a.drawermenu__link");
+        if (!link) return;
+
+        window.open(link.href, "_blank", "noopener");
+        e.preventDefault();
+        requestAnimationFrame(closeMenu);
+      });
+
+      const openBtn = document.getElementById("OpenNewsLetterr");
+      const closeBtn = document.getElementById("closePopup");
+      const overlay = document.getElementById("popupOverlay");
+
+      // Open popup
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "block";
+      });
+
+      // Close popup with close button
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+
+      // Close popup by clicking outside
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          overlay.style.display = "none";
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

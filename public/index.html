@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI in Boston | Artificial Intelligence, Robotics & Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LGBJ3SWK04"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-LGBJ3SWK04");
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body > section {
+        scroll-margin-top: 70px;
+        scroll-padding-bottom: 100px;
+      }
+      p.text-subtitl_size {
+        font-size: 17px;
+      }
+      :root {
+        --brand: #007a33;
+        --brand-hover: #007a33;
+        --ai: #f1f1f1;
+        --text: #000000;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .anchorlink.customlinhyt {
+        line-height: 2;
+      }
+      /* Overlay (click-outside to close) */
+      #chatOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: saturate(120%) blur(1px);
+        display: none;
+        z-index: 998;
+      }
+
+      /* Floating Mic */
+      #micButton {
+        cursor: pointer;
+      }
+      #micButton:active {
+        transform: scale(0.98);
+      }
+      #micButton.listening {
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(229, 57, 53, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+        }
+      }
+
+      /* Chatbox */
+      #chatbox {
+        left: 100px;
+        position: absolute;
+        bottom: -25px;
+        right: auto;
+        width: 640px;
+        height: 280px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 999;
+      }
+
+      /* Top bar */
+      #chatTop {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        background: #007a33;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+      }
+      #closeChat {
+        margin-left: auto;
+        background: transparent;
+        border: none;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        color: #ffffff;
+      }
+      #closeChat:hover {
+        color: #000;
+      }
+
+      #chatMessages {
+        flex: 1;
+        padding: 12px;
+        overflow-y: auto;
+        font-size: 14px;
+        background: #fff;
+      }
+      .message {
+        margin: 6px 0;
+        padding: 8px 10px;
+        border-radius: 10px;
+        max-width: 85%;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+      .user {
+        background: var(--brand);
+        color: #fff;
+        align-self: flex-end;
+      }
+      .ai {
+        background: var(--ai);
+        color: #000;
+        align-self: flex-start;
+      }
+
+      #chatInputArea {
+        display: flex;
+        border-top: 1px solid #eee;
+        background: #fff;
+      }
+      #chatInput {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+      #sendButton {
+        background: var(--brand);
+        border: none;
+        color: #fff;
+        padding: 10px 14px;
+        cursor: pointer;
+      }
+      #sendButton:hover {
+        background: var(--brand-hover);
+      }
+
+      /* Articles rendering */
+      .article-list {
+        margin: 6px 0 8px;
+        padding-left: 0;
+        list-style: none;
+      }
+      .article-item {
+        margin: 6px 0;
+      }
+      .article-item a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #0b69ff;
+      }
+      .article-item a:hover {
+        text-decoration: underline;
+      }
+      .article-meta {
+        display: block;
+        font-size: 12px;
+        color: #666;
+        margin-top: 2px;
+      }
+      .as-of {
+        font-size: 12px;
+        color: #555;
+        margin-top: 8px;
+      }
+      /* Thinking indicator */
+      .typing {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .typing .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #555;
+        animation: bounce 1s infinite ease-in-out;
+      }
+      .typing .dot:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .typing .dot:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      @keyframes bounce {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.6;
+        }
+        40% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* anchor: ensure mic button positioned ancestor */
+      #micButton {
+        position: relative;
+        z-index: 30;
+      }
+
+      /* positioning: sits to the right of the mic */
+      .mic-hint {
+        position: absolute;
+        top: -58%;
+        left: calc(100% + -5px);
+        transform: translateY(-50%);
+        z-index: 29;
+        pointer-events: auto;
+      }
+
+      /* the oval bubble */
+      .mic-hint__content {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: var(--brand);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.05;
+        text-align: center;
+        justify-content: center;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        height: 55px;
+      }
+
+      /* text: two-line layout with bold second line */
+      .mic-hint__text {
+        display: inline-block;
+        color: #fff;
+        line-height: 1.25;
+      }
+      .mic-hint__text strong {
+        display: block;
+        font-weight: 800;
+      }
+
+      /* white circular close button, perfectly vertically centered */
+      .mic-hint__close {
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        margin-left: 0;
+        flex-shrink: 0;
+        transition: background 0.12s ease, transform 0.12s ease;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+      }
+      .mic-hint__close:hover {
+        background: rgba(255, 255, 255, 0.22);
+        transform: translateY(-1px);
+      }
+      .mic-hint__close:focus {
+        outline: 2px solid rgba(255, 255, 255, 0.18);
+      }
+
+      /* === curved pointy tail (bottom-left) ===
+   technique: two layered pseudo-elements to create a smooth pointed tail
+*/
+      .mic-hint__content::before,
+      .mic-hint__content::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        bottom: -9px;
+        width: 66px;
+        height: 40px;
+        transform-origin: 0 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* main colored tail shape */
+      .mic-hint__content::before {
+        background: #007a33;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 60px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        transform: rotate(-15deg) skewX(-22deg);
+        box-shadow: 0 8px 14px rgba(11, 33, 71, 0.06);
+      }
+
+      /* subtle underside highlight to smooth the join */
+      .mic-hint__content::after {
+        left: 13px;
+        bottom: -14px;
+        width: 34px;
+        height: 20px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 40px;
+        transform: rotate(-16deg) skewX(-6deg);
+        z-index: -2;
+      }
+
+      /* hidden state used by your JS */
+      .mic-hint--hidden {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+        pointer-events: none;
+        transition: opacity 0.18s, transform 0.18s;
+      }
+
+      /* responsive tweaks to avoid overflow on small screens */
+      @media (max-width: 520px) {
+        .mic-hint {
+          left: calc(100% + 8px);
+        }
+        .mic-hint__content {
+          min-width: 85px;
+          padding: 5px 7px;
+          font-size: 12px;
+          height: 49px;
+        }
+        .mic-hint__content::before {
+          left: 8px;
+          bottom: -7px;
+          width: 36px;
+          height: 26px;
+          transform: rotate(-14deg) skewX(-25deg);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 30px;
+        }
+        .mic-hint__content::after {
+          left: 16px;
+          bottom: -12px;
+          width: 26px;
+          height: 16px;
+          transform: rotate(-14deg) skewX(-5deg);
+        }
+      }
+
+      .mySwiperTiles .swiper-slide {
+        display: flex;
+        align-items: stretch;
+      }
+      .mySwiperTiles .tile-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+      }
+
+      @media screen and (min-width: 769px) {
+        .large--hide {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        #chatbox {
+          left: auto;
+          bottom: 100%;
+          width: 480px;
+          height: 400px;
+          margin-bottom: 20px;
+        }
+        .btn_withlovedby {
+          align-items: center;
+        }
+        .small--hide {
+          display: none;
+        }
+        p.text-subtitl_size {
+          font-size: 17px;
+        }
+        #omniverseconnect p,
+        #omniversecompanies p,
+        #omniversemap p,
+        #omniversemap p a {
+          line-height: 1.625;
+          font-size: 17px;
+        }
+        #omniverseconnect > div.backdrop-blur-sm {
+          padding: 1.7rem;
+        }
+        #omniverseconnect > div.backdrop-blur-sm form .relative:nth-child(2) {
+          margin-top: 15px;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        #chatbox {
+          width: 310px;
+        }
+      }
+    </style>
+  </head>
+  <body class="relative">
+    <!-- Overlay with Popup -->
+    <div class="overlay" id="popupOverlay" style="display: none">
+      <div
+        class="popup max-w-[23rem] md:max-w-3xl mx-auto shadow-2xl rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border"
+      >
+        <span class="close-btn" id="closePopup">×</span>
+        <div>
+          <h1>Galabrief</h1>
+          <form id="newsletter-form" class="space-y-6">
+            <div class="relative">
+              <label
+                for="email"
+                class="block text-sm font-medium text-white mb-1"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required=""
+                class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-black font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg"
+            >
+              🤖 Subscribe Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <header class="site-header header">
+      <div class="header__logo">
+        <a href="index.html" class="logo">
+          <img src="Boston-Galaverse-AI.svg" />
+        </a>
+      </div>
+      <div class="header__components">
+        <div class="header__navbar">
+          <nav class="header-links">
+            <ul class="header-links__list">
+              <li class="header-links__item">
+                <a
+                  href="#omniversemap"
+                  title="News"
+                  class="header-links__link anchorlink"
+                  >Galaverse</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniversecompanies"
+                  title="Blog"
+                  class="header-links__link anchorlink"
+                  >Visionaries</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniverseconnect"
+                  title="Events"
+                  class="header-links__link anchorlink"
+                  >Connect</a
+                >
+              </li>
+              <li class="header-links__item">
+                <a
+                  target="_blank"
+                  href="https://news.google.com/search?q=boston+artificial+intelligence"
+                  title="Companies"
+                  class="header-links__link_externallink"
+                  >News</a
+                >
+              </li>
+            </ul>
+            <!-- tag content - may be ignored! -->
+          </nav>
+        </div>
+        <div class="header__letter-button">
+          <a
+            id="OpenNewsLetterr"
+            data-hash="newsLetter"
+            class="letter-button usw"
+          >
+            <span class="letter-button__desktop-text">Galabrief</span>
+            <span class="letter-button__mobile-text">
+              <svg
+                width="14"
+                height="10"
+                viewBox="0 0 16 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M0.5 0.658593H5.5333L8.1751 6.08002L5.5333 11.3414H0.5L3.42632 6.08003L0.5 0.658593Z"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M7.5 0.658593H12.5333L15.1751 6.08002L12.5333 11.3414H7.5L10.4263 6.08003L7.5 0.658593Z"
+                ></path>
+              </svg>
+              GALABRIEF Newsletter
+            </span>
+          </a>
+        </div>
+        <div class="header__control">
+          <button
+            id="menuToggle"
+            type="button"
+            class="menu-toggle is-desktop-visible"
+          >
+            <span class="menu-toggle__bar-wrapper">
+              <span class="menu-toggle__bar"></span>
+              <span class="menu-toggle__bar"></span>
+              <span class="menu-toggle__bar"></span>
+            </span>
+            <p class="ghost">Open menu</p>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="navbar">
+      <div class="navbar__inner">
+        <div class="navbar__links">
+          <nav class="header-links">
+            <ul class="header-links__list">
+              <li class="header-links__item">
+                <a
+                  href="#omniversemap"
+                  title="News"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Galaverse
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniversecompanies"
+                  title="Companies"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Visionaries
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  href="#omniverseconnect"
+                  title="Connect"
+                  class="header-links__link anchorlink drawermenu__link"
+                >
+                  Connect
+                </a>
+              </li>
+              <li class="header-links__item">
+                <a
+                  class="header-links__link_externallink drawermenu__link"
+                  href="https://news.google.com/search?q=boston+ai"
+                  title="News"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >News</a
+                >
+              </li>
+            </ul>
+            <!-- tag content - may be ignored! -->
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Introduction Section -->
+    <section id="intro_section" class="px-10 pt-12 mt-20 text-center">
+      <h2 class="text-gray-900 text-[40px] tracking-wide small--hide">
+        Boston's Artificial Intelligence is
+      </h2>
+      <h2 class="text-gray-900 text-[28px] tracking-wide large--hide">
+        Boston's AI is
+      </h2>
+      <h1
+        id="changing-word-robot"
+        style="font-family: poppins, sans-serif"
+        class="pb-4 mb-4 text-extrabold sm:text-normal text-[50px] h-[75px] sm:h-[150px] sm:text-[100px] text-black"
+      ></h1>
+    </section>
+
+    <!-- Main Content -->
+    <section
+      id="robosec"
+      class="flex flex-wrap justify-center items-stretch robosec px-10 gap-6"
+    >
+      <!-- Left: Chat + Mic -->
+      <div
+        class="flex-1 min-w-[280px] flex flex-col justify-center md:order-1 order-2"
+      >
+        <div class="space-y-3">
+          <div
+            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
+          >
+            こんにちは
+          </div>
+          <div
+            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
+          >
+            Robot can now understand voice commands in 10 languages
+          </div>
+          <div
+            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
+          >
+            ロボットは10言語の音声コマンドを理解できるようになりました
+          </div>
+          <div
+            class="shadow chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
+          >
+            Robot understands more languages
+          </div>
+          <div
+            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base opacity-40"
+          >
+            ロボットはより多くの言語を理解する
+          </div>
+          <div
+            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base self-end ml-auto opacity-20"
+          >
+            Understood in real-time
+          </div>
+        </div>
+        <div
+          class="mt-[-80px] flex justify-center relative mb-8 w-14 h-14 mx-auto"
+        >
+          <div class="absolute inset-0">
+            <span class="ripple"></span>
+            <span class="ripple"></span>
+            <span class="ripple"></span>
+          </div>
+          <div
+            class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-gray-800 to-black flex items-center justify-center shadow-lg"
+          >
+            <!-- Overlay -->
+            <div id="chatOverlay"></div>
+
+            <!-- Chatbox -->
+            <div
+              id="chatbox"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="chatTitle"
+            >
+              <div id="chatTop">
+                <span style="font-weight: 600">Boston AI Assistant</span>
+                <button id="closeChat" aria-label="Close">✕</button>
+              </div>
+
+              <div id="chatMessages" aria-live="polite"></div>
+
+              <div id="chatInputArea">
+                <input
+                  id="chatInput"
+                  type="text"
+                  placeholder="Type a message..."
+                  aria-label="Message"
+                />
+                <button id="sendButton">Send</button>
+              </div>
+            </div>
+
+            <!-- Floating Mic Button -->
+            <button id="micButton" title="Speak" aria-label="Speak">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="white"
+                viewBox="0 0 24 24"
+                class="w-5 h-5 relative z-10"
+              >
+                <path
+                  d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3zm-1 18.93A7.996 7.996 0 0 1 4.07 13H6a6 6 0 0 0 12 0h1.93A7.996 7.996 0 0 1 13 19.93V23h-2v-3.07z"
+                ></path>
+              </svg>
+            </button>
+            <!-- Mic hint: place this immediately after the mic button markup -->
+            <div
+              id="micHint"
+              class="mic-hint"
+              role="status"
+              aria-live="polite"
+              aria-hidden="false"
+            >
+              <div class="mic-hint__content">
+                <span class="mic-hint__text">Ask me<br />something!</span>
+                <button
+                  id="micHintClose"
+                  class="mic-hint__close"
+                  aria-label="Dismiss hint"
+                >
+                  &times;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Robot -->
+      <div
+        class="flex-1 min-w-[280px] sm:pl-5 sm:pr-5 text-center flex items-center justify-center md:order-2 order-1"
+      >
+        <img src="r1.png" alt="Robot" class="mx-auto max-w-[400px] w-full" />
+      </div>
+
+      <!-- Right: Text + CTA -->
+      <div
+        class="flex-1 min-w-[280px] flex flex-col justify-center pt-2 sm:pt-6 pl-0 md:order-3 order-3"
+      >
+        <div class="mb-16 sm:mb-4">
+          <p
+            class="text-subtitl_size text-black leading-relaxed mb-6 mt-2 sm:mt-12 text-[19px]"
+            style="font-family: poppins, sans-serif"
+          >
+            Boston sits near the top of the global AI map by leaning hard on its universities, hospitals, and life science institutions, where lab automation, surgical robotics, and clinical AI help turn research into real life treatments for patients. Beantown feels like it's half beautiful cobble-stone streets and half college campus with a wicked nerd energy and drive to build the next unicorn. Cambridge trailblazes AI with MIT and Harvard labs, Innovation District hosts data cloud startups, and Allston houses an indie maker scene that together pave an AI and robotics future that is clinical, civic, and a little stubbornly New England.									
+          </p>
+          <div class="flex gap-4 mb-6 btn_withlovedby">
+            <a
+              href="#omniverseconnect"
+              class="px-6 py-2 rounded-full bg-black text-white font-bold anchorlink customlinhyt"
+              >Be seen</a
+            >
+            <div class="mb-ww4 text-left">
+              <div class="flex items-center gap-2">
+                <div class="flex -space-x-3">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+                  />
+                  <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+                  />
+                  <img
+                    src="https://randomuser.me/api/portraits/men/65.jpg"
+                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+                  />
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500 mb-1">Loved by more than</p>
+                  <p class="text-xl font-semibold text-gray-800">10k+ users</p>
+                </div>
+              </div>
+            </div>
+            <!----<a href="criteria.html" class="px-6 py-2 rounded-full border border-transparent text-black underline flex items-center gap-2">
+           How do we connect?
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black fill-black" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </a>---->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fullwidth Map -->
+    <section
+      id="omniversemap"
+      class="w-full bg-white py-8 mt-12 pb-8 px-4 sm:px-6 lg:px-12"
+    >
+      <div class="bg-white relative z-10 w-full mb-4 mob-mt-0 text-center">
+        <h1
+          style="font-family: poppins, sans-serif"
+          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
+        >
+          Galaverse
+        </h1>
+        <p
+          class="text-subtitl_size pl-5 pr-5 text-black max-w-5xl mx-auto"
+          style="font-family: poppins, sans-serif"
+        >
+          From New York City to London. From Paris to Tokyo. Click a connected
+          city to access their domain.
+        </p>
+        <p class="text-subtitl_size" style="font-family: poppins, sans-serif">
+          <a
+            href="www.galaverse-ai.org"
+            class="text-subtitl_size text-black mt-4"
+            style="
+              font-family: poppins, sans-serif;
+              margin-top: 10px;
+              display: inline-block;
+            "
+            >www.galaverse-ai.org</a
+          >
+        </p>
+      </div>
+      <div class="h-[400px] sm:h-[500px]" id="map"></div>
+    </section>
+
+    <!-- Hero Section -->
+    <section
+      id="omniversecompanies"
+      class="bg-white relative z-10 w-full mt-12 mob-mt-0 pb-4 pt-8 text-center"
+    >
+      <div class="container">
+        <h1
+          style="font-family: poppins, sans-serif"
+          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
+        >
+          Boston Visionaries
+        </h1>
+        <p
+          class="pl-5 pr-5 text-black max-w-5xl mx-auto text-subtitl_size"
+          style="font-family: poppins, sans-serif"
+        >
+          Boston’s AI and robotics scene encompasses both the region’s hardest challenges and its most impressive strengths, from Mass General using diagnostic imaging models and surgical robotics, to crushing winters of snow and ice where storm prediction and fleet routing tools guide plow deployment, to its world-leading healthcare networks where artificial intelligence powers drug discovery, genomics, and lab automation, to the thriving sports culture at Fenway Park and the Garden where computer vision, automated drone cameras, and advanced analytics make broadcasts and in-stadium visual experiences more immersive, and finally to the reknowned universities that pioneer advances in academic artificial intelligence.									
+        </p>
+        <!-- Swiper Container -->
+        <div class="swiper mySwiperTiles">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Piaggio Fast Forward</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Piaggio Fast Forward builds cargo-carrying robots that blend innovative technology with sustainable mobility to help people move items from one place to another. Our flagship robot, Gita, uses a first-of-its-kind, hands-free following technology to accompany and assist people through everyday errands.
+                  <br /><br />
+                  <a target="_blank" href="https://piaggiofastforward.com/"
+                    >https://piaggiofastforward.com/</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Neurala</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Neurala develops vision AI software that makes visual inspection of products faster, smarter, and more accessible for manufacturers. Neurala’s VIA (Visual Inspection Automation) platform improves the quality control process by detecting defects, reducing machine downtime, and scaling production and is patented by technology from NASA, DARPA, and Air Force.
+                  <br /><br />
+                  <a target="_blank" href="https://www.neurala.com/"
+                    >https://www.neurala.com/</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Aura Intelligent Systems</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Aura Intelligent Systems makes AI imaging radar that provides high-resolution spatial awareness solutions for autonomous mobility and intelligent edge applications. Aura enables 5D situational awareness that is resilient to interference, jamming, and urban complexity with its patented QuadRay™ technology, that enables safer drones, vehicles, and mobility networks.
+                  <br /><br />
+                  <a target="_blank" href="https://www.auraisystems.com/"
+                    >https://www.auraisystems.com/</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">MassRobotics</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  MassRobotics is the world’s largest independent robotics hub, with a goal to accelerate innovation, commercialization, and adoption in robotics and physical AI. It's headquartered in Boston but has a global reach, by providing startups and entrepreneurs with custom workspaces, prototyping facilities, resources, and connections to help them scale, network, and hopefully succeed.
+                  <br /><br />
+                  <a target="_blank" href="http://www.massrobotics.org/">http://www.massrobotics.org/</a>
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Nextera Robotics</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Nextera Robotics builds its patented AI-powered Didge, which is disrupting construction management with on the ground data that improves safety, tracks progress, enhances quality control, and prevents costly mistakes. The Didge platform provides automated reports, alerts, and dashboards to teams for a shared source of truth to enable proactive decisions.
+                  <br /><br />
+                  <a target="_blank" href="https://nexterarobotics.com/"
+                    >https://nexterarobotics.com/</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Krevera</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Krevera provides AI-vision agents that continuously monitor production, automatically adjust processes, and significantly reduce defects. Its machine learning inspection processes give you full quality control of your plastic injection molding production facilities.
+                  <br /><br />
+                  <a target="_blank" href="https://krevera.com/">https://krevera.com/</a>
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Volta Labs. Inc.</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Volta Labs develops a full-stack digital fluidics platform including hardware, software, chemistry, and biology, that maximizes genomics sample prep performance, scalability, and consistency. Volta helps scientists focus on discovery, and turns complex biology into a simple, efficient, push-button experience.
+                  <br /><br />
+                  <a target="_blank" href="https://www.voltalabs.com/">https://www.voltalabs.com/</a>
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Neo Cybernetica</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Neo Cybernetica is advancing cybernetics technology, defined as the science of communications and automatic control systems in both machines and living things, using breakthroughs in AI, robotics, neuroscience, and cognitive sciences.
+                  <br /><br />
+                  <a target="_blank" href="https://www.neocybernetica.com/">https://www.neocybernetica.com/</a>
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Perceptive (formerly Cyberdontics)</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Perceptive is advancing the future of dentistry with AI-powered imaging and robotic systems. Our handheld intraoral scanner combines machine learning hardware and software with advanced OCT technology to capture high-resolution 3D data that is even below the gum line, through fluids, and beneath the tooth's surface.
+                  <br /><br />
+                  <a target="_blank" href="https://www.perceptive.io/"
+                    >https://www.perceptive.io/</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="tile-wrapper">
+                <div class="tile-title">Saturday Robotics</div>
+                <p
+                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+                  style="font-family: poppins, sans-serif"
+                >
+                  Saturday Robotics is a modern robotics laundry company that builds autonomous washing and drying solutions to simplify daily life while reducing our impact on the planet. Simply leave your laundry on your porch, and Saturday Robotics will pick it up, and autonomously clean, fold, and pack them, for greater efficiency and sustainability.
+                  <br /><br />
+                  <a target="_blank" href="https://yaysaturday.com/howitworks"
+                    >https://yaysaturday.com/howitworks</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- Pagination Dots -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <!-- Contact -->
+    <section
+      id="omniverseconnect"
+      class="mt-12 relative py-8 px-6 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
+    >
+      <div class="max-w-2xl mx-auto text-center mb-8 z-10 relative">
+        <h1
+          style="font-family: poppins, sans-serif"
+          class="text-3xl md:text-5xl font-bold text-[#000000] leading-tight step_into [font-family:'Open_Sans']"
+        >
+          Welcome to Galaverse
+        </h1>
+        <p
+          style="font-family: poppins, sans-serif"
+          class="text-subtitl_size text-black"
+        >
+          Enter to be seen.
+        </p>
+      </div>
+
+      <!-- Contact Card -->
+
+      <!---<h1>Contact Form</h1>
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <h1>Newsletter Signup</h1>
+  <form id="newsletter-form">
+    <input type="email" name="email" placeholder="Your Email" required />
+    <button type="submit">Subscribe</button>
+  </form>--->
+
+      <div
+        class="max-w-3xl mx-auto bg-white shadow-2xl contact_section rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border border-gray-100"
+      >
+        <form id="contact-form" class="space-y-6 md:space-y-6 space-y-4">
+          <div class="relative">
+            <label
+              for="email"
+              class="block text-sm -mt-[1vw] font-medium text-gray-700 mb-1"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            />
+          </div>
+
+          <div class="relative">
+            <label
+              for="message"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              rows="3"
+              name="message"
+              placeholder="Type your message here..."
+              required
+              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition md:rows-5 rows-3"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg md:!mt-6 !mt-4"
+          >
+            🚀 Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Decorative Circles -->
+      <div
+        class="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full opacity-40 z-0"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-56 h-56 bg-blue-200 rounded-full opacity-30 z-0"
+      ></div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="text-center text-gray-600 text-sm pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200"
+    >
+      <div class="text-sm footer__links">
+        <a href="legal-disclaimer.html" title="Legal" class="footer__link"
+          >Legal Disclaimer</a
+        >
+        <a
+          href="website-disclaimer.html"
+          title="website-disclaimer"
+          class="footer__link"
+          >Website Disclaimer</a
+        >
+        <a
+          href="ai-content-technology-disclaimer.html"
+          title="AI Content & Technology disclaimer"
+          class="footer__link"
+          >AI Content & Technology Disclaimer</a
+        >
+        <a
+          href="privacy-policy.html"
+          title="Privacy Policy"
+          class="footer__link"
+          >Privacy Policy</a
+        >
+        <a
+          href="terms-of-service.html"
+          title="Terms of Service"
+          class="footer__link"
+          >Terms of Service</a
+        >
+        <a
+          href="california-consumer-privacy-act.html"
+          title="California Consumer Privacy Act (CCPA)"
+          class="footer__link"
+          >California Consumer Privacy Act (CCPA)</a
+        >
+        <a
+          href="web-accessibility-disclaimer.html"
+          title="California Consumer Privacy Act (CCPA)"
+          class="footer__link"
+          >Web Accessibility Disclaimer</a
+        >
+      </div>
+      <div class="footer_copyright">
+        &copy; 2025 Boston, Galaverse AI. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const nav = document.querySelector(".navbar .header-links");
+
+      function closeMenu() {
+        menuToggle?.classList.remove("is-active");
+        document.body.classList.remove("navbar-open");
+      }
+
+      menuToggle?.addEventListener("click", () => {
+        menuToggle.classList.toggle("is-active");
+        document.body.classList.toggle("navbar-open");
+      });
+
+      // Delegate clicks from the nav (works for all links inside)
+      nav?.addEventListener("click", (e) => {
+        const link = e.target.closest("a.header-links__link");
+        if (!link) return;
+
+        const openInNewTab = link.target === "_blank" || e.ctrlKey || e.metaKey;
+
+        if (openInNewTab) {
+          // Force-open the new tab, then close the menu
+          window.open(link.href, "_blank", "noopener");
+          e.preventDefault();
+        }
+
+        // Close the menu after the click has been handled
+        requestAnimationFrame(closeMenu);
+      });
+
+      // Middle-click (auxclick) also opens in a new tab on most browsers
+      nav?.addEventListener("auxclick", (e) => {
+        if (e.button !== 1) return; // only middle button
+        const link = e.target.closest("a.drawermenu__link");
+        if (!link) return;
+
+        window.open(link.href, "_blank", "noopener");
+        e.preventDefault();
+        requestAnimationFrame(closeMenu);
+      });
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      const cities = [
+        // { name: 'Africa', color: '#009933', url: 'http://africa-ai.org/', desc: "Africa's robotics and AI innovation is being applied to farming, health, and mobile payments, helping it to leapfrog older systems with digital-first solutions.", coords: [-8.7832, 34.5085] },
+        // { name: 'Amsterdam', color: '#21468B', url: 'http://amsterdam-ai.org/', desc: "Amsterdam blends innovation with sustainability, hosting a thriving tech startup ecosystem known for AI, fintech, and smart mobility.", coords: [52.3676, 4.9041] },
+        // { name: 'Atlanta', color: '#C15B52', url: 'http://atlanta-ai.org/', desc: "Atlanta’s position as a transport and finance hub drives AI in logistics, cybersecurity, and financial technologies.", coords: [33.7501, -84.3885] },
+        {
+          name: "Austin",
+          color: "#ffbb00",
+          url: "https://ai-austin.com",
+          desc: "Austin’s booming tech scene blends innovation and creativity, making it a fast-rising hub for AI startups and robotics research.",
+          coords: [30.2672, -97.7431],
+        },
+        {
+          name: "New York",
+          color: "#003585",
+          url: "http://newyorkcity-ai.org/",
+          desc: "New York City is a major force in AI and robotics by blending finance, health, media, and tech into a powerhouse of applied intelligence.",
+          coords: [40.7128, -74.006],
+        },
+        // { name: 'Bangkok', color: '#FFD700', url: 'http://bangkok-ai.org/', desc: "Tourism, logistics, and urban expansion turn Bangkok into a Southeast Asian experimentation hub for AI in transport and city design.", coords: [13.7563, 100.5018] },
+        // { name: 'Beijing', color: '#ED2939', url: 'http://beijing-ai.org/', desc: "Beijing focuses its AI development through Tsinghua-led research with language models, defense robotics, and smart city infrastructure.", coords: [39.9042, 116.4074] },
+        // { name: 'Bengaluru', color: '#00A551', url: 'http://bengaluru-ai.org/', desc: "Known as the Silicon Valley of India, Bengaluru thrives with deep tech talent and a rapidly expanding AI ecosystem.", coords: [12.9716, 77.5946] },
+        //    { name: 'Berlin', color: '#E0B31C', url: 'http://berlin-ai.org/', desc: "Berlin anchors Germany's tech scene by connecting AI with mobility, IoT, and creative technology.", coords: [52.5200, 13.4050] },
+        //    { name: 'Barcelona', color: '#A50044', url: 'http://barcelona-ai.org/', desc: "Barcelona is fostering a dynamic AI and robotics environment supported by smart city initiatives and global tech collaboration.", coords: [41.3851, 2.1734] },
+            { name: 'Boston',
+			color: '#007a33',
+			url: 'http://boston-ai.org/',
+			desc: "The Boston area’s prestigious universities and hospitals create a deep pipeline of AI research that is applied to biotech, healthcare, and robotics.",
+			coords: [42.3555, -71.0565] },
+        //    { name: 'Buenos Aires', color: '#75AADB', url: 'http://buenosaires-ai.org/', desc: "Buenos Aires is becoming a Latin American leader in AI and software development, powered by a strong developer culture and growing innovation centers.", coords: [-34.6037, -58.3816] },
+        //    { name: 'Brussels', color: '#C7A634', url: 'http://brussels-ai.org/', desc: "Brussels is quietly shaping the future of AI through a powerful mix of EU-driven regulation, ethical leadership, and a growing ecosystem of startups and research hubs.", coords: [50.8503, 4.3517] },
+        //    { name: 'Chicago', color: '#41B6E6', url: 'http://chicago-ai.org/', desc: "AI in Chicago builds on its freight networks and financial markets, linking industrial infrastructure with data-driven systems.", coords: [41.8832, -87.6324] },
+        //    { name: 'Copenhagen', color: '#FEDE0E', url: 'http://copenhagenai.org/', desc: "Copenhagen ties AI directly to its urban planning and green ethos, focusing on clean energy and sustainable robotics.", coords: [55.6761, 12.5683] },
+        // { name: 'Dallas', color: '#008FBD', url: 'http://ai-dallas.org/', desc: "Telecommunications, energy, and defense programs that focus on secure networks and robotics give Dallas a strong base for AI.", coords: [32.7767, -96.7970] },
+        //    { name: 'Delhi', color: '#D42023', url: 'http://delhi-ai.org/', desc: "Delhi is emerging as a leader in AI and deep learning, with its academic strength and thriving startup landscape.", coords: [28.6139, 77.2090] },
+        //    { name: 'Denver', color: '#0096D6', url: 'http://denver-ai.org/', desc: "Denver's aerospace industry and climate labs drive AI development in satellites, space robotics, and environmental systems.", coords: [39.7392, -104.9903] },
+        //    { name: 'Doha', color: '#8A1538', url: 'http://doha-ai.org/', desc: "Doha is making bold moves in AI and smart infrastructure as it invests heavily in research and next-gen tech talent.", coords: [25.276987, 51.520008] },
+        //    { name: 'Dublin', color: '#007A33', url: 'http://dublin-ai.org/', desc: "Dublin hosts several major global tech headquarters and a vibrant AI scene that connects strong academic research with commercial innovation.", coords: [53.3498, -6.2603] },
+        // { name: 'Dubai', color: '#F4CA3E', url: 'http://dubai-ai.org/', desc: "Dubai treats AI as part of its future economy by consciously integrating robotics into policing, construction, and urban infrastructure.", coords: [25.2048, 55.2708] },
+        // { name: 'Guangzhou', color: '#CFB53B', url: 'http://guangzhou-ai.org/', desc: "Guangzhou is becoming a major player in China’s AI and robotics expansion, with deep manufacturing roots and growing R&D investment.", coords: [23.1291, 113.2644] },
+        // { name: 'Hong Kong', color: '#DE2408', url: 'http://hongkong-ai.org/', desc: "Dense urban systems and global finance shape Hong Kong’s AI, from smart city planning to digital market platforms.", coords: [22.3193, 114.1694] },
+        // { name: 'Ho Chi Minh City', color: '#DA251D', url: 'http://hochiminhcity-ai.org/', desc: "A young, entrepreneurial population drives Ho Chi Minh City’s AI growth in manufacturing, education, entertainment, and software.", coords: [10.8231, 106.6297] },
+            { 
+			name: 'Los Angeles',
+			color: '#FFBB00',
+			url: 'http://losangeles-ai.org/',
+			desc: "Entertainment, aerospace, and mobility converge in Los Angeles, where AI helps to shape visual effects, space exploration, and transport.",
+			coords: [34.0549, -118.2426] },
+        // { name: 'London', color: '#C60C30', url: 'http://ai-london.org/', desc: "London uses its powerful global influence to fuel AI in finance, policy, and media, extending across all markets, governance, and creative work.", coords: [51.5072, -0.1276] },
+        // { name: 'Madrid', color: '#C10049', url: 'http://ai-madrid.org/', desc: "Engineering traditions in energy and transport give Madrid a foundation for AI applications in automation and mobility.", coords: [40.4167, -3.7033] },
+        // { name: 'Manchester', color: '#DA291C', url: 'http://manchester-ai.org/', desc: "Manchester mixes rich academic research with tech startup energy, becoming a powerful northern UK hub for AI and automation.", coords: [53.4808, -2.2426] },
+        //    { name: 'Manila', color: '#B0723A', url: 'http://manila-ai.org/', desc: "Manila’s tech industry is growing fast, with strong momentum in AI services, tourism intelligence, fintech, and digital transformation efforts.", coords: [14.5995, 120.9842] },
+        //    { name: 'Melbourne', color: '#002B5C', url: 'http://melbourne-ai.org/', desc: "Melbourne’s vibrant startup culture and academic excellence are fueling its rise in AI, robotics, and advanced computing.", coords: [-37.8136, 144.9631] },
+        //    { name: 'Mexico City', color: '#CF3E81', url: 'http://mexicocity-ai.org/', desc: "Mexico City develops AI in urban transport, cultural industries, and fintech, reflecting its scale as Latin America’s largest metropolis.", coords: [19.4326, -99.1332] },
+        //    { name: 'Miami', color: '#db3eb1', url: 'http://ai-miami.org/', desc: "With its international ties, Miami channels AI into fintech, digital health, and trade systems connected to Latin America.", coords: [25.7617, -80.1918] },
+        //    { name: 'Montreal', color: '#F4B441', url: 'http://montreal-ai.org/', desc: "Montreal is globally recognized for its AI research leadership, with strong academic partnerships and a collaborative startup environment.", coords: [45.5017, -73.5673] },
+        //    { name: 'Mumbai', color: '#FFD141', url: 'http://mumbai-ai.org/', desc: "Mumbai is combining fintech, media tech, and AI to become a powerhouse of digital innovation and smart applications.", coords: [19.0760, 72.8777] },
+        {
+          name: "Seattle",
+          color: "#0084a1",
+          url: "https://www.seattle-ai.org",
+          desc: "Seattle is the leader in cloud, robotics, and applied AI, with strong contributions from companies like Amazon, Microsoft, and a deep artificial intelligence research environment.",
+          coords: [47.6062, -122.3321],
+        },
+        // { name: 'Paris', color: '#000091', url: 'http://paris-ai.org/', desc: "French state support and elite academic institutions have positioned Paris as a premier European hub for AI policy, robotics, and research.", coords: [48.8575, 2.3514] },
+        //    { name: 'Philadelphia', color: '#004C55', url: 'http://philadelphia-ai.org/', desc: "Philadelphia's growing AI presence in anchored by advanced robotics applications in healthcare, biotech, and academic research institutions.", coords: [39.9526, -75.1652] },
+        //    { name: 'Phoenix', color: '#E2943C', url: 'http://ai-phoenix.org/', desc: "The tech scene in Phoenix serves as a testing ground for self-driving cars, solar AI systems, and desert-focused urban technology.", coords: [33.4483, -112.0725] },
+        //    { name: 'Portland', color: '#4CBB17', url: 'http://ai-portland.org/', desc: "A culture of sustainability and design informs Portland’s AI, from clean manufacturing to creative applications of robotics.", coords: [45.5152, -122.6784] },
+        // { name: 'Rome', color: '#B31B1B', url: 'http://rome-ai.org/', desc: "Rome’s AI scene is developing steadily, with innovation centers focusing on cultural heritage, language tech, and smart urban planning.", coords: [41.9028, 12.4964] },
+        // { name: 'San Diego', color: '#FFCD00', url: 'http://sandiego-ai.org/', desc: "Medical research, naval defense, martime innovation, and ocean science create the framework of San Diego’s AI industries.", coords: [32.7157, -117.1611] },
+        {
+          name: "San Francisco",
+          color: "#ffc72c",
+          url: "http://sanfrancisco-ai.org/",
+          desc: "At the center of Silicon Valley, San Francisco anchors the global tone for AI research, robotics startups, and experimental technologies.",
+          coords: [37.7749, -122.4194],
+        },
+        //    { name: 'São Paulo', color: '#006400', url: 'http://saopaulo-ai.org/', desc: "São Paulo is South America’s leading tech hub, with a booming AI startup scene and a strong presence in fintech and logistics automation.", coords: [-23.5505, -46.6333] },
+        //    { name: 'Seoul', color: '#00B493', url: 'http://seoul-ai.org/', desc: "Seoul leads Asia’s digital future with cutting-edge robotics, 5G infrastructure, and a booming AI and semiconductor industry.", coords: [37.5665, 126.9780] },
+        // { name: 'Seattle', color: '#0084a1',  url: 'http://seattle-ai.org/', desc: "Seattle is the leader in cloud, robotics, and applied AI, with strong contributions from companies like Amazon, Microsoft, and a deep research ecosystem.", coords: [47.6062, -122.3321] },
+        //    { name: 'Shanghai', color: '#1B3050', url: 'http://shanghai-ai.org/', desc: "Manufacturing and worldwide trade markets make Shanghai a hub for AI in industrial automation, logistics robotics, and commercial systems.", coords: [31.2304, 121.4737] },
+        // { name: 'Shenzhen', color: '#00609B', url: 'http://shenzhen-ai.org/', desc: "Shenzhen is a global leader in robotics, AI hardware, and manufacturing tech, with unmatched speed in tech development and scaling.", coords: [22.5431, 114.0579] },
+        //    { name: 'Stockholm', color: '#fecb00', url: 'http://stockholm-ai.org/', desc: "Sweden’s renowned sustainability goals give Stockholm an AI profile rooted in renewable energy, health technology, and smart cities.", coords: [59.3327, 18.0656] },
+        // { name: 'Sydney', color: '#49AFC9', url: 'http://sydney-ai.org/', desc: "Marine science, digital health, and climate innovation put Sydney at the forefront of AI research in the Pacific.", coords: [-33.8727, 151.2057] },
+        // { name: 'Singapore', color: '#EE2536', url: 'http://ai-singapore.org/', desc: "Singapore has built a world-class AI ecosystem with government support, smart nation initiatives, and cutting-edge research centers.", coords: [1.3521, 103.8198] },
+        // { name: 'Taipei', color: '#E47777', url: 'http://taipei-ai.org/', desc: "Taipei’s AI and robotics scene is at the forefront in semiconductor innovation, smart devices, and industrial automation.", coords: [25.032969, 121.565418] },
+        //    { name: 'Tokyo', color: '#6E406F', url: 'http://ai-tokyo.org/', desc: "Tokyo blends cultural perfection with robotics and advanced AI, with strong advances in industrial automation and humanoid mobility systems.", coords: [35.6764, 139.6500] },
+        // { name: 'Toronto', color: '#224291', url: 'http://ai-toronto.org/', desc: "As Canada’s largest tech hub, Toronto grows its AI identity in neural network innovation, healthcare diagnostics, and robotics applications.", coords: [43.6532, -79.3832] },
+        //    { name: 'Tel Aviv', color: '#2C6EBA', url: 'http://telaviv-ai.org/', desc: "Tel Aviv is a global tech leader, nicknamed 'Startup City,' with deep strengths in cybersecurity, AI, and biotech.", coords: [32.0853, 34.7818] },
+        // { name: 'Vancouver', color: '#61a644', url: 'http://vancouver-ai.org', desc: "Vancouver’s AI strengths come from sustainability, visual computing, and robotics, shaped by its Pacific location and natural resources.", coords: [49.2827, -123.1207] },
+        // { name: 'Warsaw', color: '#FF1100', url: 'http://warsaw-ai.org/', desc: "Warsaw is emerging as Central Europe’s AI center, with defense research, industrial robotics, and strong engineering education.", coords: [52.2297, 21.0122] },
+        //    { name: 'Washington DC', color: '#E91436', url: 'http://washingtondc-ai.org/', desc: "Washington DC is shaping AI policy while also investing in cybersecurity, defense tech, and public-sector AI applications.", coords: [38.9072, -77.0369] },
+        //    { name: 'Zurich', color: '#FFCC00', url: 'http://zurich-ai.org/', desc: "Zurich is a global AI research leader, home to ETH Zurich and a growing tech industry focused on robotics, machine learning, and automation.", coords: [47.3769, 8.5417] }
+      ];
+      // Define world bounds
+      const worldBounds = L.latLngBounds(
+        L.latLng(-85, -180),
+        L.latLng(85, 180)
+      );
+      // Example markers (replace with your own)
+      const markerss = [
+        [30.2672, -97.7431],[37.7749, -122.4194],[40.7128, -74.006],[47.6062, -122.3321],[34.0549, -118.2426],[42.3555, -71.0565] /*,[12.9716, 77.5946],[41.3851, 2.1734],[-34.6037, -58.3816],[28.6139, 77.2090],[25.276987, 51.520008],[53.3498, -6.2603],[23.1291, 113.2644],[13.7563, 100.5018],
+  [53.4808, -2.2426],[14.5995, 120.9842],[-37.8136, 144.9631],[19.4326, -99.1332],[45.5017, -73.5673],[19.0760, 72.8777],[39.9526, -75.1652],[41.9028, 12.4964],[52.5200, 13.4050],[39.9042, 116.4074],[48.8575, 2.3514],
+  [-23.5505, -46.6333],[47.6062, -122.3321],[22.5431, 114.0579],[1.3521, 103.8198],[25.032969, 121.565418],[49.2827, -123.1207],[38.9072, -77.0369],[47.3769, 8.5417],[52.3676, 4.9041],[50.8503, 4.3517],[33.7501, -84.3885],[-8.7832, 34.5085],
+  [37.5665, 126.9780],[32.0853, 34.7818],[52.2297, 21.0122],[43.6532, 79.3832],[35.6764, 139.6500],[33.8727, 151.2057],[59.3327, 18.0656],[31.2304, 121.4737],[32.7157, 117.1611],[45.5152, -122.6784],[33.4483, -112.0725],
+  [25.7617, -80.1918],[40.4167, 3.7033],[51.5072, -0.1276],[10.8231, 106.6297],[22.3193, 114.1694],[25.2048, 55.2708],[39.7392, -104.9903],[32.7767, -96.7970],[55.6761, 12.5683],[41.8832, -87.6324]*/,
+      ];
+
+      // Create marker group
+      const markerGroup = L.featureGroup(markerss.map((m) => L.marker(m)));
+
+      function getMapSettings() {
+        const isMobile = L.Browser.mobile || window.innerWidth < 768;
+
+        return {
+          center: isMobile ? [18, -10] : [20, 0],
+          // ↓ slightly more zoomed out than before
+          zoom: isMobile ? 1.2 : 1.4,     // was 1.2 / 1.8
+          minZoom: isMobile ? 1 : 2,
+          maxZoom: isMobile ? 4 : 6,
+          fitPadding: isMobile ? [50, 50] : [20, 20],
+          maxBounds: isMobile
+            ? L.latLngBounds(L.latLng(-45, -180), L.latLng(80, 180))
+            : L.latLngBounds(L.latLng(-58, -180), L.latLng(76, 180)),
+        };
+      }
+
+      let settings = getMapSettings();
+
+      const map = L.map("map", {
+        zoomControl: true,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        touchZoom: true,
+        dragging: true,
+        keyboard: false,
+
+        center: settings.center,
+        zoom: settings.zoom,
+        minZoom: settings.minZoom,
+        maxZoom: settings.maxZoom,
+
+        maxBounds: settings.maxBounds, // ✅ use device-specific bounds
+        maxBoundsViscosity: 1.0,
+        worldCopyJump: false,
+        zoomSnap: 1,
+        zoomDelta: 1,
+      });
+
+      // ✅ Add markers
+      markerGroup.addTo(map);
+
+      // ✅ Fit markers on load
+      map.fitBounds(markerGroup.getBounds(), { padding: settings.fitPadding });
+
+      // ✅ Auto-adjust on resize
+      window.addEventListener("resize", () => {
+        const newSettings = getMapSettings();
+
+        map.setMinZoom(newSettings.minZoom);
+        map.setMaxZoom(newSettings.maxZoom);
+        // ✅ Update bounds
+        map.setMaxBounds(newSettings.maxBounds);
+
+        // Keep zoom inside allowed range
+        const currentZoom = map.getZoom();
+        if (currentZoom < newSettings.minZoom) {
+          map.setZoom(newSettings.minZoom);
+        } else if (currentZoom > newSettings.maxZoom) {
+          map.setZoom(newSettings.maxZoom);
+        }
+
+        // ✅ Re-fit markers with new padding if device type changed
+        if (newSettings.fitPadding[0] !== settings.fitPadding[0]) {
+          map.fitBounds(markerGroup.getBounds(), {
+            padding: newSettings.fitPadding,
+          });
+        }
+
+        // Update settings
+        settings = newSettings;
+      });
+
+      // const map = L.map('map', {
+      //   zoomControl: true,
+      //   scrollWheelZoom: true,
+      //   doubleClickZoom: false,
+      //   boxZoom: false,
+      //   touchZoom: true,
+      //   dragging: true,
+      //   keyboard: false,
+      //   center: [20, 0],
+      //     zoom: 1.8,
+      //     minZoom: 2, // Prevent zooming out too far
+      //     maxZoom: 5,
+      //     maxBounds: worldBounds,
+      //     maxBoundsViscosity: 1.0,
+      //     worldCopyJump: false,     // Prevent world copy when crossing boundary
+      //     zoomSnap: 1,
+      //     zoomDelta: 1
+      // });
+
+      // Add base layer with no wrapping
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        noWrap: true, // Prevent horizontal tile repeating
+        continuousWorld: false, // Deprecated but good for compatibility
+        bounds: worldBounds,
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      // === Make map zoom only with two fingers on touch devices (but KEEP dragging on desktop) ===
+      (function enableTwoFingerZoomOnly(map) {
+        if (!map) return;
+      
+        // Detect real touch-first devices (coarse pointers), not just “ontouchstart”
+        const isTouchFirst =
+          (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
+          (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+      
+        const container = document.getElementById('map');
+        if (!container) return;
+      
+        if (isTouchFirst) {
+          // Mobile/tablet: allow page scroll with one finger; require pinch to zoom map
+          container.style.touchAction = 'pan-y pinch-zoom';
+      
+          // Disable single-finger drag so the page can scroll normally
+          if (map.dragging && map.dragging.enabled()) map.dragging.disable();
+      
+          // Ensure pinch zoom is enabled
+          if (map.touchZoom && !map.touchZoom.enabled()) map.touchZoom.enable();
+      
+          // Optional niceties
+          if (map.tap && map.tap.enabled && map.tap.enabled()) map.tap.disable();
+        } else {
+          // Mouse/trackpad: full map interaction
+          container.style.touchAction = 'auto';
+          if (map.dragging && !map.dragging.enabled()) map.dragging.enable();
+          if (map.touchZoom && map.touchZoom.enabled()) map.touchZoom.disable(); // pinch irrelevant on desktop
+        }
+      })(map);
+
+      // Add markers
+      const markers = L.featureGroup();
+      cities.forEach((city) => {
+        const marker = L.marker(city.coords).addTo(map);
+        marker.bindPopup(`
+    <strong>${city.name}</strong><br>${city.desc}<br><br>
+    <a href="${city.url}" target="_blank" style="color: ${city.color};">${city.url}</a>
+  `);
+        markers.addLayer(marker);
+      });
+
+      /*------------------Paris Berlin Stockholm Warsaw Sydney Melbourne London Copenhagen Madrid Africa-------------*/
+      // Function to get region based on city name or coordinates
+      function getRegion(city) {
+        const name = city.name.toLowerCase();
+
+        if (
+          [
+            "san francisco",
+            "Los Angeles",
+            "Boston",
+            "Chicago",
+            "San Diego",
+            "Denver",
+            "Atlanta",
+            "Miami",
+            "Dallas",
+            "Phoenix",
+            "Portland",
+            "toronto",
+            "austin",
+            "california",
+            "montreal",
+            "new york city",
+            "philadelphia",
+            "seattle",
+            "vancouver",
+            "washington dc",
+          ].includes(name)
+        ) {
+          return "North America";
+        }
+
+        if (["buenos aires", "mexico city", "são paulo"].includes(name)) {
+          return "South America";
+        }
+
+        if (
+          [
+            "barcelona",
+            "dublin",
+            "Paris",
+            "Stockholm",
+            "Warsaw",
+            "manchester",
+            "Berlin",
+            "rome",
+            "Sydney",
+            "London",
+            "Copenhagen",
+            "Madrid",
+            "Africa",
+            "Melbourne",
+            "zurich",
+            "amsterdam",
+            "brussels",
+          ].includes(name)
+        ) {
+          return "Europe";
+        }
+
+        if (
+          [
+            "bangalore",
+            "delhi",
+            "guangzhou",
+            "incheon",
+            "manila",
+            "melbourne",
+            "mumbai",
+            "shenzhen",
+            "singapore",
+            "taipei",
+            "seoul",
+          ].includes(name)
+        ) {
+          return "Asia";
+        }
+
+        if (["tel aviv", "doha"].includes(name)) {
+          return "Middle East";
+        }
+
+        if (["north korea"].includes(name)) {
+          return "Other";
+        }
+
+        return "Uncategorized";
+      }
+
+
+      // 🔹 Second Typing Animation (no blank gap between words)
+      const words1 = [
+        "Dynamic",
+        "Wicked",
+        "Academic",
+        "Historic",
+        "Collaborative",
+        "Cold",
+        "Affluent",
+        "Intellectual",
+        "Pioneering",
+        "Prestigious",
+      ];
+      let wordIndex1 = 0;
+      let letterIndex1 = 1; // start at 1 so we show first letter immediately
+      const speed1 = 70; // typing speed (ms per char)
+      const delayBetweenWords1 = 1500; // pause after full word before erasing (ms)
+
+      function typeWord1() {
+        const word1 = words1[wordIndex1];
+        const span1 = document.getElementById("changing-word-robot");
+
+        if (letterIndex1 <= word1.length) {
+          span1.textContent = word1.substring(0, letterIndex1);
+          letterIndex1++;
+          setTimeout(typeWord1, speed1);
+        } else {
+          // pause on full word, then start erasing
+          setTimeout(() => {
+            // ensure erase starts from the full word length
+            letterIndex1 = word1.length;
+            eraseWord1();
+          }, delayBetweenWords1);
+        }
+      }
+
+      function eraseWord1() {
+        const word1 = words1[wordIndex1];
+        const span1 = document.getElementById("changing-word-robot");
+
+        if (letterIndex1 > 0) {
+          // remove one char and continue erasing
+          span1.textContent = word1.substring(0, letterIndex1 - 1);
+          letterIndex1--;
+          setTimeout(eraseWord1, Math.max(20, Math.floor(speed1 / 1.5))); // slightly faster erase but not instant
+        } else {
+          // Erase finished — immediately seed next word's first letter
+          wordIndex1 = (wordIndex1 + 1) % words1.length;
+          const nextWord = words1[wordIndex1] || "";
+          if (nextWord.length > 0) {
+            span1.textContent = nextWord.charAt(0); // seed first character so span never goes blank
+            letterIndex1 = 1; // start typing from second character next
+            // start typing next word immediately (no blank gap)
+            setTimeout(typeWord1, speed1);
+          } else {
+            // fallback: just start typing
+            letterIndex1 = 0;
+            setTimeout(typeWord1, speed1);
+          }
+        }
+      }
+
+      // Safer load event — show first letter immediately so there's no initial blank
+      window.addEventListener("load", () => {
+        const span1 = document.getElementById("changing-word-robot");
+        if (span1 && words1.length > 0) {
+          span1.textContent = words1[0].charAt(0);
+          letterIndex1 = 1;
+        }
+        typeWord1();
+      });
+
+      (function () {
+        const micBtn = document.getElementById("micButton");
+        const micHint = document.getElementById("micHint");
+        const micHintClose = document.getElementById("micHintClose");
+        const chatOverlay = document.getElementById("chatOverlay");
+        const closeChatBtn = document.getElementById("closeChat"); // your existing close button
+        const chatboxEl = document.getElementById("chatbox");
+
+        if (!micBtn || !micHint) return;
+
+        // helper: hide hint
+        function hideHint() {
+          micHint.classList.add("mic-hint--hidden");
+          micHint.setAttribute("aria-hidden", "true");
+        }
+        // helper: show hint
+        function showHint() {
+          micHint.classList.remove("mic-hint--hidden");
+          micHint.setAttribute("aria-hidden", "false");
+        }
+
+        // 🔹 Hide only when mic button is clicked
+        micBtn.addEventListener("click", hideHint);
+
+        // 🔹 Also allow explicit close with "×"
+        micHintClose &&
+          micHintClose.addEventListener("click", (e) => {
+            e.stopPropagation();
+            hideHint();
+          });
+
+        // 🔹 Show hint again when chat popup is closed:
+        closeChatBtn &&
+          closeChatBtn.addEventListener("click", () => {
+            setTimeout(() => showHint(), 100);
+          });
+
+        chatOverlay &&
+          chatOverlay.addEventListener("click", (e) => {
+            if (e.target === chatOverlay) {
+              setTimeout(() => showHint(), 100);
+            }
+          });
+
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            setTimeout(() => {
+              const isChatVisible =
+                chatboxEl &&
+                window.getComputedStyle(chatboxEl).display !== "none";
+              if (!isChatVisible) showHint();
+            }, 100);
+          }
+        });
+
+        // Fallback: detect when chatbox display changes
+        if (chatboxEl && window.MutationObserver) {
+          const obs = new MutationObserver(() => {
+            const isHidden =
+              window.getComputedStyle(chatboxEl).display === "none";
+            if (isHidden) showHint();
+          });
+          obs.observe(chatboxEl, {
+            attributes: true,
+            attributeFilter: ["style", "class"],
+          });
+        }
+      })();
+
+      const openBtn = document.getElementById("OpenNewsLetterr");
+      const closeBtn = document.getElementById("closePopup");
+      const overlay = document.getElementById("popupOverlay");
+
+      // Open popup
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "block";
+      });
+
+      // Close popup with close button
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+
+      // Close popup by clicking outside
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          overlay.style.display = "none";
+        }
+      });
+    </script>
+    <!-- Swiper Init Script -->
+    <script>
+      // ---------- Swiper init (unchanged options) + robust highlight/hover logic ----------
+      const swiper = new Swiper(".mySwiperTiles", {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+        autoHeight: false,
+        // keep init hook minimal — we'll set highlight after DOM settles
+        on: {
+          init: function () {
+            // nothing here — highlight logic runs below
+          },
+        },
+      });
+
+      // Clean, robust highlight behavior that handles loop clones
+      // (function attachSwiperHighlight(sw) {
+      //   if (!sw || !sw.el) return;
+      //   const root = sw.el;
+
+      //   // detect hover support (touch devices don't support hover well)
+      //   const canHover =
+      //     window.matchMedia && window.matchMedia("(hover: hover)").matches;
+
+      //   // helpers to query DOM slides (includes duplicates)
+      //   const getSlides = () =>
+      //     Array.from(root.querySelectorAll(".swiper-slide"));
+      //   const findOriginalFirst = () =>
+      //     getSlides().find(
+      //       (s) => !s.classList.contains("swiper-slide-duplicate")
+      //     ) || getSlides()[0];
+
+      //   function clearHighlights() {
+      //     getSlides().forEach((s) => s.classList.remove("hovered-slide"));
+      //   }
+
+      //   function restoreOriginal() {
+      //     clearHighlights();
+      //     const orig = findOriginalFirst();
+      //     if (orig) orig.classList.add("hovered-slide");
+      //   }
+
+      //   function onPointerEnter(e) {
+      //     clearHighlights();
+      //     e.currentTarget.classList.add("hovered-slide");
+      //   }
+
+      //   function attachHoverListeners() {
+      //     const slides = getSlides();
+
+      //     // remove previous handlers to avoid duplicates
+      //     slides.forEach((s) =>
+      //       s.removeEventListener("pointerenter", onPointerEnter)
+      //     );
+
+      //     if (canHover) {
+      //       slides.forEach((s) =>
+      //         s.addEventListener("pointerenter", onPointerEnter)
+      //       );
+      //       // when pointer leaves entire swiper, restore original
+      //       root.removeEventListener("pointerleave", restoreOriginal);
+      //       root.addEventListener("pointerleave", restoreOriginal);
+      //     } else {
+      //       // touch fallback is handled below
+      //       root.removeEventListener("pointerleave", restoreOriginal);
+      //     }
+      //   }
+
+      //   if (canHover) {
+      //     // initial: highlight the first real slide
+      //     // delay slightly to let Swiper build clones
+      //     setTimeout(restoreOriginal, 60);
+      //     // attach listeners (also re-attach on DOM updates)
+      //     attachHoverListeners();
+      //     sw.on && sw.on("observerUpdate", attachHoverListeners);
+      //     sw.on && sw.on("slidesLengthChange", attachHoverListeners);
+      //     // also re-run once after short delay to be safe
+      //     setTimeout(attachHoverListeners, 140);
+      //   } else {
+      //     // Touch device: highlight the active slide and update on slide change
+      //     function highlightActive() {
+      //       clearHighlights();
+      //       const active = sw.slides && sw.slides[sw.activeIndex];
+      //       if (active) active.classList.add("hovered-slide");
+      //     }
+      //     // run once now and whenever the active slide changes or DOM updates
+      //     highlightActive();
+      //     sw.on && sw.on("slideChange", highlightActive);
+      //     sw.on && sw.on("observerUpdate", highlightActive);
+      //     sw.on && sw.on("slidesLengthChange", highlightActive);
+      //   }
+      // })(swiper);
+      // ---------- Replace previous attachSwiperHighlight with this version ----------
+      (function attachPersistentSwiperHighlight(sw) {
+        if (!sw || !sw.el) return;
+        const root = sw.el;
+
+        // detect hover support (touch devices behave differently)
+        const canHover =
+          window.matchMedia && window.matchMedia("(hover: hover)").matches;
+
+        // helpers
+        const getSlides = () =>
+          Array.from(root.querySelectorAll(".swiper-slide"));
+        const findOriginalFirst = () =>
+          getSlides().find(
+            (s) => !s.classList.contains("swiper-slide-duplicate")
+          ) || getSlides()[0];
+
+        let lastHovered = null; // persistent reference to the currently highlighted slide
+
+        function clearHighlights() {
+          getSlides().forEach((s) => s.classList.remove("hovered-slide"));
+        }
+
+        // Set highlight and store the "identity" of the slide (data-swiper-slide-index if present)
+        function setHighlight(slideEl) {
+          if (!slideEl) return;
+          clearHighlights();
+          slideEl.classList.add("hovered-slide");
+          lastHovered = slideEl;
+        }
+
+        // Try to re-find the lastHovered after Swiper DOM updates (clones etc).
+        // We prefer a slide that shares the same data-swiper-slide-index attribute.
+        function reapplyLastHovered() {
+          if (!lastHovered) return;
+          const idx =
+            lastHovered.getAttribute &&
+            lastHovered.getAttribute("data-swiper-slide-index");
+          if (idx != null) {
+            // pick the first slide whose data-swiper-slide-index equals idx (clone or original)
+            const match = getSlides().find(
+              (s) =>
+                s.getAttribute &&
+                s.getAttribute("data-swiper-slide-index") === String(idx)
+            );
+            if (match) {
+              clearHighlights();
+              match.classList.add("hovered-slide");
+              lastHovered = match;
+              return;
+            }
+          }
+          // fallback: if no match found, highlight the original first slide
+          const orig = findOriginalFirst();
+          if (orig) {
+            setHighlight(orig);
+          }
+        }
+
+        // pointerenter handler — makes hovered slide the persistent one
+        function onPointerEnter(e) {
+          setHighlight(e.currentTarget);
+        }
+
+        // Attach pointerenter listeners (no pointerleave restore — persistent behavior)
+        function attachHoverListeners() {
+          const slides = getSlides();
+          slides.forEach((s) =>
+            s.removeEventListener("pointerenter", onPointerEnter)
+          );
+          if (canHover) {
+            slides.forEach((s) =>
+              s.addEventListener("pointerenter", onPointerEnter)
+            );
+          }
+        }
+
+        if (canHover) {
+          // Initialize to the first real slide
+          const origFirst = findOriginalFirst();
+          if (origFirst) {
+            // small delay to let Swiper finish cloning
+            setTimeout(() => setHighlight(origFirst), 40);
+          }
+
+          // Attach listeners and keep them up-to-date when Swiper mutates DOM
+          attachHoverListeners();
+          sw.on &&
+            sw.on("observerUpdate", () => {
+              attachHoverListeners();
+              reapplyLastHovered();
+            });
+          sw.on &&
+            sw.on("slidesLengthChange", () => {
+              attachHoverListeners();
+              reapplyLastHovered();
+            });
+          // safety re-run shortly after init
+          setTimeout(() => {
+            attachHoverListeners();
+            reapplyLastHovered();
+          }, 140);
+        } else {
+          // Touch devices: highlight active slide and persist on slide change
+          function highlightActive() {
+            const active = sw.slides && sw.slides[sw.activeIndex];
+            if (active) {
+              setHighlight(active);
+            }
+          }
+          highlightActive();
+          sw.on && sw.on("slideChange", highlightActive);
+          sw.on && sw.on("observerUpdate", highlightActive);
+          sw.on && sw.on("slidesLengthChange", highlightActive);
+        }
+      })(swiper);
+
+      // tiny debounce
+      const _debounce = (fn, ms = 120) => {
+        let t;
+        return (...a) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...a), ms);
+        };
+      };
+
+      (function equalizeSlides(sw) {
+        const container = document.querySelector(".mySwiperTiles");
+        if (!container || !sw) return;
+
+        const getSlides = () =>
+          Array.from(container.querySelectorAll(".swiper-slide"));
+
+        function applyMaxHeight() {
+          const slides = getSlides();
+          slides.forEach((s) => (s.style.height = "")); // reset
+          let max = 0;
+          slides.forEach((s) => {
+            const h = s.getBoundingClientRect().height;
+            if (h > max) max = h;
+          });
+          if (!max) return;
+          slides.forEach((s) => (s.style.height = `${Math.ceil(max)}px`));
+          const wrapper = container.querySelector(".swiper-wrapper");
+          if (wrapper) wrapper.style.height = `${Math.ceil(max)}px`;
+          if (sw && typeof sw.update === "function") sw.update();
+        }
+
+        // run on load, resize and when swiper triggers observer update
+        window.addEventListener("load", applyMaxHeight);
+        window.addEventListener("resize", _debounce(applyMaxHeight, 120));
+        sw.on && sw.on("observerUpdate", _debounce(applyMaxHeight, 80));
+        // immediate first run
+        requestAnimationFrame(applyMaxHeight);
+      })(swiper);
+
+      // document.querySelectorAll('a.header-links__link').forEach(anchor => {
+      //   anchor.addEventListener('click', function(e) {
+      //     e.preventDefault();
+
+      //     const targetID = this.getAttribute('href').substring(1);
+      //     const targetEl = document.getElementById(targetID);
+
+      //     if (!targetEl) return;
+
+      //     const headerOffset = document.querySelector('.site-header').offsetHeight;
+      //     const elementPosition = targetEl.getBoundingClientRect().top;
+      //     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      //     window.scrollTo({
+      //       top: offsetPosition,
+      //       behavior: 'smooth'
+      //     });
+      //   });
+      // });
+      // document.querySelectorAll('a.header-links__link').forEach(anchor => {
+      //   anchor.addEventListener('click', function(e) {
+      //     const href = this.getAttribute('href');
+      //     if (!href.startsWith('#')) return; // only handle anchors
+
+      //     e.preventDefault();
+
+      //     const targetID = href.substring(1);
+      //     const targetEl = document.getElementById(targetID);
+
+      //     if (!targetEl) return;
+
+      //     const header = document.querySelector('.site-header');
+      //     const headerOffset = header ? header.offsetHeight : 0;
+
+      //     // Absolute position of element in the document
+      //     const elementTop = targetEl.offsetTop;
+
+      //     // Subtract header height
+      //     const scrollTarget = elementTop - headerOffset;
+
+      //     window.scrollTo({
+      //       top: scrollTarget,
+      //       behavior: 'smooth'
+      //     });
+      //   });
+      // });
+    </script>
+    <script src="script.js"></script>
+    <script>
+      const WORKER_URL = "https://ai-chat.ryanhomlee.workers.dev";
+
+      const chatOverlay = document.getElementById("chatOverlay");
+      const micButton = document.getElementById("micButton");
+      const chatbox = document.getElementById("chatbox");
+      const chatMessages = document.getElementById("chatMessages");
+      const chatInput = document.getElementById("chatInput");
+      const sendButton = document.getElementById("sendButton");
+      const closeChat = document.getElementById("closeChat");
+
+      let chatboxOpen = false;
+      let recognition,
+        isListening = false,
+        preferredFemaleVoice = null;
+
+      /* ---- Chatbox open/close ---- */
+      function openChat() {
+        chatbox.style.display = "flex";
+        chatOverlay.style.display = "block";
+        chatInput.focus({ preventScroll: true });
+        chatboxOpen = true;
+      }
+      // function closeChatbox(){
+      //   chatbox.style.display="none";
+      //   chatOverlay.style.display="none";
+      //   chatboxOpen = false;
+      //   if (recognition && isListening) {
+      //     recognition.stop();
+      //     isListening = false;
+      //   }
+      // }
+      function closeChatbox() {
+        chatbox.style.display = "none";
+        chatOverlay.style.display = "none";
+        chatboxOpen = false;
+
+        // 🔇 Stop recognition when closing
+        if (recognition && isListening) {
+          recognition.stop();
+          isListening = false;
+        }
+
+        // 🔇 Stop any ongoing AI voice immediately
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+
+      /* ---- Voice synthesis ---- */
+      if ("speechSynthesis" in window) {
+        const pickVoice = () => {
+          const voices = window.speechSynthesis.getVoices() || [];
+          preferredFemaleVoice =
+            voices.find((v) => /female/i.test(v.name)) ||
+            voices.find((v) => /woman/i.test(v.name)) ||
+            voices.find((v) => /Google UK English Female/i.test(v.name)) ||
+            voices.find((v) => /Samantha/i.test(v.name)) ||
+            voices.find((v) => /Zira/i.test(v.name)) ||
+            null;
+        };
+        window.speechSynthesis.onvoiceschanged = () => pickVoice();
+        setTimeout(pickVoice, 0);
+      }
+      function speakText(text) {
+        if (!("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "en-US";
+        if (preferredFemaleVoice) u.voice = preferredFemaleVoice;
+        window.speechSynthesis.speak(u);
+      }
+
+      /* ---- Continuous speech recognition ---- */
+      function initRecognition() {
+        if (
+          !("webkitSpeechRecognition" in window) &&
+          !("SpeechRecognition" in window)
+        ) {
+          alert("Speech Recognition not supported.");
+          return;
+        }
+        if (!recognition) {
+          recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)();
+          recognition.lang = "en-US";
+          recognition.interimResults = false;
+          recognition.continuous = true;
+
+          recognition.onstart = () => {
+            isListening = true;
+            micButton.classList.add("listening");
+            micButton.textContent = "🎙️";
+          };
+          recognition.onend = () => {
+            if (!chatboxOpen) {
+              isListening = false;
+              micButton.classList.remove("listening");
+              micButton.textContent = "🎤";
+            } else {
+              recognition.start();
+            }
+          };
+          recognition.onresult = (e) => {
+            const transcript = e.results[e.results.length - 1][0].transcript;
+            sendToWorker(transcript);
+          };
+        }
+      }
+
+      /* ---- UI helpers ---- */
+      function createMessageBubble(sender) {
+        const msg = document.createElement("div");
+        msg.classList.add("message", sender === "AI" ? "ai" : "user");
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return msg;
+      }
+      function createThinkingBubble() {
+        const bubble = createMessageBubble("AI");
+        const wrap = document.createElement("div");
+        wrap.className = "typing";
+        wrap.innerHTML = `<span>Thinking</span><span class="dot"></span><span class="dot"></span><span class="dot"></span>`;
+        bubble.appendChild(wrap);
+        return bubble;
+      }
+      function replaceBubbleContent(bubble, htmlOrNode) {
+        bubble.innerHTML = "";
+        if (typeof htmlOrNode === "string") bubble.textContent = htmlOrNode;
+        else bubble.appendChild(htmlOrNode);
+      }
+      function renderResults(payload, mode) {
+        const wrapper = document.createElement("div");
+        const ul = document.createElement("ul");
+        ul.className = "article-list";
+
+        payload.articles.forEach((a) => {
+          const li = document.createElement("li");
+          li.className = "article-item";
+
+          const link = document.createElement("a");
+          link.href = a.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = a.title;
+
+          li.appendChild(link);
+
+          if (mode === "news") {
+            const meta = document.createElement("span");
+            meta.className = "article-meta";
+            meta.textContent = `${a.source || "Source"} — ${a.published || ""}`;
+            li.appendChild(meta);
+          } else if (mode === "search") {
+            if (a.snippet) {
+              const snippet = document.createElement("span");
+              snippet.className = "article-snippet";
+              snippet.textContent = a.snippet;
+              li.appendChild(snippet);
+            }
+          }
+
+          ul.appendChild(li);
+        });
+
+        wrapper.appendChild(ul);
+        return wrapper;
+      }
+
+      /* ---- Send to Worker ---- */
+      async function sendToWorker(userText) {
+        if (!userText.trim()) return;
+        openChat();
+
+        const userBubble = createMessageBubble("User");
+        userBubble.textContent = userText;
+
+        const thinking = createThinkingBubble();
+
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+          const response = await fetch(WORKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: userText, tz }),
+          });
+
+          if (!response.ok) {
+            const txt = await response.text().catch(() => "");
+            replaceBubbleContent(
+              thinking,
+              `⚠️ Error ${response.status}: ${txt || response.statusText}`
+            );
+            return;
+          }
+
+          const data = await response.json();
+
+          if (data.mode === "weather" || data.mode === "chat") {
+            replaceBubbleContent(thinking, data.text);
+            if (data.text) speakText(data.text);
+          } else if (data.mode === "news" || data.mode === "search") {
+            replaceBubbleContent(thinking, renderResults(data, data.mode));
+          } else {
+            replaceBubbleContent(thinking, "No results found.");
+          }
+        } catch (err) {
+          replaceBubbleContent(
+            thinking,
+            "⚠️ Something went wrong: " + err.message
+          );
+        }
+      }
+
+      /* ---- Events ---- */
+      closeChat.addEventListener("click", closeChatbox);
+      chatOverlay.addEventListener("click", closeChatbox);
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeChatbox();
+      });
+
+      micButton.addEventListener("click", () => {
+        initRecognition();
+        if (!recognition) return;
+        if (!isListening) recognition.start();
+        else recognition.stop();
+      });
+      sendButton.addEventListener("click", () => {
+        const text = chatInput.value;
+        chatInput.value = "";
+        sendToWorker(text);
+      });
+      chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          sendButton.click();
+        }
+      });
+    </script>
+  </body>
+</html>
