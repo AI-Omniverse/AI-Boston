@@ -405,8 +405,13 @@
         justify-content: center;
       }
 		.text-subtitl_size img.large--hide {
-          margin: 20px 0;
-      }
+    margin: 20px 0;
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    left: 50%;
+    max-width: 100vw;
+}
 img.waveimg {
     transform: scale(3);
     width: 100%;
@@ -657,11 +662,11 @@ img.waveimg {
     <!-- Main Content -->
     <section
       id="robosec"
-      class="flex flex-wrap justify-center items-stretch robosec gap-6"
+      class="flex flex-wrap justify-center items-stretch robosec px-10 gap-6"
     >
       <!-- Left: Chat + Mic -->
       <div
-        class="px-10 flex-1 min-w-[280px] flex flex-col justify-center md:order-1 order-2"
+        class="flex-1 min-w-[280px] flex flex-col justify-center md:order-1 order-2"
       >
         <div class="space-y-3">
           <div
@@ -772,22 +777,20 @@ img.waveimg {
 
       <!-- Center: Robot -->
       <div
-        class="px-10 flex-1 min-w-[280px] sm:pl-5 sm:pr-5 text-center flex items-center justify-center md:order-2 order-1"
+        class="flex-1 min-w-[280px] sm:pl-5 sm:pr-5 text-center flex items-center justify-center md:order-2 order-1"
       >
         <img src="r1.png" alt="Robot" class="mx-auto max-w-[400px] w-full" />
       </div>
 
       <!-- Right: Text + CTA -->
       <div class="flex-1 min-w-[280px] flex flex-col justify-center pt-2 sm:pt-6 pl-0 md:order-3 order-3">
-        <img class="px-10 large--hide waveimg" src="soundwavee.png" alt="">
+        <img class="large--hide waveimg" src="soundwavee.png" alt="">
         <div class="sm:mb-4">
-          <p class="px-10 text-subtitl_size text-black leading-relaxed mb-6 mt-2 sm:mt-12 text-[19px]" style="font-family: poppins, sans-serif">
+          <p class="text-subtitl_size text-black leading-relaxed mb-6 mt-2 sm:mt-12 text-[19px]" style="font-family: poppins, sans-serif">
             Boston sits near the top of the global AI map by leaning hard on its universities, hospitals, and life science institutions, where lab automation, surgical robotics, and clinical AI help turn research into real life treatments for patients.
-		  </p><img src="boston-city.png" alt="Robot" class="large--hide mx-auto w-full">
-			  <p class="px-10 text-subtitl_size text-black leading-relaxed mb-6 mt-6 sm:mt-12 text-[19px]" style="font-family: poppins, sans-serif">
-				  Beantown feels like it's half beautiful cobble-stone streets and half college campus with a wicked nerd energy and drive to build the next unicorn. Cambridge trailblazes AI with MIT and Harvard labs, Innovation District hosts data cloud startups, and Allston houses an indie maker scene that together pave an AI and robotics future that is clinical, civic, and a little stubbornly New England.									
+		  <img src="boston-city.png" alt="Robot" class="large--hide mx-auto w-full">Beantown feels like it's half beautiful cobble-stone streets and half college campus with a wicked nerd energy and drive to build the next unicorn. Cambridge trailblazes AI with MIT and Harvard labs, Innovation District hosts data cloud startups, and Allston houses an indie maker scene that together pave an AI and robotics future that is clinical, civic, and a little stubbornly New England.									
           </p>
-          <div class="px-10 flex gap-4 mb-6 btn_withlovedby">
+          <div class="flex gap-4 mb-6 btn_withlovedby">
             <a
               href="#omniverseconnect"
               class="px-6 py-2 rounded-full bg-black text-white font-bold anchorlink customlinhyt"
