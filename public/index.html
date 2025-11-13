@@ -1224,7 +1224,7 @@ img.waveimg {
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-       const cities = [
+      const cities = [
         // { name: 'Africa', color: '#009933', url: 'http://africa-ai.org/', desc: "Africa's robotics and AI innovation is being applied to farming, health, and mobile payments, helping it to leapfrog older systems with digital-first solutions.", coords: [-8.7832, 34.5085] },
         // { name: 'Amsterdam', color: '#21468B', url: 'http://amsterdam-ai.org/', desc: "Amsterdam blends innovation with sustainability, hosting a thriving tech startup ecosystem known for AI, fintech, and smart mobility.", coords: [52.3676, 4.9041] },
         // { name: 'Atlanta', color: '#C15B52', url: 'http://atlanta-ai.org/', desc: "Atlanta’s position as a transport and finance hub drives AI in logistics, cybersecurity, and financial technologies.", coords: [33.7501, -84.3885] },
@@ -1254,7 +1254,13 @@ img.waveimg {
 			coords: [42.3555, -71.0565] },
         //    { name: 'Buenos Aires', color: '#75AADB', url: 'http://buenosaires-ai.org/', desc: "Buenos Aires is becoming a Latin American leader in AI and software development, powered by a strong developer culture and growing innovation centers.", coords: [-34.6037, -58.3816] },
         //    { name: 'Brussels', color: '#C7A634', url: 'http://brussels-ai.org/', desc: "Brussels is quietly shaping the future of AI through a powerful mix of EU-driven regulation, ethical leadership, and a growing ecosystem of startups and research hubs.", coords: [50.8503, 4.3517] },
-        //    { name: 'Chicago', color: '#41B6E6', url: 'http://chicago-ai.org/', desc: "AI in Chicago builds on its freight networks and financial markets, linking industrial infrastructure with data-driven systems.", coords: [41.8832, -87.6324] },
+            { 
+			name: 'Chicago',
+			color: '#41B6E6',
+			url: 'http://chicago-ai.org/',
+			desc: "AI in Chicago builds on its freight networks and financial markets, linking industrial infrastructure with data-driven systems.",
+			coords: [41.8832, -87.6324]
+			},
         //    { name: 'Copenhagen', color: '#FEDE0E', url: 'http://copenhagenai.org/', desc: "Copenhagen ties AI directly to its urban planning and green ethos, focusing on clean energy and sustainable robotics.", coords: [55.6761, 12.5683] },
         // { name: 'Dallas', color: '#008FBD', url: 'http://ai-dallas.org/', desc: "Telecommunications, energy, and defense programs that focus on secure networks and robotics give Dallas a strong base for AI.", coords: [32.7767, -96.7970] },
         //    { name: 'Delhi', color: '#D42023', url: 'http://delhi-ai.org/', desc: "Delhi is emerging as a leader in AI and deep learning, with its academic strength and thriving startup landscape.", coords: [28.6139, 77.2090] },
@@ -1336,11 +1342,11 @@ img.waveimg {
       );
       // Example markers (replace with your own)
       const markerss = [
-        [30.2672, -97.7431],[37.7749, -122.4194],[40.7128, -74.006],[47.6062, -122.3321],[34.0549, -118.2426],[42.3555, -71.0565],[39.9526, -75.1652],[38.9072, -77.0369] /*,[12.9716, 77.5946],[41.3851, 2.1734],[-34.6037, -58.3816],[28.6139, 77.2090],[25.276987, 51.520008],[53.3498, -6.2603],[23.1291, 113.2644],[13.7563, 100.5018],
+        [30.2672, -97.7431],[37.7749, -122.4194],[40.7128, -74.006],[47.6062, -122.3321],[34.0549, -118.2426],[42.3555, -71.0565],[39.9526, -75.1652],[38.9072, -77.0369],[41.8832, -87.6324] /*,[12.9716, 77.5946],[41.3851, 2.1734],[-34.6037, -58.3816],[28.6139, 77.2090],[25.276987, 51.520008],[53.3498, -6.2603],[23.1291, 113.2644],[13.7563, 100.5018],
   [53.4808, -2.2426],[14.5995, 120.9842],[-37.8136, 144.9631],[19.4326, -99.1332],[45.5017, -73.5673],[19.0760, 72.8777],[41.9028, 12.4964],[52.5200, 13.4050],[39.9042, 116.4074],[48.8575, 2.3514],
   [-23.5505, -46.6333],[47.6062, -122.3321],[22.5431, 114.0579],[1.3521, 103.8198],[25.032969, 121.565418],[49.2827, -123.1207],[47.3769, 8.5417],[52.3676, 4.9041],[50.8503, 4.3517],[33.7501, -84.3885],[-8.7832, 34.5085],
   [37.5665, 126.9780],[32.0853, 34.7818],[52.2297, 21.0122],[43.6532, 79.3832],[35.6764, 139.6500],[33.8727, 151.2057],[59.3327, 18.0656],[31.2304, 121.4737],[32.7157, 117.1611],[45.5152, -122.6784],[33.4483, -112.0725],
-  [25.7617, -80.1918],[40.4167, 3.7033],[51.5072, -0.1276],[10.8231, 106.6297],[22.3193, 114.1694],[25.2048, 55.2708],[39.7392, -104.9903],[32.7767, -96.7970],[55.6761, 12.5683],[41.8832, -87.6324]*/,
+  [25.7617, -80.1918],[40.4167, 3.7033],[51.5072, -0.1276],[10.8231, 106.6297],[22.3193, 114.1694],[25.2048, 55.2708],[39.7392, -104.9903],[32.7767, -96.7970],[55.6761, 12.5683]*/,
       ];
 
       // Create marker group
