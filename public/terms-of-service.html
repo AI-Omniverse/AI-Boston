@@ -256,12 +256,19 @@
 		<a href="web-accessibility-disclaimer.html" title="California Consumer Privacy Act (CCPA)" class="footer__link">Web Accessibility Disclaimer</a>
 	</div>
 	<div class="footer_copyright">
-    &copy; 2025 Boston, Galaverse AI. All rights reserved.
-	</div>
-  </footer>
+        &copy; <span id="currentYear"></span> Boston, Galaverse AI. All rights reserved.
+      </div>
+    </footer>
 
- 
-<script>
+    <script>
+		let currentDate = new Date();
+		let currentYear = currentDate.getFullYear();
+		let currentYearElement = document.getElementById("currentYear");
+		
+		// Ensure the element exists before trying to set its textContent
+		if (currentYearElement) {
+		    currentYearElement.textContent = currentYear;
+		}
 	function setHeaderOffset() {
   const header = document.querySelector('.site-header');
   const firstSection = document.querySelector('section:first-of-type');
