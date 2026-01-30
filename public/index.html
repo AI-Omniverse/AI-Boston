@@ -1179,11 +1179,19 @@ img.waveimg {
         >
       </div>
       <div class="footer_copyright">
-        &copy; 2025 Boston, Galaverse AI. All rights reserved.
+        &copy; <span id="currentYear"></span> Mexico City, Galaverse AI. All rights reserved.
       </div>
     </footer>
 
     <script>
+		let currentDate = new Date();
+		let currentYear = currentDate.getFullYear();
+		let currentYearElement = document.getElementById("currentYear");
+		
+		// Ensure the element exists before trying to set its textContent
+		if (currentYearElement) {
+		    currentYearElement.textContent = currentYear;
+		}
       const menuToggle = document.getElementById("menuToggle");
       const nav = document.querySelector(".navbar .header-links");
 
