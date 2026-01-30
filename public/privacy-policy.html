@@ -464,11 +464,19 @@
         >
       </div>
       <div class="footer_copyright">
-        &copy; 2025 Boston, Galaverse AI. All rights reserved.
+        &copy; <span id="currentYear"></span> Boston, Galaverse AI. All rights reserved.
       </div>
     </footer>
 
     <script>
+		let currentDate = new Date();
+		let currentYear = currentDate.getFullYear();
+		let currentYearElement = document.getElementById("currentYear");
+		
+		// Ensure the element exists before trying to set its textContent
+		if (currentYearElement) {
+		    currentYearElement.textContent = currentYear;
+		}
       function setHeaderOffset() {
   const header = document.querySelector('.site-header');
   const firstSection = document.querySelector('section:first-of-type');
