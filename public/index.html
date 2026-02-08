@@ -1373,18 +1373,26 @@ img.waveimg {
 		  const isMobile = L.Browser.mobile || window.innerWidth < 768;
 		
 		  return {
-		    center: isMobile ? [18, -10] : [20, 0],
-		    // MOBILE: increase zoom so pins are spaced out better on small screens
-		    zoom: isMobile ? 1.4 : 1.8,     // was 1.4 / 1.8
-		    // Prevent zooming out too far on mobile
-		    minZoom: isMobile ? 2.5 : 2,
-		    maxZoom: isMobile ? 6 : 6,
-		    fitPadding: isMobile ? [60, 60] : [20, 20],
-		    maxBounds: isMobile
-		      ? L.latLngBounds(L.latLng(-45, -180), L.latLng(80, 180))
-		      : L.latLngBounds(L.latLng(-58, -180), L.latLng(76, 180)),
+		    // 🇺🇸 Proper USA center
+		    center: isMobile ? [39.5, -98.35] : [20, 0],
+		
+		    // ✅ Start zoomed so ALL USA pins are visible
+		    zoom: isMobile ? 3 : 1.8,
+		
+		    // ✅ Allow real zoom OUT and IN on mobile
+		    minZoom: isMobile ? 1.2 : 2,
+		    maxZoom: 7,
+		
+		    fitPadding: isMobile ? [40, 40] : [20, 20],
+		
+		    // ✅ Loosen bounds so world is reachable
+		    maxBounds: L.latLngBounds(
+		      L.latLng(-70, -180),
+		      L.latLng(85, 180)
+		    ),
 		  };
 		}
+
 
       let settings = getMapSettings();
 
