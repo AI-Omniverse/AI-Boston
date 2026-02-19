@@ -418,6 +418,385 @@ img.waveimg {
     margin-bottom: 90px;
     margin-top: 40px;
 }
+		.leaflet-popup-content p {
+    margin: 0 0 1.3em 0;
+}
+/* =====================================================
+   NEWS PUZZLE GRID – 1 + (2x2) FINAL
+===================================================== */
+.galaverse-news-grid {
+  display: grid;
+  /* Create 4 columns: two for the left (50%), two for the right */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* Create 2 rows */
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 600px; /* Adjust height as needed */
+}
+
+
+/* =========================
+   LEFT HERO (FULL HEIGHT)
+========================= */
+.galaverse-card.slot-a {
+  grid-column: 1;
+  grid-row: 1 / span 2; /* full height */
+}
+
+/* =========================
+   RIGHT SIDE – 2x2 GRID
+========================= */
+.slot-b { grid-column: 2; grid-row: 1; }
+.slot-c { grid-column: 2; grid-row: 2; }
+
+.slot-d { display: none; }
+.slot-e { display: none; }
+
+/* The first item (Slot A) takes up the entire left half */
+.galaverse-news-grid .galaverse-card:first-child {
+  grid-column: 1 / 3; /* Spans from col 1 to 3 (first 50%) */
+  grid-row: 1 / 3;    /* Spans both rows */
+}
+
+/* The remaining items will automatically flow into the 2x2 grid on the right */
+/* but we can be explicit to ensure they stay in the last two columns */
+.galaverse-news-grid .galaverse-card:not(:first-child) {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+		
+/* =========================
+   BASE CARD
+========================= */
+.galaverse-card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  color: #000;
+  text-decoration: none;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  transition: transform .25s ease, box-shadow .25s ease;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0px 20px #0000001a, 0 0 #0000001a;
+}
+
+.galaverse-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.15);
+}
+
+/* =========================
+   IMAGE (ONLY IF EXISTS)
+========================= */
+.galaverse-card.has-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;display: none;
+}
+
+.galaverse-card.has-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.6),
+    rgba(0,0,0,.25)
+  );
+}
+/* Safety: no overlay if no image */
+.galaverse-card.has-image::after, .galaverse-card:not(.has-image)::after {
+  display: none;
+}
+/* =========================
+   CONTENT
+========================= */
+.galaverse-content {
+  position: relative;
+  z-index: 2;
+  max-width: 92%;
+}
+
+.galaverse-content h3 {
+  font-size: 19px;  /* +3px */
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* Hero title bigger */
+.slot-a h3 {
+  font-size: 26px;
+}
+
+/* Excerpt */
+.news-excerpt {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: .9;
+}
+
+/* Meta */
+.galaverse-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .7;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 900px) {
+  .galaverse-news-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .galaverse-news-grid .galaverse-card:first-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .galaverse-card {
+    height: 260px;
+  }
+}
+
+/* =====================================================
+   EVENTS SECTION – CLEAN & FINAL
+===================================================== */
+
+/* Grid layout */
+.ai-events-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 32px;
+}
+
+/* =====================================================
+   FEATURED EVENT (LEFT)
+===================================================== */
+
+.ai-event-featured-card {
+  position: relative;
+  min-height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+}
+
+/* Background image */
+.ai-event-featured-card img {
+  position: absolute;
+  inset: 0; display:none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+}
+
+/* Dark overlay for readability */
+.ai-event-featured-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.25)
+  );
+}
+
+/* Content */
+.ai-event-featured-content {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+}
+
+.ai-event-featured-date {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: .85;
+  margin-bottom: 8px;
+}
+
+.ai-event-featured-title {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.ai-event-featured-venue {
+  font-size: 14px;
+  opacity: .85;
+  margin-bottom: 14px;
+}
+
+/* Featured links */
+.ai-event-featured-links {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ai-event-featured-links a {
+  color: #fff;
+  text-decoration: none;
+  opacity: .9;
+}
+
+.ai-event-featured-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* =====================================================
+   RIGHT SIDE – CONTINUOUS VERTICAL LOOP
+===================================================== */
+
+.ai-event-list-viewport {
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* The moving column */
+#ai-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  will-change: transform;
+}
+
+/* Individual list item */
+.ai-event-list-item {
+  background: #ffffff;
+  border: 1px solid #ededed;
+  border-radius: 14px;
+  padding: 14px 16px;
+  text-align: left;
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.ai-event-list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* Title */
+.ai-event-list-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Meta row */
+.ai-event-list-meta {
+  font-size: 12px;
+  opacity: .75;
+  margin-bottom: 8px;
+}
+
+/* Links */
+.ai-event-links {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ai-event-links a {
+  text-decoration: none;
+  color: #000;
+  opacity: .8;
+}
+
+.ai-event-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.ai-event-date-badge {
+  display: inline-block;
+  background: var(--brand);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.ai-event-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef6f9;
+  margin-bottom: 6px;
+}
+
+.ai-event-list-viewport::before,
+	.ai-event-list-viewport::after {
+	  content: "";
+	  position: absolute;
+	  left: 0;
+	  right: 0;
+	  height: 40px;
+	  pointer-events: none;
+	  z-index: 2;
+	}
+	
+	.ai-event-list-viewport::before {
+	  top: 0;
+	  background: linear-gradient(to bottom, #fff, transparent);
+	}
+	
+	.ai-event-list-viewport::after {
+	  bottom: 0;
+	  background: linear-gradient(to top, #fff, transparent);
+	}
+		
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+  .ai-events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-event-list-viewport {
+    height: auto;
+  }
+
+  #ai-event-list {
+    transform: none !important;
+  }
+
+  .ai-event-featured-card {
+    min-height: 360px;
+  }
+}
+	
       @media screen and (min-width: 769px) {
         .large--hide {
           display: none;
@@ -1184,220 +1563,82 @@ img.waveimg {
     </footer>
 
     <script>
-		let currentDate = new Date();
-		let currentYear = currentDate.getFullYear();
-		let currentYearElement = document.getElementById("currentYear");
+		  let currentDate = new Date();
+			let currentYear = currentDate.getFullYear();
+			let currentYearElement = document.getElementById("currentYear");
+			
+			// Ensure the element exists before trying to set its textContent
+			if (currentYearElement) {
+				currentYearElement.textContent = currentYear;
+			}
+		const menuToggle = document.getElementById('menuToggle');
+		const nav = document.querySelector('.navbar .header-links');
 		
-		// Ensure the element exists before trying to set its textContent
-		if (currentYearElement) {
-		    currentYearElement.textContent = currentYear;
+		function closeMenu() {
+		  menuToggle?.classList.remove('is-active');
+		  document.body.classList.remove('navbar-open');
 		}
-      const menuToggle = document.getElementById("menuToggle");
-      const nav = document.querySelector(".navbar .header-links");
-
-      function closeMenu() {
-        menuToggle?.classList.remove("is-active");
-        document.body.classList.remove("navbar-open");
-      }
-
-      menuToggle?.addEventListener("click", () => {
-        menuToggle.classList.toggle("is-active");
-        document.body.classList.toggle("navbar-open");
-      });
-
-      // Delegate clicks from the nav (works for all links inside)
-      nav?.addEventListener("click", (e) => {
-        const link = e.target.closest("a.header-links__link");
-        if (!link) return;
-
-        const openInNewTab = link.target === "_blank" || e.ctrlKey || e.metaKey;
-
-        if (openInNewTab) {
-          // Force-open the new tab, then close the menu
-          window.open(link.href, "_blank", "noopener");
-          e.preventDefault();
-        }
-
-        // Close the menu after the click has been handled
-        requestAnimationFrame(closeMenu);
-      });
-
-      // Middle-click (auxclick) also opens in a new tab on most browsers
-      nav?.addEventListener("auxclick", (e) => {
-        if (e.button !== 1) return; // only middle button
-        const link = e.target.closest("a.drawermenu__link");
-        if (!link) return;
-
-        window.open(link.href, "_blank", "noopener");
-        e.preventDefault();
-        requestAnimationFrame(closeMenu);
-      });
-    </script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-      const cities = [
-        // { name: 'Africa', color: '#009933', url: 'http://africa-ai.org/', desc: "Africa's robotics and AI innovation is being applied to farming, health, and mobile payments, helping it to leapfrog older systems with digital-first solutions.", coords: [-8.7832, 34.5085] },
-        // { name: 'Amsterdam', color: '#21468B', url: 'http://amsterdam-ai.org/', desc: "Amsterdam blends innovation with sustainability, hosting a thriving tech startup ecosystem known for AI, fintech, and smart mobility.", coords: [52.3676, 4.9041] },
-         { name: 'Atlanta', color: '#ee404a', url: 'http://atlanta-ai.org/', desc: "Atlanta’s position as a transport and finance hub drives AI in logistics, cybersecurity, and financial technologies.", coords: [33.7501, -84.3885] },
-        {
-          name: "Austin",
-          color: "#bf5700",
-          url: "https://ai-austin.com",
-          desc: "Austin’s booming tech scene blends innovation and creativity, making it a fast-rising hub for AI startups and robotics research.",
-          coords: [30.2672, -97.7431],
-        },
-        {
-          name: "New York City",
-          color: "#003585",
-          url: "http://newyorkcity-ai.org/",
-          desc: "New York City is a major force in AI and robotics by blending finance, health, media, and tech into a powerhouse of applied intelligence.",
-          coords: [40.7128, -74.006],
-        },
-        // { name: 'Bangkok', color: '#FFD700', url: 'http://bangkok-ai.org/', desc: "Tourism, logistics, and urban expansion turn Bangkok into a Southeast Asian experimentation hub for AI in transport and city design.", coords: [13.7563, 100.5018] },
-       { name: 'Beijing', color: '#ED2939', url: 'http://beijing-ai.org/', desc: "Beijing focuses its AI development through Tsinghua-led research with language models, defense robotics, and smart city infrastructure.", coords: [39.9042, 116.4074] },
-        // { name: 'Bengaluru', color: '#00A551', url: 'http://bengaluru-ai.org/', desc: "Known as the Silicon Valley of India, Bengaluru thrives with deep tech talent and a rapidly expanding AI ecosystem.", coords: [12.9716, 77.5946] },
-          { name: 'Berlin', color: '#E0B31C', url: 'http://berlin-ai.org/', desc: "Berlin anchors Germany's tech scene by connecting AI with mobility, IoT, and creative technology.", coords: [52.5200, 13.4050] },
-        //    { name: 'Barcelona', color: '#A50044', url: 'http://barcelona-ai.org/', desc: "Barcelona is fostering a dynamic AI and robotics environment supported by smart city initiatives and global tech collaboration.", coords: [41.3851, 2.1734] },
-            { name: 'Boston',
-			color: '#007a33',
-			url: 'http://boston-ai.org/',
-			desc: "The Boston area’s prestigious universities and hospitals create a deep pipeline of AI research that is applied to biotech, healthcare, and robotics.",
-			coords: [42.3555, -71.0565] },
-           { name: 'Buenos Aires', color: '#75AADB', url: 'http://buenosaires-ai.org/', desc: "Buenos Aires is becoming a Latin American leader in AI and software development, powered by a strong developer culture and growing innovation centers.", coords: [-34.6037, -58.3816] },
-        //    { name: 'Brussels', color: '#C7A634', url: 'http://brussels-ai.org/', desc: "Brussels is quietly shaping the future of AI through a powerful mix of EU-driven regulation, ethical leadership, and a growing ecosystem of startups and research hubs.", coords: [50.8503, 4.3517] },
-            { 
-			name: 'Chicago',
-			color: '#41B6E6',
-			url: 'http://chicago-ai.org/',
-			desc: "AI in Chicago builds on its freight networks and financial markets, linking industrial infrastructure with data-driven systems.",
-			coords: [41.8832, -87.6324]
-			},
-        //    { name: 'Copenhagen', color: '#FEDE0E', url: 'http://copenhagenai.org/', desc: "Copenhagen ties AI directly to its urban planning and green ethos, focusing on clean energy and sustainable robotics.", coords: [55.6761, 12.5683] },
-         { name: 'Dallas', color: '#008FBD', url: 'http://ai-dallas.org/', desc: "Telecommunications, energy, and defense programs that focus on secure networks and robotics give Dallas a strong base for AI.", coords: [32.7767, -96.7970] },
-        //    { name: 'Delhi', color: '#D42023', url: 'http://delhi-ai.org/', desc: "Delhi is emerging as a leader in AI and deep learning, with its academic strength and thriving startup landscape.", coords: [28.6139, 77.2090] },
-           { name: 'Denver', color: '#0096D6', url: 'http://denver-ai.org/', desc: "Denver's aerospace industry and climate labs drive AI development in satellites, space robotics, and environmental systems.", coords: [39.7392, -104.9903] },
-        //    { name: 'Doha', color: '#8A1538', url: 'http://doha-ai.org/', desc: "Doha is making bold moves in AI and smart infrastructure as it invests heavily in research and next-gen tech talent.", coords: [25.276987, 51.520008] },
-        //    { name: 'Dublin', color: '#007A33', url: 'http://dublin-ai.org/', desc: "Dublin hosts several major global tech headquarters and a vibrant AI scene that connects strong academic research with commercial innovation.", coords: [53.3498, -6.2603] },
-        // { name: 'Dubai', color: '#F4CA3E', url: 'http://dubai-ai.org/', desc: "Dubai treats AI as part of its future economy by consciously integrating robotics into policing, construction, and urban infrastructure.", coords: [25.2048, 55.2708] },
-        // { name: 'Guangzhou', color: '#CFB53B', url: 'http://guangzhou-ai.org/', desc: "Guangzhou is becoming a major player in China’s AI and robotics expansion, with deep manufacturing roots and growing R&D investment.", coords: [23.1291, 113.2644] },
-        // { name: 'Hong Kong', color: '#DE2408', url: 'http://hongkong-ai.org/', desc: "Dense urban systems and global finance shape Hong Kong’s AI, from smart city planning to digital market platforms.", coords: [22.3193, 114.1694] },
-        // { name: 'Ho Chi Minh City', color: '#DA251D', url: 'http://hochiminhcity-ai.org/', desc: "A young, entrepreneurial population drives Ho Chi Minh City’s AI growth in manufacturing, education, entertainment, and software.", coords: [10.8231, 106.6297] },
-            { 
-			name: 'Los Angeles',
-			color: '#FFBB00',
-			url: 'http://losangeles-ai.org/',
-			desc: "Entertainment, aerospace, and mobility converge in Los Angeles, where AI helps to shape visual effects, space exploration, and transport.",
-			coords: [34.0549, -118.2426] },
-         { name: 'London', color: '#C60C30', url: 'http://ai-london.org/', desc: "London uses its powerful global influence to fuel AI in finance, policy, and media, extending across all markets, governance, and creative work.", coords: [51.5072, -0.1276] },
-        // { name: 'Madrid', color: '#C10049', url: 'http://ai-madrid.org/', desc: "Engineering traditions in energy and transport give Madrid a foundation for AI applications in automation and mobility.", coords: [40.4167, -3.7033] },
-        // { name: 'Manchester', color: '#DA291C', url: 'http://manchester-ai.org/', desc: "Manchester mixes rich academic research with tech startup energy, becoming a powerful northern UK hub for AI and automation.", coords: [53.4808, -2.2426] },
-        //    { name: 'Manila', color: '#B0723A', url: 'http://manila-ai.org/', desc: "Manila’s tech industry is growing fast, with strong momentum in AI services, tourism intelligence, fintech, and digital transformation efforts.", coords: [14.5995, 120.9842] },
-          { name: 'Melbourne', color: '#002B5C', url: 'http://melbourne-ai.org/', desc: "Melbourne’s vibrant startup culture and academic excellence are fueling its rise in AI, robotics, and advanced computing.", coords: [-37.8136, 144.9631] },
-          { name: 'Mexico City', color: '#CF3E81', url: 'http://mexicocity-ai.org/', desc: "Mexico City develops AI in urban transport, cultural industries, and fintech, reflecting its scale as Latin America’s largest metropolis.", coords: [19.4326, -99.1332] },
-          { name: 'Miami', color: '#db3eb1', url: 'http://ai-miami.org/', desc: "With its international ties, Miami channels AI into fintech, digital health, and trade systems connected to Latin America.", coords: [25.7617, -80.1918] },
-           { name: 'Montreal', color: '#F4B441', url: 'http://montreal-ai.org/', desc: "Montreal is globally recognized for its AI research leadership, with strong academic partnerships and a collaborative startup environment.", coords: [45.5017, -73.5673] },
-        //    { name: 'Mumbai', color: '#FFD141', url: 'http://mumbai-ai.org/', desc: "Mumbai is combining fintech, media tech, and AI to become a powerhouse of digital innovation and smart applications.", coords: [19.0760, 72.8777] },
-        {
-          name: "Seattle",
-          color: "#0084a1",
-          url: "https://www.seattle-ai.org",
-          desc: "Seattle is the leader in cloud, robotics, and applied AI, with strong contributions from companies like Amazon, Microsoft, and a deep artificial intelligence research environment.",
-          coords: [47.6062, -122.3321],
-        },
-         { name: 'Paris', color: '#000091', url: 'http://paris-ai.org/', desc: "French state support and elite academic institutions have positioned Paris as a premier European hub for AI policy, robotics, and research.", coords: [48.8575, 2.3514] },
-           { 
-			   name: 'Philadelphia', 
-			color: '#004C55', 
-			   url: 'http://philadelphia-ai.org/', 
-			   desc: "Philadelphia's growing AI presence in anchored by advanced robotics applications in healthcare, biotech, and academic research institutions.", 
-			   coords: [39.9526, -75.1652] 
-		   },
-           { name: 'Phoenix', color: '#E2943C', url: 'http://ai-phoenix.org/', desc: "The tech scene in Phoenix serves as a testing ground for self-driving cars, solar AI systems, and desert-focused urban technology.", coords: [33.4483, -112.0725] },
-           { name: 'Portland', color: '#4CBB17', url: 'http://ai-portland.org/', desc: "A culture of sustainability and design informs Portland’s AI, from clean manufacturing to creative applications of robotics.", coords: [45.5152, -122.6784] },
-        // { name: 'Rome', color: '#B31B1B', url: 'http://rome-ai.org/', desc: "Rome’s AI scene is developing steadily, with innovation centers focusing on cultural heritage, language tech, and smart urban planning.", coords: [41.9028, 12.4964] },
-        { name: 'San Diego',
-		color: '#FFCD00',
-		url: 'http://sandiego-ai.org/',
-		desc: "Medical research, naval defense, martime innovation, and ocean science create the framework of San Diego’s AI industries.",
-		coords: [32.7157, -117.1611] 
-		},
-        {
-          name: "San Francisco",
-          color: "#ffc72c",
-          url: "http://sanfrancisco-ai.org/",
-          desc: "At the center of Silicon Valley, San Francisco anchors the global tone for AI research, robotics startups, and experimental technologies.",
-          coords: [37.7749, -122.4194],
-        },
-           { name: 'São Paulo', color: '#006400', url: 'http://saopaulo-ai.org/', desc: "São Paulo is South America’s leading tech hub, with a booming AI startup scene and a strong presence in fintech and logistics automation.", coords: [-23.5505, -46.6333] },
-        //    { name: 'Seoul', color: '#00B493', url: 'http://seoul-ai.org/', desc: "Seoul leads Asia’s digital future with cutting-edge robotics, 5G infrastructure, and a booming AI and semiconductor industry.", coords: [37.5665, 126.9780] },
-        // { name: 'Seattle', color: '#0084a1',  url: 'http://seattle-ai.org/', desc: "Seattle is the leader in cloud, robotics, and applied AI, with strong contributions from companies like Amazon, Microsoft, and a deep research ecosystem.", coords: [47.6062, -122.3321] },
-        //    { name: 'Shanghai', color: '#1B3050', url: 'http://shanghai-ai.org/', desc: "Manufacturing and worldwide trade markets make Shanghai a hub for AI in industrial automation, logistics robotics, and commercial systems.", coords: [31.2304, 121.4737] },
-        // { name: 'Shenzhen', color: '#00609B', url: 'http://shenzhen-ai.org/', desc: "Shenzhen is a global leader in robotics, AI hardware, and manufacturing tech, with unmatched speed in tech development and scaling.", coords: [22.5431, 114.0579] },
-        //    { name: 'Stockholm', color: '#fecb00', url: 'http://stockholm-ai.org/', desc: "Sweden’s renowned sustainability goals give Stockholm an AI profile rooted in renewable energy, health technology, and smart cities.", coords: [59.3327, 18.0656] },
-        { name: 'Sydney', color: '#49AFC9', url: 'http://sydney-ai.org/', desc: "Marine science, digital health, and climate innovation put Sydney at the forefront of AI research in the Pacific.", coords: [-33.8727, 151.2057] },
-        // { name: 'Singapore', color: '#EE2536', url: 'http://ai-singapore.org/', desc: "Singapore has built a world-class AI ecosystem with government support, smart nation initiatives, and cutting-edge research centers.", coords: [1.3521, 103.8198] },
-        // { name: 'Taipei', color: '#E47777', url: 'http://taipei-ai.org/', desc: "Taipei’s AI and robotics scene is at the forefront in semiconductor innovation, smart devices, and industrial automation.", coords: [25.032969, 121.565418] },
-        //    { name: 'Tokyo', color: '#6E406F', url: 'http://ai-tokyo.org/', desc: "Tokyo blends cultural perfection with robotics and advanced AI, with strong advances in industrial automation and humanoid mobility systems.", coords: [35.6764, 139.6500] },
-         { name: 'Toronto', color: '#224291', url: 'http://ai-toronto.org/', desc: "As Canada’s largest tech hub, Toronto grows its AI identity in neural network innovation, healthcare diagnostics, and robotics applications.", coords: [43.6532, -79.3832] },
-        //    { name: 'Tel Aviv', color: '#2C6EBA', url: 'http://telaviv-ai.org/', desc: "Tel Aviv is a global tech leader, nicknamed 'Startup City,' with deep strengths in cybersecurity, AI, and biotech.", coords: [32.0853, 34.7818] },
-         { name: 'Vancouver', color: '#61a644', url: 'http://vancouver-ai.org', desc: "Vancouver’s AI strengths come from sustainability, visual computing, and robotics, shaped by its Pacific location and natural resources.", coords: [49.2827, -123.1207] },
-        // { name: 'Warsaw', color: '#FF1100', url: 'http://warsaw-ai.org/', desc: "Warsaw is emerging as Central Europe’s AI center, with defense research, industrial robotics, and strong engineering education.", coords: [52.2297, 21.0122] },
-            {
-		  name: 'Washington DC', 
-			  color: '#E91436', 
-			  url: 'http://washingtondc-ai.org/', 
-			  desc: "Washington DC is shaping AI policy while also investing in cybersecurity, defense tech, and public-sector AI applications.", 
-			  coords: [38.9072, -77.0369] 
-	  },
-        //    { name: 'Zurich', color: '#FFCC00', url: 'http://zurich-ai.org/', desc: "Zurich is a global AI research leader, home to ETH Zurich and a growing tech industry focused on robotics, machine learning, and automation.", coords: [47.3769, 8.5417] }
-      ];
-      // Define world bounds
-      const worldBounds = L.latLngBounds(
-        L.latLng(-85, -180),
-        L.latLng(85, 180)
-      );
-      // Example markers (replace with your own)
-      const markerss = [
-        [30.2672, -97.7431],[52.5200, 13.4050],[-37.8136, 144.9631],[39.9042, 116.4074],[-33.8727, 151.2057],[-23.5505, -46.6333],[51.5072, -0.1276],[43.6532, -79.3832],[48.8575, 2.3514],[45.5152, -122.6784],[33.4483, -112.0725],[32.7767, -96.7970],[25.7617, -80.1918],[-34.6037, -58.3816],[19.4326, -99.1332],[45.5017, -73.5673],[49.2827, -123.1207],[37.7749, -122.4194],[40.7128, -74.006],[47.6062, -122.3321],[34.0549, -118.2426],[42.3555, -71.0565],[39.9526, -75.1652],[38.9072, -77.0369],[41.8832, -87.6324],[32.7157, -117.1611],[39.7392, -104.9903],[33.7501, -84.3885] /*,[12.9716, 77.5946],[41.3851, 2.1734],[-34.6037, -58.3816],[28.6139, 77.2090],[25.276987, 51.520008],[53.3498, -6.2603],[23.1291, 113.2644],[13.7563, 100.5018],
-  [53.4808, -2.2426],[14.5995, 120.9842],[-37.8136, 144.9631],[19.4326, -99.1332],[45.5017, -73.5673],[19.0760, 72.8777],[41.9028, 12.4964],[52.5200, 13.4050],[39.9042, 116.4074],[48.8575, 2.3514],
-  [-23.5505, -46.6333],[47.6062, -122.3321],[22.5431, 114.0579],[1.3521, 103.8198],[25.032969, 121.565418],[49.2827, -123.1207],[47.3769, 8.5417],[52.3676, 4.9041],[50.8503, 4.3517],[33.7501, -84.3885],[-8.7832, 34.5085],
-  [37.5665, 126.9780],[32.0853, 34.7818],[52.2297, 21.0122],[43.6532, 79.3832],[35.6764, 139.6500],[33.8727, 151.2057],[59.3327, 18.0656],[31.2304, 121.4737],[32.7157, 117.1611],[45.5152, -122.6784],[33.4483, -112.0725],
-  [25.7617, -80.1918],[40.4167, 3.7033],[51.5072, -0.1276],[10.8231, 106.6297],[22.3193, 114.1694],[25.2048, 55.2708],[39.7392, -104.9903],[32.7767, -96.7970],[55.6761, 12.5683]*/,
-      ];
-
-      // Create marker group
-      const markerGroup = L.featureGroup(markerss.map((m) => L.marker(m)));
-
-      // ---------- 1) updated getMapSettings ----------
-		function getMapSettings() {
-		  const isMobile = L.Browser.mobile || window.innerWidth < 768;
 		
-		  return {
+		menuToggle?.addEventListener('click', () => {
+		  menuToggle.classList.toggle('is-active');
+		  document.body.classList.toggle('navbar-open');
+		});
+		
+		// Delegate clicks from the nav (works for all links inside)
+		nav?.addEventListener('click', (e) => {
+		  const link = e.target.closest('a.header-links__link');
+		  if (!link) return;
+		
+		  const openInNewTab = link.target === '_blank' || e.ctrlKey || e.metaKey;
+		
+		  if (openInNewTab) {
+			// Force-open the new tab, then close the menu
+			window.open(link.href, '_blank', 'noopener');
+			e.preventDefault();
+		  }
+		
+		  // Close the menu after the click has been handled
+		  requestAnimationFrame(closeMenu);
+		});
+		
+		// Middle-click (auxclick) also opens in a new tab on most browsers
+		nav?.addEventListener('auxclick', (e) => {
+		  if (e.button !== 1) return; // only middle button
+		  const link = e.target.closest('a.drawermenu__link');
+		  if (!link) return;
+		
+		  window.open(link.href, '_blank', 'noopener');
+		  e.preventDefault();
+		  requestAnimationFrame(closeMenu);
+		});
+
+	</script>
+<!-- ================= MAP SCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+	function getMapSettings() {
+		const isMobile = L.Browser.mobile || window.innerWidth < 768;
+		return {
 		    // 🇺🇸 Proper USA center
-		    center: isMobile ? [39.5, -98.35] : [20, 0],
-		
+		    center: isMobile ? [39.5, -98.35] : [20, 0],		
 		    // ✅ Start zoomed so ALL USA pins are visible
-		    zoom: isMobile ? 3 : 1.8,
-		
+		    zoom: isMobile ? 3 : 1.8,		
 		    // ✅ Allow real zoom OUT and IN on mobile
 		    minZoom: isMobile ? 1.2 : 2,
-		    maxZoom: 7,
-		
-		    fitPadding: isMobile ? [40, 40] : [20, 20],
-		
+		    maxZoom: 7,		
+		    fitPadding: isMobile ? [40, 40] : [20, 20],		
 		    // ✅ Loosen bounds so world is reachable
 		    maxBounds: L.latLngBounds(
 		      L.latLng(-70, -180),
 		      L.latLng(85, 180)
 		    ),
-		  };
-		}
+		};
+	}
 
-
-      let settings = getMapSettings();
-
-      const map = L.map("map", {
-        zoomControl: true,
+  const settings = getMapSettings();
+	
+  const map = L.map("map", {
+    zoomControl: true,
         scrollWheelZoom: false,
         doubleClickZoom: false,
         boxZoom: false,
@@ -1414,213 +1655,198 @@ img.waveimg {
         maxBoundsViscosity: 1.0,
         worldCopyJump: false,
         zoomSnap: 0.25,
-zoomDelta: 0.5,
-      });
+		zoomDelta: 0.5,
+  });
+  const worldBounds = L.latLngBounds(
+	  L.latLng(-70, -180),
+	  L.latLng(85, 180)
+	);
 
-      // ✅ Add markers
-      markerGroup.addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+	  attribution: "&copy; OpenStreetMap contributors",
+	  noWrap: true,
+	  bounds: worldBounds
+	}).addTo(map);
 
-      // ✅ Fit markers on load (DESKTOP ONLY)
-		if (!L.Browser.mobile && window.innerWidth >= 768) {
-		  map.fitBounds(markerGroup.getBounds(), {
-		    padding: settings.fitPadding,
-		  });
+  const markerGroup = L.featureGroup().addTo(map);
+
+  fetch("https://ai-feed-worker.ryanhomlee.workers.dev/api/cities")
+  .then(r => {
+    if (!r.ok) throw new Error("Cities API failed");
+    return r.json();
+  })
+  .then(cities => {
+    cities.forEach(c => {
+      const popupHTML = `
+        <div style="max-width:240px;">
+          <h3 style="margin:0 0 6px;font-weight:700;color:${c.color || "#000"}">
+            ${c.name}
+          </h3>
+          <p style="font-size:13px;line-height:1.4;margin-bottom:8px;">
+            ${c.desc}
+          </p>
+          ${
+            c.url
+              ? `<a href="${c.url}" target="_blank" style="font-size:13px;font-weight:600;color:${c.color};">
+                   ${c.url}
+                 </a>`
+              : ""
+          }
+        </div>
+      `;
+
+      L.marker([c.lat, c.lng])
+        .bindPopup(popupHTML, {
+          maxWidth: 260,
+          closeButton: true
+        })
+        .addTo(markerGroup);
+    });
+
+    requestAnimationFrame(() => {
+      map.fitBounds(markerGroup.getBounds(), { maxZoom: 4 });
+    });
+  })
+  .catch(err => console.error("Map error:", err));
+});
+</script>
+
+
+<!-- ================= NEWS + EVENTS ================= -->
+<script>
+	document.addEventListener("DOMContentLoaded", async () => {
+
+	  /* =========================
+		 UTIL
+	  ========================= */
+	  const timeAgo = d => {
+		const mins = Math.floor((Date.now() - new Date(d)) / 60000);
+		if (mins < 60) return `${mins} min ago`;
+		return `${Math.floor(mins / 60)} hr ago`;
+	  };
+
+	  /* =========================
+		 NEWS GRID
+	  ========================= */
+	  const news = await fetch(
+		"https://ai-feed-worker.ryanhomlee.workers.dev/api/news"
+	  ).then(r => r.json());
+
+	  const grid = document.getElementById("ai-news-grid");
+
+	  const slots = ["slot-a","slot-b","slot-c","slot-b","slot-c"];
+
+	  news
+	   .sort((a,b)=>new Date(b.published)-new Date(a.published))
+	   .slice(0,5)
+		.forEach((n,i)=>{
+		  const hasImage = !!n.image;
+
+		  grid.insertAdjacentHTML("beforeend", `
+			<a href="${n.link}" target="_blank"
+			   class="galaverse-card ${slots[i]} ${hasImage ? "has-image" : ""}">
+			  ${hasImage ? `<img src="${n.image}" alt="">` : ""}
+			  <div class="galaverse-content">
+				<h3>${n.title}</h3>
+				${n.excerpt ? `<p class="news-excerpt">${n.excerpt}</p>` : ""}
+				<div class="galaverse-meta">${timeAgo(n.published)}</div>
+			  </div>
+			</a>
+		  `);
+		});
+
+	  /* =========================
+		 EVENTS FETCH
+	  ========================= */
+	  const events = await fetch(
+		"https://ai-feed-worker.ryanhomlee.workers.dev/api/events"
+	  ).then(r => r.json());
+
+	  if (!events || events.length < 6) return;
+
+	  const LOOP_EVENTS = events.slice(0, 20);
+
+	  /* =========================
+		 FEATURED EVENT
+	  ========================= */
+	  const featuredWrap = document.getElementById("ai-event-featured");
+	  let featuredIndex = 0;
+
+	  function renderFeatured(e) {
+		const city = e.city || "Global";
+		const img =
+		  e.image ||
+		  `https://images.unsplash.com/photo-1581091012184-7c4c9a2b4b28?auto=format&fit=crop&w=1400&q=70`;
+
+		featuredWrap.innerHTML = `
+		  <div class="ai-event-featured-card">
+			<img src="${img}" alt="">
+			<div class="ai-event-featured-content">
+			  <div class="ai-event-featured-date">${e.date?.when || ""}</div>
+			  <div class="ai-event-featured-title">${e.title}</div>
+			  ${e.venue ? `<div class="ai-event-featured-venue">📍 ${e.venue}</div>` : ""}
+			  <div style="margin-top:12px;display:flex;gap:16px">
+				<a href="${e.link}" target="_blank">View event →</a>
+				${e.calendar ? `<a href="${e.calendar}" target="_blank">Add to calendar 📅</a>` : ""}
+			  </div>
+			</div>
+		  </div>
+		`;
+	  }
+
+	  renderFeatured(LOOP_EVENTS[0]);
+
+	  setInterval(() => {
+		featuredIndex = (featuredIndex + 1) % LOOP_EVENTS.length;
+		renderFeatured(LOOP_EVENTS[featuredIndex]);
+	  }, 6000);
+
+	  /* =========================
+		 RIGHT LIST (INFINITE SCROLL)
+	  ========================= */
+	  const viewport = document.querySelector(".ai-event-list-viewport");
+	  const list = document.getElementById("ai-event-list");
+
+	  list.innerHTML = [...LOOP_EVENTS, ...LOOP_EVENTS].map(e => `
+		<div class="ai-event-list-item">
+		  <strong>${e.title}</strong>
+		  <div class="ai-event-list-meta">${e.date?.when || ""}</div>
+		  ${e.venue ? `<div class="ai-event-list-meta">📍 ${e.venue}</div>` : ""}
+		  <div class="ai-event-links">
+			<a href="${e.link}" target="_blank">View</a>
+			${e.calendar ? `<a href="${e.calendar}" target="_blank">Calendar</a>` : ""}
+		  </div>
+		</div>
+	  `).join("");
+
+	  /* =========================
+		 CONTINUOUS LOOP ENGINE
+	  ========================= */
+	  let offset = 0;
+	  let paused = false;
+	  const SPEED = window.innerWidth < 768 ? 0.25 : 0.4;
+	  const halfHeight = list.scrollHeight / 2;
+
+	  function loop() {
+		if (!paused) {
+		  offset += SPEED;
+		  if (offset >= halfHeight) offset = 0;
+		  list.style.transform = `translateY(-${offset}px)`;
 		}
+		requestAnimationFrame(loop);
+	  }
 
-      // ✅ Auto-adjust on resize
-      window.addEventListener("resize", () => {
-        const newSettings = getMapSettings();
+	  loop();
 
-        map.setMinZoom(newSettings.minZoom);
-        map.setMaxZoom(newSettings.maxZoom);
-        // ✅ Update bounds
-        map.setMaxBounds(newSettings.maxBounds);
+	  viewport.addEventListener("mouseenter", () => paused = true);
+	  viewport.addEventListener("mouseleave", () => paused = false);
 
-        // Keep zoom inside allowed range
-        const currentZoom = map.getZoom();
-        if (currentZoom < newSettings.minZoom) {
-          map.setZoom(newSettings.minZoom);
-        } else if (currentZoom > newSettings.maxZoom) {
-          map.setZoom(newSettings.maxZoom);
-        }
-
-        // ✅ Re-fit ONLY when switching TO desktop
-		if (
-		  !L.Browser.mobile &&
-		  settings.fitPadding[0] !== newSettings.fitPadding[0]
-		) {
-		  map.fitBounds(markerGroup.getBounds(), {
-		    padding: newSettings.fitPadding,
-		  });
-		}
-
-        // Update settings
-        settings = newSettings;
-      });
-
-      // const map = L.map('map', {
-      //   zoomControl: true,
-      //   scrollWheelZoom: true,
-      //   doubleClickZoom: false,
-      //   boxZoom: false,
-      //   touchZoom: true,
-      //   dragging: true,
-      //   keyboard: false,
-      //   center: [20, 0],
-      //     zoom: 1.8,
-      //     minZoom: 2, // Prevent zooming out too far
-      //     maxZoom: 5,
-      //     maxBounds: worldBounds,
-      //     maxBoundsViscosity: 1.0,
-      //     worldCopyJump: false,     // Prevent world copy when crossing boundary
-      //     zoomSnap: 1,
-      //     zoomDelta: 1
-      // });
-
-      // Add base layer with no wrapping
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        noWrap: true, // Prevent horizontal tile repeating
-        continuousWorld: false, // Deprecated but good for compatibility
-        bounds: worldBounds,
-        attribution: "&copy; OpenStreetMap contributors",
-      }).addTo(map);
-
-      // === Make map zoom only with two fingers on touch devices (but KEEP dragging on desktop) ===
-      (function enableTwoFingerZoomOnly(map) {
-        if (!map) return;
-      
-        // Detect real touch-first devices (coarse pointers), not just “ontouchstart”
-        const isTouchFirst =
-          (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
-          (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
-      
-        const container = document.getElementById('map');
-        if (!container) return;
-      
-        if (isTouchFirst) {
-          // Mobile/tablet: allow page scroll with one finger; require pinch to zoom map
-          container.style.touchAction = 'pan-y pinch-zoom';
-      
-          // Disable single-finger drag so the page can scroll normally
-          if (map.dragging && map.dragging.enabled()) map.dragging.disable();
-      
-          // Ensure pinch zoom is enabled
-          if (map.touchZoom && !map.touchZoom.enabled()) map.touchZoom.enable();
-      
-          // Optional niceties
-          if (map.tap && map.tap.enabled && map.tap.enabled()) map.tap.disable();
-        } else {
-          // Mouse/trackpad: full map interaction
-          container.style.touchAction = 'auto';
-          if (map.dragging && !map.dragging.enabled()) map.dragging.enable();
-          if (map.touchZoom && map.touchZoom.enabled()) map.touchZoom.disable(); // pinch irrelevant on desktop
-        }
-      })(map);
-
-      // Add markers
-      const markers = L.featureGroup();
-      cities.forEach((city) => {
-        const marker = L.marker(city.coords).addTo(map);
-        marker.bindPopup(`
-    <strong>${city.name}</strong><br>${city.desc}<br><br>
-    <a href="${city.url}" target="_blank" style="color: ${city.color};">${city.url}</a>
-  `);
-        markers.addLayer(marker);
-      });
-
-
-      /*------------------Paris Berlin Stockholm Warsaw Sydney Melbourne London Copenhagen Madrid Africa-------------*/
-      // Function to get region based on city name or coordinates
-      function getRegion(city) {
-        const name = city.name.toLowerCase();
-
-        if (
-          [
-            "san francisco",
-            "Los Angeles",
-            "Boston",
-            "Chicago",
-            "San Diego",
-            "Denver",
-            "Atlanta",
-            "Miami",
-            "Dallas",
-            "Phoenix",
-            "Portland",
-            "toronto",
-            "austin",
-            "california",
-            "montreal",
-            "new york city",
-            "philadelphia",
-            "seattle",
-            "vancouver",
-            "washington dc",
-          ].includes(name)
-        ) {
-          return "North America";
-        }
-
-        if (["buenos aires", "mexico city", "são paulo"].includes(name)) {
-          return "South America";
-        }
-
-        if (
-          [
-            "barcelona",
-            "dublin",
-            "Paris",
-            "Stockholm",
-            "Warsaw",
-            "manchester",
-            "Berlin",
-            "rome",
-            "Sydney",
-            "London",
-            "Copenhagen",
-            "Madrid",
-            "Africa",
-            "Melbourne",
-            "zurich",
-            "amsterdam",
-            "brussels",
-          ].includes(name)
-        ) {
-          return "Europe";
-        }
-
-        if (
-          [
-            "bangalore",
-            "delhi",
-            "guangzhou",
-            "incheon",
-            "manila",
-            "melbourne",
-            "mumbai",
-            "shenzhen",
-            "singapore",
-            "taipei",
-            "seoul",
-          ].includes(name)
-        ) {
-          return "Asia";
-        }
-
-        if (["tel aviv", "doha"].includes(name)) {
-          return "Middle East";
-        }
-
-        if (["north korea"].includes(name)) {
-          return "Other";
-        }
-
-        return "Uncategorized";
-      }
-
-
-      // 🔹 Second Typing Animation (no blank gap between words)
-      const words1 = [
+	});
+</script>
+	  <script>
+	/*------------------Paris Berlin Stockholm Warsaw Sydney Melbourne London Copenhagen Madrid Africa-------------*/
+	// 🔹 Second Typing Animation
+	const words1 = [
         "Dynamic",
         "Wicked",
         "Academic",
@@ -1632,462 +1858,299 @@ zoomDelta: 0.5,
         "Pioneering",
         "Prestigious",
       ];
-      let wordIndex1 = 0;
-      let letterIndex1 = 1; // start at 1 so we show first letter immediately
-      const speed1 = 70; // typing speed (ms per char)
-      const delayBetweenWords1 = 1500; // pause after full word before erasing (ms)
+	let wordIndex1 = 0;
+	let letterIndex1 = 0;
+	const speed1 = 80;
+	const delayBetweenWords1 = 1500;
+	
+	function typeWord1() {
+	  const word1 = words1[wordIndex1];
+	  const span1 = document.getElementById("changing-word-robot");
+	
+	  if (letterIndex1 <= word1.length) {
+	    span1.innerHTML = word1.substring(0, letterIndex1);
+	    letterIndex1++;
+	    setTimeout(typeWord1, speed1);
+	  } else {
+	    setTimeout(eraseWord1, delayBetweenWords1);
+	  }
+	}
 
-      function typeWord1() {
-        const word1 = words1[wordIndex1];
-        const span1 = document.getElementById("changing-word-robot");
+function eraseWord1() {
+  const word1 = words1[wordIndex1];
+  const span1 = document.getElementById("changing-word-robot");
 
-        if (letterIndex1 <= word1.length) {
-          span1.textContent = word1.substring(0, letterIndex1);
-          letterIndex1++;
-          setTimeout(typeWord1, speed1);
-        } else {
-          // pause on full word, then start erasing
-          setTimeout(() => {
-            // ensure erase starts from the full word length
-            letterIndex1 = word1.length;
-            eraseWord1();
-          }, delayBetweenWords1);
-        }
+  if (letterIndex1 > 0) {
+    // remove one char and continue erasing
+    span1.textContent = word1.substring(0, letterIndex1 - 1);
+    letterIndex1--;
+    setTimeout(eraseWord1, Math.max(20, Math.floor(speed1 / 1.5))); // slightly faster erase but not instant
+  } else {
+    // Erase finished — immediately seed next word's first letter
+    wordIndex1 = (wordIndex1 + 1) % words1.length;
+    const nextWord = words1[wordIndex1] || "";
+    if (nextWord.length > 0) {
+      span1.textContent = nextWord.charAt(0); // seed first character so span never goes blank
+      letterIndex1 = 1; // start typing from second character next
+      // start typing next word immediately (no blank gap)
+      setTimeout(typeWord1, speed1);
+    } else {
+      // fallback: just start typing
+      letterIndex1 = 0;
+      setTimeout(typeWord1, speed1);
+    }
+  }
+}
+
+// Safer load event — show first letter immediately so there's no initial blank
+window.addEventListener("load", () => {
+  const span1 = document.getElementById("changing-word-robot");
+  if (span1 && words1.length > 0) {
+    span1.textContent = words1[0].charAt(0);
+    letterIndex1 = 1;
+  }
+  typeWord1();
+});
+</script>
+<script>
+(function () {
+  const micBtn = document.getElementById("micButton");
+  const micHint = document.getElementById("micHint");
+  const micHintClose = document.getElementById("micHintClose");
+  const chatOverlay = document.getElementById("chatOverlay");
+  const closeChatBtn = document.getElementById("closeChat"); // your existing close button
+  const chatboxEl = document.getElementById("chatbox");
+
+  if (!micBtn || !micHint) return;
+
+  // helper: hide hint
+  function hideHint() {
+    micHint.classList.add("mic-hint--hidden");
+    micHint.setAttribute("aria-hidden", "true");
+  }
+  // helper: show hint
+  function showHint() {
+    micHint.classList.remove("mic-hint--hidden");
+    micHint.setAttribute("aria-hidden", "false");
+  }
+
+  // 🔹 Hide only when mic button is clicked
+  micBtn.addEventListener("click", hideHint);
+
+  // 🔹 Also allow explicit close with "×"
+  micHintClose && micHintClose.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hideHint();
+  });
+
+  // 🔹 Show hint again when chat popup is closed:
+  closeChatBtn && closeChatBtn.addEventListener("click", () => {
+    setTimeout(() => showHint(), 100);
+  });
+
+  chatOverlay && chatOverlay.addEventListener("click", (e) => {
+    if (e.target === chatOverlay) {
+      setTimeout(() => showHint(), 100);
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setTimeout(() => {
+        const isChatVisible = chatboxEl && window.getComputedStyle(chatboxEl).display !== "none";
+        if (!isChatVisible) showHint();
+      }, 100);
+    }
+  });
+
+  // Fallback: detect when chatbox display changes
+  if (chatboxEl && window.MutationObserver) {
+    const obs = new MutationObserver(() => {
+      const isHidden = window.getComputedStyle(chatboxEl).display === "none";
+      if (isHidden) showHint();
+    });
+    obs.observe(chatboxEl, { attributes: true, attributeFilter: ["style", "class"] });
+  }
+})();
+
+const openBtn = document.getElementById('OpenNewsLetterr');
+  const closeBtn = document.getElementById('closePopup');
+  const overlay = document.getElementById('popupOverlay');
+
+  // Open popup
+  openBtn.addEventListener('click', () => {
+    overlay.style.display = 'block';
+  });
+
+  // Close popup with close button
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  // Close popup by clicking outside
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+</script>
+<!-- Swiper Init Script -->
+<script>
+  /* =========================
+     Equalize slide heights
+     ========================= */
+  function equalizeSwiperSlides(swiper) {
+    if (!swiper || !swiper.slides) return;
+
+    let maxHeight = 0;
+
+    swiper.slides.forEach(slide => {
+      slide.style.height = "";
+      maxHeight = Math.max(maxHeight, slide.offsetHeight);
+    });
+
+    swiper.slides.forEach(slide => {
+      slide.style.height = maxHeight + "px";
+    });
+  }
+
+  /* =========================
+     Persistent highlight logic
+     ========================= */
+  function attachPersistentSwiperHighlight(sw) {
+  if (!sw || !sw.el) return;
+
+  const root = sw.el;
+  const canHover =
+    window.matchMedia &&
+    window.matchMedia("(hover: hover)").matches;
+
+  const getSlides = () =>
+    Array.from(root.querySelectorAll(".swiper-slide"));
+
+  const findOriginalFirst = () =>
+    getSlides().find(
+      s => !s.classList.contains("swiper-slide-duplicate")
+    ) || getSlides()[0];
+
+  let lastHovered = null;
+
+  function clearHighlights() {
+    getSlides().forEach(s =>
+      s.classList.remove("hovered-slide")
+    );
+  }
+
+  function setHighlight(slideEl) {
+    if (!slideEl) return;
+    clearHighlights();
+    slideEl.classList.add("hovered-slide");
+    lastHovered = slideEl;
+  }
+
+  function reapplyLastHovered() {
+    if (!lastHovered) return;
+
+    const idx =
+      lastHovered.getAttribute("data-swiper-slide-index");
+
+    if (idx != null) {
+      const match = getSlides().find(
+        s =>
+          s.getAttribute("data-swiper-slide-index") ===
+          String(idx)
+      );
+      if (match) {
+        clearHighlights();
+        match.classList.add("hovered-slide");
+        lastHovered = match;
+        return;
       }
+    }
 
-      function eraseWord1() {
-        const word1 = words1[wordIndex1];
-        const span1 = document.getElementById("changing-word-robot");
+    // Fallback (should rarely happen)
+    const orig = findOriginalFirst();
+    if (orig) setHighlight(orig);
+  }
 
-        if (letterIndex1 > 0) {
-          // remove one char and continue erasing
-          span1.textContent = word1.substring(0, letterIndex1 - 1);
-          letterIndex1--;
-          setTimeout(eraseWord1, Math.max(20, Math.floor(speed1 / 1.5))); // slightly faster erase but not instant
-        } else {
-          // Erase finished — immediately seed next word's first letter
-          wordIndex1 = (wordIndex1 + 1) % words1.length;
-          const nextWord = words1[wordIndex1] || "";
-          if (nextWord.length > 0) {
-            span1.textContent = nextWord.charAt(0); // seed first character so span never goes blank
-            letterIndex1 = 1; // start typing from second character next
-            // start typing next word immediately (no blank gap)
-            setTimeout(typeWord1, speed1);
-          } else {
-            // fallback: just start typing
-            letterIndex1 = 0;
-            setTimeout(typeWord1, speed1);
-          }
-        }
-      }
+  function onPointerEnter(e) {
+    setHighlight(e.currentTarget);
+  }
 
-      // Safer load event — show first letter immediately so there's no initial blank
-      window.addEventListener("load", () => {
-        const span1 = document.getElementById("changing-word-robot");
-        if (span1 && words1.length > 0) {
-          span1.textContent = words1[0].charAt(0);
-          letterIndex1 = 1;
-        }
-        typeWord1();
-      });
+  function attachHoverListeners() {
+    const slides = getSlides();
+    slides.forEach(s =>
+      s.removeEventListener("pointerenter", onPointerEnter)
+    );
+    if (canHover) {
+      slides.forEach(s =>
+        s.addEventListener("pointerenter", onPointerEnter)
+      );
+    }
+  }
 
-      (function () {
-        const micBtn = document.getElementById("micButton");
-        const micHint = document.getElementById("micHint");
-        const micHintClose = document.getElementById("micHintClose");
-        const chatOverlay = document.getElementById("chatOverlay");
-        const closeChatBtn = document.getElementById("closeChat"); // your existing close button
-        const chatboxEl = document.getElementById("chatbox");
+  if (canHover) {
+    // ✅ CRITICAL: seed first slide ONCE
+    const first = findOriginalFirst();
+    if (first && !lastHovered) {
+      setTimeout(() => setHighlight(first), 40);
+    }
 
-        if (!micBtn || !micHint) return;
+    attachHoverListeners();
 
-        // helper: hide hint
-        function hideHint() {
-          micHint.classList.add("mic-hint--hidden");
-          micHint.setAttribute("aria-hidden", "true");
-        }
-        // helper: show hint
-        function showHint() {
-          micHint.classList.remove("mic-hint--hidden");
-          micHint.setAttribute("aria-hidden", "false");
-        }
+    sw.on("observerUpdate", () => {
+      attachHoverListeners();
+      reapplyLastHovered();
+    });
 
-        // 🔹 Hide only when mic button is clicked
-        micBtn.addEventListener("click", hideHint);
+    sw.on("slidesLengthChange", () => {
+      attachHoverListeners();
+      reapplyLastHovered();
+    });
+  } else {
+    // Touch devices: persist active slide
+    function highlightActive() {
+      const active = sw.slides[sw.activeIndex];
+      if (active) setHighlight(active);
+    }
 
-        // 🔹 Also allow explicit close with "×"
-        micHintClose &&
-          micHintClose.addEventListener("click", (e) => {
-            e.stopPropagation();
-            hideHint();
-          });
+    highlightActive();
+    sw.on("slideChange", highlightActive);
+    sw.on("observerUpdate", highlightActive);
+    sw.on("slidesLengthChange", highlightActive);
+  }
+}
 
-        // 🔹 Show hint again when chat popup is closed:
-        closeChatBtn &&
-          closeChatBtn.addEventListener("click", () => {
-            setTimeout(() => showHint(), 100);
-          });
 
-        chatOverlay &&
-          chatOverlay.addEventListener("click", (e) => {
-            if (e.target === chatOverlay) {
-              setTimeout(() => showHint(), 100);
-            }
-          });
-
-        window.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
-            setTimeout(() => {
-              const isChatVisible =
-                chatboxEl &&
-                window.getComputedStyle(chatboxEl).display !== "none";
-              if (!isChatVisible) showHint();
-            }, 100);
-          }
-        });
-
-        // Fallback: detect when chatbox display changes
-        if (chatboxEl && window.MutationObserver) {
-          const obs = new MutationObserver(() => {
-            const isHidden =
-              window.getComputedStyle(chatboxEl).display === "none";
-            if (isHidden) showHint();
-          });
-          obs.observe(chatboxEl, {
-            attributes: true,
-            attributeFilter: ["style", "class"],
-          });
-        }
-      })();
-
-      const openBtn = document.getElementById("OpenNewsLetterr");
-      const closeBtn = document.getElementById("closePopup");
-      const overlay = document.getElementById("popupOverlay");
-
-      // Open popup
-      openBtn.addEventListener("click", () => {
-        overlay.style.display = "block";
-      });
-
-      // Close popup with close button
-      closeBtn.addEventListener("click", () => {
-        overlay.style.display = "none";
-      });
-
-      // Close popup by clicking outside
-      overlay.addEventListener("click", (event) => {
-        if (event.target === overlay) {
-          overlay.style.display = "none";
-        }
-      });
-    </script>
-    <!-- Swiper Init Script -->
-    <script>
-      // ---------- Swiper init (unchanged options) + robust highlight/hover logic ----------
-      const swiper = new Swiper(".mySwiperTiles", {
-        slidesPerView: "auto",
-        spaceBetween: 30,
-        loop: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        observer: true,
-        observeParents: true,
-        observeSlideChildren: true,
-        autoHeight: false,
-        // keep init hook minimal — we'll set highlight after DOM settles
-        on: {
-          init: function () {
-            // nothing here — highlight logic runs below
-          },
-        },
-      });
-
-      // Clean, robust highlight behavior that handles loop clones
-      // (function attachSwiperHighlight(sw) {
-      //   if (!sw || !sw.el) return;
-      //   const root = sw.el;
-
-      //   // detect hover support (touch devices don't support hover well)
-      //   const canHover =
-      //     window.matchMedia && window.matchMedia("(hover: hover)").matches;
-
-      //   // helpers to query DOM slides (includes duplicates)
-      //   const getSlides = () =>
-      //     Array.from(root.querySelectorAll(".swiper-slide"));
-      //   const findOriginalFirst = () =>
-      //     getSlides().find(
-      //       (s) => !s.classList.contains("swiper-slide-duplicate")
-      //     ) || getSlides()[0];
-
-      //   function clearHighlights() {
-      //     getSlides().forEach((s) => s.classList.remove("hovered-slide"));
-      //   }
-
-      //   function restoreOriginal() {
-      //     clearHighlights();
-      //     const orig = findOriginalFirst();
-      //     if (orig) orig.classList.add("hovered-slide");
-      //   }
-
-      //   function onPointerEnter(e) {
-      //     clearHighlights();
-      //     e.currentTarget.classList.add("hovered-slide");
-      //   }
-
-      //   function attachHoverListeners() {
-      //     const slides = getSlides();
-
-      //     // remove previous handlers to avoid duplicates
-      //     slides.forEach((s) =>
-      //       s.removeEventListener("pointerenter", onPointerEnter)
-      //     );
-
-      //     if (canHover) {
-      //       slides.forEach((s) =>
-      //         s.addEventListener("pointerenter", onPointerEnter)
-      //       );
-      //       // when pointer leaves entire swiper, restore original
-      //       root.removeEventListener("pointerleave", restoreOriginal);
-      //       root.addEventListener("pointerleave", restoreOriginal);
-      //     } else {
-      //       // touch fallback is handled below
-      //       root.removeEventListener("pointerleave", restoreOriginal);
-      //     }
-      //   }
-
-      //   if (canHover) {
-      //     // initial: highlight the first real slide
-      //     // delay slightly to let Swiper build clones
-      //     setTimeout(restoreOriginal, 60);
-      //     // attach listeners (also re-attach on DOM updates)
-      //     attachHoverListeners();
-      //     sw.on && sw.on("observerUpdate", attachHoverListeners);
-      //     sw.on && sw.on("slidesLengthChange", attachHoverListeners);
-      //     // also re-run once after short delay to be safe
-      //     setTimeout(attachHoverListeners, 140);
-      //   } else {
-      //     // Touch device: highlight the active slide and update on slide change
-      //     function highlightActive() {
-      //       clearHighlights();
-      //       const active = sw.slides && sw.slides[sw.activeIndex];
-      //       if (active) active.classList.add("hovered-slide");
-      //     }
-      //     // run once now and whenever the active slide changes or DOM updates
-      //     highlightActive();
-      //     sw.on && sw.on("slideChange", highlightActive);
-      //     sw.on && sw.on("observerUpdate", highlightActive);
-      //     sw.on && sw.on("slidesLengthChange", highlightActive);
-      //   }
-      // })(swiper);
-      // ---------- Replace previous attachSwiperHighlight with this version ----------
-      (function attachPersistentSwiperHighlight(sw) {
-        if (!sw || !sw.el) return;
-        const root = sw.el;
-
-        // detect hover support (touch devices behave differently)
-        const canHover =
-          window.matchMedia && window.matchMedia("(hover: hover)").matches;
-
-        // helpers
-        const getSlides = () =>
-          Array.from(root.querySelectorAll(".swiper-slide"));
-        const findOriginalFirst = () =>
-          getSlides().find(
-            (s) => !s.classList.contains("swiper-slide-duplicate")
-          ) || getSlides()[0];
-
-        let lastHovered = null; // persistent reference to the currently highlighted slide
-
-        function clearHighlights() {
-          getSlides().forEach((s) => s.classList.remove("hovered-slide"));
-        }
-
-        // Set highlight and store the "identity" of the slide (data-swiper-slide-index if present)
-        function setHighlight(slideEl) {
-          if (!slideEl) return;
-          clearHighlights();
-          slideEl.classList.add("hovered-slide");
-          lastHovered = slideEl;
-        }
-
-        // Try to re-find the lastHovered after Swiper DOM updates (clones etc).
-        // We prefer a slide that shares the same data-swiper-slide-index attribute.
-        function reapplyLastHovered() {
-          if (!lastHovered) return;
-          const idx =
-            lastHovered.getAttribute &&
-            lastHovered.getAttribute("data-swiper-slide-index");
-          if (idx != null) {
-            // pick the first slide whose data-swiper-slide-index equals idx (clone or original)
-            const match = getSlides().find(
-              (s) =>
-                s.getAttribute &&
-                s.getAttribute("data-swiper-slide-index") === String(idx)
-            );
-            if (match) {
-              clearHighlights();
-              match.classList.add("hovered-slide");
-              lastHovered = match;
-              return;
-            }
-          }
-          // fallback: if no match found, highlight the original first slide
-          const orig = findOriginalFirst();
-          if (orig) {
-            setHighlight(orig);
-          }
-        }
-
-        // pointerenter handler — makes hovered slide the persistent one
-        function onPointerEnter(e) {
-          setHighlight(e.currentTarget);
-        }
-
-        // Attach pointerenter listeners (no pointerleave restore — persistent behavior)
-        function attachHoverListeners() {
-          const slides = getSlides();
-          slides.forEach((s) =>
-            s.removeEventListener("pointerenter", onPointerEnter)
-          );
-          if (canHover) {
-            slides.forEach((s) =>
-              s.addEventListener("pointerenter", onPointerEnter)
-            );
-          }
-        }
-
-        if (canHover) {
-          // Initialize to the first real slide
-          const origFirst = findOriginalFirst();
-          if (origFirst) {
-            // small delay to let Swiper finish cloning
-            setTimeout(() => setHighlight(origFirst), 40);
-          }
-
-          // Attach listeners and keep them up-to-date when Swiper mutates DOM
-          attachHoverListeners();
-          sw.on &&
-            sw.on("observerUpdate", () => {
-              attachHoverListeners();
-              reapplyLastHovered();
-            });
-          sw.on &&
-            sw.on("slidesLengthChange", () => {
-              attachHoverListeners();
-              reapplyLastHovered();
-            });
-          // safety re-run shortly after init
-          setTimeout(() => {
-            attachHoverListeners();
-            reapplyLastHovered();
-          }, 140);
-        } else {
-          // Touch devices: highlight active slide and persist on slide change
-          function highlightActive() {
-            const active = sw.slides && sw.slides[sw.activeIndex];
-            if (active) {
-              setHighlight(active);
-            }
-          }
-          highlightActive();
-          sw.on && sw.on("slideChange", highlightActive);
-          sw.on && sw.on("observerUpdate", highlightActive);
-          sw.on && sw.on("slidesLengthChange", highlightActive);
-        }
-      })(swiper);
-
-      // tiny debounce
-      const _debounce = (fn, ms = 120) => {
-        let t;
-        return (...a) => {
-          clearTimeout(t);
-          t = setTimeout(() => fn(...a), ms);
-        };
-      };
-
-      (function equalizeSlides(sw) {
-        const container = document.querySelector(".mySwiperTiles");
-        if (!container || !sw) return;
-
-        const getSlides = () =>
-          Array.from(container.querySelectorAll(".swiper-slide"));
-
-        function applyMaxHeight() {
-          const slides = getSlides();
-          slides.forEach((s) => (s.style.height = "")); // reset
-          let max = 0;
-          slides.forEach((s) => {
-            const h = s.getBoundingClientRect().height;
-            if (h > max) max = h;
-          });
-          if (!max) return;
-          slides.forEach((s) => (s.style.height = `${Math.ceil(max)}px`));
-          const wrapper = container.querySelector(".swiper-wrapper");
-          if (wrapper) wrapper.style.height = `${Math.ceil(max)}px`;
-          if (sw && typeof sw.update === "function") sw.update();
-        }
-
-        // run on load, resize and when swiper triggers observer update
-        window.addEventListener("load", applyMaxHeight);
-        window.addEventListener("resize", _debounce(applyMaxHeight, 120));
-        sw.on && sw.on("observerUpdate", _debounce(applyMaxHeight, 80));
-        // immediate first run
-        requestAnimationFrame(applyMaxHeight);
-      })(swiper);
-
-      // document.querySelectorAll('a.header-links__link').forEach(anchor => {
-      //   anchor.addEventListener('click', function(e) {
-      //     e.preventDefault();
-
-      //     const targetID = this.getAttribute('href').substring(1);
-      //     const targetEl = document.getElementById(targetID);
-
-      //     if (!targetEl) return;
-
-      //     const headerOffset = document.querySelector('.site-header').offsetHeight;
-      //     const elementPosition = targetEl.getBoundingClientRect().top;
-      //     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      //     window.scrollTo({
-      //       top: offsetPosition,
-      //       behavior: 'smooth'
-      //     });
-      //   });
-      // });
-      // document.querySelectorAll('a.header-links__link').forEach(anchor => {
-      //   anchor.addEventListener('click', function(e) {
-      //     const href = this.getAttribute('href');
-      //     if (!href.startsWith('#')) return; // only handle anchors
-
-      //     e.preventDefault();
-
-      //     const targetID = href.substring(1);
-      //     const targetEl = document.getElementById(targetID);
-
-      //     if (!targetEl) return;
-
-      //     const header = document.querySelector('.site-header');
-      //     const headerOffset = header ? header.offsetHeight : 0;
-
-      //     // Absolute position of element in the document
-      //     const elementTop = targetEl.offsetTop;
-
-      //     // Subtract header height
-      //     const scrollTarget = elementTop - headerOffset;
-
-      //     window.scrollTo({
-      //       top: scrollTarget,
-      //       behavior: 'smooth'
-      //     });
-      //   });
-      // });
-    </script>
+  /* =========================
+     Swiper init (FINAL)
+     ========================= */
+  const swiper = new Swiper(".mySwiperTiles", {
+	  slidesPerView: "auto",
+	  spaceBetween: 30,
+	  loop: true,
+	  watchSlidesProgress: true,
+	  navigation: {
+	    nextEl: ".tiles-next",
+	    prevEl: ".tiles-prev"
+	  },
+	  observer: true,
+	  observeParents: true,
+	  observeSlideChildren: true,
+	  on: {
+	    init(sw) {
+	      equalizeSwiperSlides(sw);
+	      attachPersistentSwiperHighlight(sw);
+	    },
+	    resize(sw) {
+	      equalizeSwiperSlides(sw);
+	    },
+	    imagesReady(sw) {
+	      equalizeSwiperSlides(sw);
+	    }
+	  }
+	});
+</script>
     <script src="script.js"></script>
     <script>
       const WORKER_URL = "https://ai-chat.ryanhomlee.workers.dev";
@@ -2112,15 +2175,6 @@ zoomDelta: 0.5,
         chatInput.focus({ preventScroll: true });
         chatboxOpen = true;
       }
-      // function closeChatbox(){
-      //   chatbox.style.display="none";
-      //   chatOverlay.style.display="none";
-      //   chatboxOpen = false;
-      //   if (recognition && isListening) {
-      //     recognition.stop();
-      //     isListening = false;
-      //   }
-      // }
       function closeChatbox() {
         chatbox.style.display = "none";
         chatOverlay.style.display = "none";
