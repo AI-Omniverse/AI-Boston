@@ -855,17 +855,17 @@ img.waveimg {
         p.text-subtitl_size {
           font-size: 17px;
         }
-        #omniverseconnect p,
-        #omniversecompanies p,
-        #omniversemap p,
-        #omniversemap p a {
+        #galaverseaiconnect p,
+        #galaverseaivisionaries p,
+        #galaverseaimap p,
+        #galaverseaimap p a {
           line-height: 1.625;
           font-size: 17px;
         }
-        #omniverseconnect > div.backdrop-blur-sm {
+        #galaverseaiconnect > div.backdrop-blur-sm {
           padding: 1.7rem;
         }
-        #omniverseconnect > div.backdrop-blur-sm form .relative:nth-child(2) {
+        #galaverseaiconnect > div.backdrop-blur-sm form .relative:nth-child(2) {
           margin-top: 15px;
         }
       }
@@ -921,26 +921,34 @@ img.waveimg {
         <div class="header__navbar">
           <nav class="header-links">
             <ul class="header-links__list">
-              <li class="header-links__item">
+			  <li class="header-links__item uppercase">
                 <a
-                  href="#omniversemap"
-                  title="News"
+                  href="city-info.html"
+                  title="Galaverse AI Rank"
+                  class="header-links__link anchorlink"
+                  >Boston</a
+                >
+              </li>
+              <li class="header-links__item uppercase">
+                <a
+                  href="#galaverseaimap"
+                  title="Galaverse AI Map"
                   class="header-links__link anchorlink"
                   >Galaverse</a
                 >
               </li>
-              <li class="header-links__item">
+              <li class="header-links__item uppercase">
                 <a
-                  href="#omniversecompanies"
-                  title="Blog"
+                  href="#galaverseaivisionaries"
+                  title="Boston Visionaries"
                   class="header-links__link anchorlink"
                   >Visionaries</a
                 >
               </li>
-              <li class="header-links__item">
+              <li class="header-links__item uppercase">
                 <a
-                  href="#omniverseconnect"
-                  title="Events"
+                  href="#galaverseaiconnect"
+                  title="Connect"
                   class="header-links__link anchorlink"
                   >Connect</a
                 >
@@ -949,7 +957,7 @@ img.waveimg {
                 <a
                   target="_blank"
                   href="https://news.google.com/search?q=boston+artificial+intelligence"
-                  title="Companies"
+                  title="Boston AI News"
                   class="header-links__link_externallink"
                   >News</a
                 >
@@ -1004,78 +1012,80 @@ img.waveimg {
           </button>
         </div>
       </div>
-		<!-- Stats Section -->
+	<!-- Stats Section -->
 	<section id="rankingandstats-section" class="w-full border-y bg-white">
 		<div class="flex overflow-x-auto md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 text-sm">
 		
 		<!-- 1️⃣ GAI Rank -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">  		
-		  <div class="flex items-center justify-center gap-1">
-		    <div class="text-xs font-semibold">GAI Rank:</div>
-		    <div id="gai-rank" class="font-semibold text-xs">#--</div>
-		    <div id="rank-arrow" class="text-xs"></div>
-		  </div>
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">  		
+		  <div onclick="window.location.href='/rankings/'" class="cursor-pointer">
+			  <div class="flex items-center justify-center gap-1">
+			    <div class="text-xs font-semibold"style="letter-spacing: 0.75px;">GAI Rank:</div>
+			    <div id="gai-rank" class="font-semibold text-xs">#--</div>
+			    <div id="rank-arrow" class="text-xs"></div>
+			  </div>
 		
-		  <div class="relative w-full bg-gray-200 h-2 mt-1 rounded overflow-hidden">
-		    <!-- Fill -->
-		    <div id="bar-rank"
-		      class="h-full"
-		      style="background: var(--brand); width:0%">
-		    </div>		
-		    <!-- Marker -->
-		    <div id="rank-marker"
-		      class="absolute -top-[2px] h-3 w-[2px] bg-black"
-		      style="left:0%">
-		    </div>		
-		  </div>
+			  <div class="relative w-full bg-gray-200 h-2 mt-1 rounded">
+			    <!-- Fill -->
+			    <div id="bar-rank"
+			      class="h-full"
+			      style="background: var(--brand); width:0%">
+			    </div>		
+			    <!-- Marker -->
+			    <div id="rank-marker"
+			      class="absolute -top-[2px] h-3 w-[2px] bg-black"
+			      style="left:0%">
+			    </div>		
+			  </div>
+			</div>
 		</div>
 		
 		<!-- 2️⃣ GAI Score -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs font-semibold">GAI Score:</div>
+			  <div class="text-xs font-semibold"style="letter-spacing: 0.75px;">GAI Score:</div>
 			  <div id="gai-score" class="font-bold text-xs">--%</div>
 			</div>
 			
 			  <div class="flex h-2 mt-1 bg-gray-200 rounded overflow-hidden">
-			    <div id="seg-talent" class="bg-orange-400"></div>
-			    <div id="seg-companies" class="bg-blue-400"></div>
-			    <div id="seg-research" class="bg-purple-400"></div>
-			    <div id="seg-innovation" class="bg-green-400"></div>
+			    <div id="seg-talent" class="bg-[#58A2A9]/30"></div>
+			    <div id="seg-companies" class="bg-[#58A2A9]/45"></div>
+			    <div id="seg-research" class="bg-[#58A2A9]/60"></div>
+			    <div id="seg-innovation" class="bg-[#58A2A9]/75"></div>
 			  </div>
 			</div>
 		
 		<!-- 3️⃣ Talent -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs font-semibold">Talent Rating:</div>
+			  <div class="flex text-xs font-semibold"style="letter-spacing: 0.75px;">Talent <span class="hidden ml-1 md:block">Rating</span>:</div>
 			  <div id="talent-score" class="font-bold text-xs">--</div>
 			</div>
 		  <div id="talent-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
 		
 		<!-- 4️⃣ Companies -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs font-semibold">Industry Rating:</div>
+			  <div class="flex text-xs font-semibold"style="letter-spacing: 0.75px;">Industry <span class="hidden ml-1 md:block">Rating</span>:</div>
 			  <div id="companies-score" class="font-bold text-xs">--</div>
 			</div>
 		  <div id="companies-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
 		
 		<!-- 5️⃣ Environment -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs font-semibold">Environment Rating:</div>
+			  <div class="flex text-xs font-semibold"style="letter-spacing: 0.75px;">Environment <span class="hidden ml-1 md:block">Rating</span>:</div>
 			  <div id="research-score" class="font-bold text-xs">--</div>
 			</div>
 		  <div id="research-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
 		
 		<!-- 6️⃣ Society -->
-		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs font-semibold">Society Rating</div>
+			  <div class="flex text-xs font-semibold"style="letter-spacing: 0.75px;">Society <span class="hidden ml-1 md:block">Rating</span>:</div>
 			  <div id="innovation-score" class="font-bold text-xs">--</div>
 			</div>
 		  <div id="innovation-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
@@ -1093,8 +1103,8 @@ img.waveimg {
             <ul class="header-links__list">
               <li class="header-links__item">
                 <a
-                  href="#omniversemap"
-                  title="News"
+                  href="#galaverseaimap"
+                  title="Galaverse AI Map"
                   class="header-links__link anchorlink drawermenu__link"
                 >
                   Galaverse
@@ -1102,8 +1112,8 @@ img.waveimg {
               </li>
               <li class="header-links__item">
                 <a
-                  href="#omniversecompanies"
-                  title="Companies"
+                  href="#galaverseaivisionaries"
+                  title="Boston Visionaries"
                   class="header-links__link anchorlink drawermenu__link"
                 >
                   Visionaries
@@ -1111,7 +1121,7 @@ img.waveimg {
               </li>
               <li class="header-links__item">
                 <a
-                  href="#omniverseconnect"
+                  href="#galaverseaiconnect"
                   title="Connect"
                   class="header-links__link anchorlink drawermenu__link"
                 >
@@ -1122,7 +1132,7 @@ img.waveimg {
                 <a
                   class="header-links__link_externallink drawermenu__link"
                   href="https://news.google.com/search?q=boston+ai"
-                  title="News"
+                  title="Boston AI News"
                   target="_blank"
                   rel="noopener noreferrer"
                   >News</a
@@ -1283,7 +1293,7 @@ img.waveimg {
           </p>
           <div class="flex gap-4 mb-6 btn_withlovedby">
             <a
-              href="#omniverseconnect"
+              href="#galaverseaiconnect"
               class="px-6 py-2 rounded-full bg-black text-white font-bold anchorlink customlinhyt"
               >Be seen</a
             >
@@ -1322,7 +1332,7 @@ img.waveimg {
 
     <!-- Fullwidth Map -->
     <section
-      id="omniversemap"
+      id="galaverseaimap"
       class="w-full bg-white py-20 pb-8 px-4 sm:px-6 lg:px-12"
     >
       <div class="bg-white relative z-10 w-full mb-4 mob-mt-0 text-center">
@@ -1356,7 +1366,7 @@ img.waveimg {
 
     <!-- Hero Section -->
     <section
-      id="omniversecompanies"
+      id="galaverseaivisionaries"
       class="bg-white relative z-10 w-full mob-mt-0 pb-4 pt-20 text-center"
     >
       <div class="container">
@@ -1533,7 +1543,7 @@ img.waveimg {
     <!-- Contact -->
     <!-- Contact -->
     <section
-      id="omniverseconnect"
+      id="galaverseaiconnect"
       class="relative py-20 px-6 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
     >
       <div class="max-w-2xl mx-auto text-center mb-8 z-10 relative">
