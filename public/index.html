@@ -823,7 +823,10 @@ img.waveimg {
     min-height: 360px;
   }
 }
-	
+	#rank-arrow {
+  font-size: 10px;
+  margin-top: 2px;
+}
       @media screen and (min-width: 769px) {
         .large--hide {
           display: none;
@@ -1001,6 +1004,85 @@ img.waveimg {
           </button>
         </div>
       </div>
+		<!-- Stats Section -->
+	<section id="rankingandstats-section" class="w-full border-y bg-white">
+		<div class="flex overflow-x-auto md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 text-sm">
+		
+		<!-- 1️⃣ GAI Rank -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">  		
+		  <div class="flex items-center justify-center gap-1">
+		    <div class="text-xs font-semibold">GAI Rank:</div>
+		    <div id="gai-rank" class="font-semibold text-xs">#--</div>
+		    <div id="rank-arrow" class="text-xs"></div>
+		  </div>
+		
+		  <div class="relative w-full bg-gray-200 h-2 mt-1 rounded overflow-hidden">
+		    <!-- Fill -->
+		    <div id="bar-rank"
+		      class="h-full"
+		      style="background: var(--brand); width:0%">
+		    </div>		
+		    <!-- Marker -->
+		    <div id="rank-marker"
+		      class="absolute -top-[2px] h-3 w-[2px] bg-black"
+		      style="left:0%">
+		    </div>		
+		  </div>
+		</div>
+		
+		<!-- 2️⃣ GAI Score -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+			<div class="flex items-center justify-center gap-1">
+			  <div class="text-xs font-semibold">GAI Score:</div>
+			  <div id="gai-score" class="font-bold text-xs">--%</div>
+			</div>
+			
+			  <div class="flex h-2 mt-1 bg-gray-200 rounded overflow-hidden">
+			    <div id="seg-talent" class="bg-orange-400"></div>
+			    <div id="seg-companies" class="bg-blue-400"></div>
+			    <div id="seg-research" class="bg-purple-400"></div>
+			    <div id="seg-innovation" class="bg-green-400"></div>
+			  </div>
+			</div>
+		
+		<!-- 3️⃣ Talent -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+			<div class="flex items-center justify-center gap-1">
+			  <div class="text-xs font-semibold">Talent Rating:</div>
+			  <div id="talent-score" class="font-bold text-xs">--</div>
+			</div>
+		  <div id="talent-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
+		</div>
+		
+		<!-- 4️⃣ Companies -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+			<div class="flex items-center justify-center gap-1">
+			  <div class="text-xs font-semibold">Industry Rating:</div>
+			  <div id="companies-score" class="font-bold text-xs">--</div>
+			</div>
+		  <div id="companies-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
+		</div>
+		
+		<!-- 5️⃣ Environment -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+			<div class="flex items-center justify-center gap-1">
+			  <div class="text-xs font-semibold">Environment Rating:</div>
+			  <div id="research-score" class="font-bold text-xs">--</div>
+			</div>
+		  <div id="research-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
+		</div>
+		
+		<!-- 6️⃣ Society -->
+		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[30%] md:w-auto snap-start">
+			<div class="flex items-center justify-center gap-1">
+			  <div class="text-xs font-semibold">Society Rating</div>
+			  <div id="innovation-score" class="font-bold text-xs">--</div>
+			</div>
+		  <div id="innovation-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
+		</div>
+		
+		</div>
+	</section>
     </header>
 
     <!-- Mobile Drawer Menu -->
