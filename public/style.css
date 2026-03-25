@@ -414,7 +414,7 @@ header.flex {
     -webkit-box-flex: 10;
     -ms-flex-positive: 10;
     flex-grow: 10;
-    max-width: 350px;
+    max-width: 330px;
     pointer-events: all;
     z-index: 2;
     padding: 0;
@@ -473,7 +473,7 @@ header.flex {
     min-width: 65px;
     width: 1%;
     justify-content: flex-end;
-    flex: 0 0 350px;
+    flex: 0 0 330px;
 }
 
 .header__navbar {
@@ -520,9 +520,11 @@ header.flex {
     color: #000;
     display: block;
     font-size: 18px;
-    /* font-weight: bold; */text-transform: uppercase;
+    /* font-weight: bold; */
+    text-transform: capitalize;
     line-height: 17px;
-    padding: 0 24px;letter-spacing: 0.75px;
+    padding: 0 20px;
+    letter-spacing: 0.75px;
 }
 #rankingandstats-section, .header__components {
     letter-spacing: 1px;
@@ -588,7 +590,7 @@ header.flex {
     border: 0;
     color: #fff;
     font-size: 18px;
-    /* font-weight: bold; */text-transform: uppercase;
+    /* font-weight: bold; */text-transform: capitalize;
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
