@@ -86,7 +86,7 @@
         <span class="close-btn" id="closePopup">×</span>
         <div>
           <h1>Galabrief</h1>
-          <form id="newsletter-form" class="space-y-6">
+          <form id="newsletter-form" class="space-y-6"><input type="hidden" name="formType" value="newsletter">
             <div class="relative">
               <label
                 for="email"
@@ -122,6 +122,14 @@
         <div class="header__navbar">
           <nav class="header-links">
             <ul class="header-links__list">
+			  <li class="header-links__item uppercase">
+                <a
+                  href="city-artificial-intelligence-scene.html"
+                  title="Galaverse AI Rank"
+                  class="header-links__link anchorlink"
+                  >Boston</a
+                >
+              </li>
 			  <li class="header-links__item uppercase">
                 <a
                   href="city-info.html"
@@ -219,9 +227,9 @@
 		
 		<!-- 1️⃣ GAI Rank -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">  		
-		  <div>
+		  <div onclick="window.location.href='/rankings/'" class="cursor-pointer">
 			  <div class="flex items-center justify-center gap-1">
-			    <div class="text-xs"style="letter-spacing: 0.75px;">GAI Rank:</div>
+			    <div class="text-xs"style="">GAI Rank:</div>
 			    <div id="gai-rank" class=" text-xs">#--</div>
 			    <div id="rank-arrow" class="text-xs"></div>
 			  </div>
@@ -244,8 +252,8 @@
 		<!-- 2️⃣ GAI Score -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="text-xs "style="letter-spacing: 0.75px;">GAI Score:</div>
-			  <div id="gai-score" class=" text-xs">--%</div>
+			  <div class="text-xs " style="">GAI Score:</div>
+			  <div id="gai-score" class=" text-xs" style="">--%</div>
 			</div>
 			
 			  <div class="flex h-2 mt-1 bg-gray-200 rounded overflow-hidden">
@@ -259,8 +267,8 @@
 		<!-- 3️⃣ Talent -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="flex text-xs "style="letter-spacing: 0.75px;">Talent <span class="hidden ml-1 md:block">Rating</span>:</div>
-			  <div id="talent-score" class=" text-xs">--</div>
+			  <div class="flex text-xs " style="">Talent <span class="hidden ml-1 md:block">Rating</span>:</div>
+			  <div id="talent-score" class=" text-xs" style="">--</div>
 			</div>
 		  <div id="talent-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
@@ -268,8 +276,8 @@
 		<!-- 4️⃣ Companies -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="flex text-xs "style="letter-spacing: 0.75px;">Industry <span class="hidden ml-1 md:block">Rating</span>:</div>
-			  <div id="companies-score" class=" text-xs">--</div>
+			  <div class="flex text-xs " style="">Industry <span class="hidden ml-1 md:block">Rating</span>:</div>
+			  <div id="companies-score" class=" text-xs" style="">--</div>
 			</div>
 		  <div id="companies-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
@@ -277,8 +285,8 @@
 		<!-- 5️⃣ Environment -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="flex text-xs "style="letter-spacing: 0.75px;">Environment <span class="hidden ml-1 md:block">Rating</span>:</div>
-			  <div id="research-score" class=" text-xs">--</div>
+			  <div class="flex text-xs " style="">Environment <span class="hidden ml-1 md:block">Rating</span>:</div>
+			  <div id="research-score" class=" text-xs" style="">--</div>
 			</div>
 		  <div id="research-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
 		</div>
@@ -286,7 +294,7 @@
 		<!-- 6️⃣ Society -->
 		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
 			<div class="flex items-center justify-center gap-1">
-			  <div class="flex text-xs "style="letter-spacing: 0.75px;">Society <span class="hidden ml-1 md:block">Rating</span>:</div>
+			  <div class="flex text-xs "style="">Society <span class="hidden ml-1 md:block">Rating</span>:</div>
 			  <div id="innovation-score" class=" text-xs">--</div>
 			</div>
 		  <div id="innovation-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
@@ -302,6 +310,14 @@
         <div class="navbar__links">
           <nav class="header-links">
             <ul class="header-links__list">
+			  <li class="header-links__item uppercase">
+                <a
+                  href="city-artificial-intelligence-scene.html"
+                  title="Galaverse AI Rank"
+                  class="header-links__link anchorlink drawermenu__link"
+                  >Boston</a
+                >
+              </li>
               <li class="header-links__item">
                 <a
                   href="#galaverseaimap"
@@ -554,7 +570,7 @@
             href="www.galaverse-ai.org"
             class="text-subtitl_size text-black mt-4"
             style="
-              font-family: poppins, sans-serif;
+              ;
               margin-top: 10px;
               display: inline-block;
             "
@@ -743,7 +759,7 @@
 
     <section id="ai-news" class="galaverse-news-section">
 	  <div class="container">
-	    <h1  style=" font-family:poppins, sans-serif" class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">Latest news in Boston AI</h1>	
+	    <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">Latest news in Boston AI</h1>	
 	    <!-- <div id="ai-news-status" style="font-size:12px;opacity:0.7;margin-bottom:12px;">
 	      Loading latest updates…
 	    </div> 
@@ -761,7 +777,7 @@
 
 	<section id="ai-events" class="bg-white relative z-10 w-full mt-16 pb-8 pt-8 text-center">
 	  <div class="container">
-		  <h1  style=" font-family:poppins, sans-serif" class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
+		  <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
 		      Upcoming AI Events
 		    </h1>
 		<div class="ai-events-week">
@@ -781,7 +797,7 @@
 	  class="bg-white relative z-10 w-full mt-16 pb-8 pt-8 text-center"
 	>
 	  <div class="containerr">
-		<h1  style=" font-family:poppins, sans-serif" class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
+		<h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
 	      AI Watchlist
 	    </h1>
 		
@@ -832,7 +848,7 @@
       <div
         class="max-w-3xl mx-auto bg-white shadow-2xl contact_section rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border border-gray-100"
       >
-        <form id="contact-form" class="space-y-6 md:space-y-6 space-y-4">
+        <form id="contact-form" class="space-y-6 md:space-y-6 space-y-4"><input type="hidden" name="formType" value="contact">
           <div class="relative">
             <label
               for="email"
