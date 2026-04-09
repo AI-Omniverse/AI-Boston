@@ -238,59 +238,6 @@
     			</div>
     		</div>
     		
-    		<!-- 2️⃣ GAI Score -->
-    		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
-    			<div class="flex items-center justify-center gap-1">
-    			  <div class="text-xs " style="">GAI Score:</div>
-    			  <div id="gai-score" class=" text-xs" style="">--%</div>
-    			</div>
-    			
-    			  <div class="flex h-2 mt-1 bg-gray-200 rounded overflow-hidden">
-    			    <div id="seg-talent" class=""></div>
-    			    <div id="seg-companies" class=""></div>
-    			    <div id="seg-research" class=""></div>
-    			    <div id="seg-innovation" class=""></div>
-    			  </div>
-    			</div>
-    		
-    		<!-- 3️⃣ Talent -->
-    		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
-    			<div class="flex items-center justify-center gap-1">
-    			  <div class="flex text-xs " style="">Talent <span class="hidden ml-1 md:block">Rating</span>:</div>
-    			  <div id="talent-score" class=" text-xs" style="">--</div>
-    			</div>
-    		  <div id="talent-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
-    		</div>
-    		
-    		<!-- 4️⃣ Companies -->
-    		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
-    			<div class="flex items-center justify-center gap-1">
-    			  <div class="flex text-xs " style="">Industry <span class="hidden ml-1 md:block">Rating</span>:</div>
-    			  <div id="companies-score" class=" text-xs" style="">--</div>
-    			</div>
-    		  <div id="companies-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
-    		</div>
-    		
-    		<!-- 5️⃣ Environment -->
-    		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
-    			<div class="flex items-center justify-center gap-1">
-    			  <div class="flex text-xs " style="">Environment <span class="hidden ml-1 md:block">Rating</span>:</div>
-    			  <div id="research-score" class=" text-xs" style="">--</div>
-    			</div>
-    		  <div id="research-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
-    		</div>
-    		
-    		<!-- 6️⃣ Society -->
-    		<div class="p-2 border-r flex flex-col justify-between flex-shrink-0 w-[35%] md:w-auto snap-start">
-    			<div class="flex items-center justify-center gap-1">
-    			  <div class="flex text-xs "style="">Society <span class="hidden ml-1 md:block">Rating</span>:</div>
-    			  <div id="innovation-score" class=" text-xs">--</div>
-    			</div>
-    		  <div id="innovation-bar" class="flex h-2 mt-1 w-full bg-gray-200 rounded overflow-hidden"></div>
-    		</div>
-    		
-    		</div>
-    	</section>
     </header>
 
     <!-- Mobile Drawer Menu -->
@@ -368,9 +315,8 @@
 	</section>
 
   <!-- Footer -->
-    <footer
-      class="text-center text-gray-600 text-sm pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200"
-    >
+    <!-- Footer -->
+    <footer class="text-center text-gray-600 text-sm mt-8 pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200">
       <div class="text-sm footer__links">
         <a href="legal-disclaimer.html" title="Legal" class="footer__link"
           >Legal Disclaimer</a
@@ -418,55 +364,90 @@
     </footer>
 
     <script>
-	let currentDate = new Date();
-			let currentYear = currentDate.getFullYear();
-			let currentYearElement = document.getElementById("currentYear");
-			
-			// Ensure the element exists before trying to set its textContent
-			if (currentYearElement) {
-				currentYearElement.textContent = currentYear;
-			}
-		const menuToggle = document.getElementById('menuToggle');
-		const nav = document.querySelector('.navbar .header-links');
+		let currentDate = new Date();
+		let currentYear = currentDate.getFullYear();
+		let currentYearElement = document.getElementById("currentYear");
 		
-		function closeMenu() {
-		  menuToggle?.classList.remove('is-active');
-		  document.body.classList.remove('navbar-open');
+		// Ensure the element exists before trying to set its textContent
+		if (currentYearElement) {
+		    currentYearElement.textContent = currentYear;
 		}
-		
-		menuToggle?.addEventListener('click', () => {
-		  menuToggle.classList.toggle('is-active');
-		  document.body.classList.toggle('navbar-open');
-		});
-		
-		// Delegate clicks from the nav (works for all links inside)
-		nav?.addEventListener('click', (e) => {
-		  const link = e.target.closest('a.header-links__link');
-		  if (!link) return;
-		
-		  const openInNewTab = link.target === '_blank' || e.ctrlKey || e.metaKey;
-		
-		  if (openInNewTab) {
-			// Force-open the new tab, then close the menu
-			window.open(link.href, '_blank', 'noopener');
-			e.preventDefault();
-		  }
-		
-		  // Close the menu after the click has been handled
-		  requestAnimationFrame(closeMenu);
-		});
-		
-		// Middle-click (auxclick) also opens in a new tab on most browsers
-		nav?.addEventListener('auxclick', (e) => {
-		  if (e.button !== 1) return; // only middle button
-		  const link = e.target.closest('a.drawermenu__link');
-		  if (!link) return;
-		
-		  window.open(link.href, '_blank', 'noopener');
-		  e.preventDefault();
-		  requestAnimationFrame(closeMenu);
-		});
+      function setHeaderOffset() {
+  const header = document.querySelector('.site-header');
+  const firstSection = document.querySelector('section:first-of-type');
 
-	</script>
-</body>
+  if(header && firstSection) {
+    const headerHeight = header.offsetHeight;
+    firstSection.style.setProperty('--header-offset', `${headerHeight}px`);
+  }
+}
+
+window.addEventListener('load', setHeaderOffset);
+window.addEventListener('resize', setHeaderOffset);
+
+
+      const menuToggle = document.getElementById("menuToggle");
+      const nav = document.querySelector(".navbar .header-links");
+
+      function closeMenu() {
+        menuToggle?.classList.remove("is-active");
+        document.body.classList.remove("navbar-open");
+      }
+
+      menuToggle?.addEventListener("click", () => {
+        menuToggle.classList.toggle("is-active");
+        document.body.classList.toggle("navbar-open");
+      });
+
+      // Delegate clicks from the nav (works for all links inside)
+      nav?.addEventListener("click", (e) => {
+        const link = e.target.closest("a.header-links__link");
+        if (!link) return;
+
+        const openInNewTab = link.target === "_blank" || e.ctrlKey || e.metaKey;
+
+        if (openInNewTab) {
+          // Force-open the new tab, then close the menu
+          window.open(link.href, "_blank", "noopener");
+          e.preventDefault();
+        }
+
+        // Close the menu after the click has been handled
+        requestAnimationFrame(closeMenu);
+      });
+
+      // Middle-click (auxclick) also opens in a new tab on most browsers
+      nav?.addEventListener("auxclick", (e) => {
+        if (e.button !== 1) return; // only middle button
+        const link = e.target.closest("a.drawermenu__link");
+        if (!link) return;
+
+        window.open(link.href, "_blank", "noopener");
+        e.preventDefault();
+        requestAnimationFrame(closeMenu);
+      });
+
+      const openBtn = document.getElementById("OpenNewsLetterr");
+      const closeBtn = document.getElementById("closePopup");
+      const overlay = document.getElementById("popupOverlay");
+
+      // Open popup
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "block";
+      });
+
+      // Close popup with close button
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+
+      // Close popup by clicking outside
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          overlay.style.display = "none";
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>
