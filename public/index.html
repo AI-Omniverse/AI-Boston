@@ -361,16 +361,16 @@
       </div>
     </div>
 	  
-	<section id="innovation_section" class="bg-[#E0E0E0] px-10 pt-12 mt-40 text-center flex items-center">
-	  <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">	    
+	<section id="innovation_section" class="bg-[#E0E0E0] px-10 pt-16 mt-28 text-center flex items-center">
+	  <div class="container text-left w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">	    
 	    <div class="space-y-6">
-	      <h1 class="tracking-tight leading-none">
-	        Mapping Innovation<br/>
+	      <h1 class="text-[60px] tracking-wide leading-none">
+	        Mapping Innovation<br>
 	        <span>Connecting People</span>
 	      </h1>
 	      
 	      <div class="space-y-2">
-	        <h2 class="">
+	        <h2 class="text-[40px] tracking-wide">
 	          in Boston and Beyond
 	        </h2>
 	        <p class="max-w-md">
@@ -975,100 +975,7 @@
     </footer>
 
     <script>
-		/*****Map Init ****/
-document.addEventListener("DOMContentLoaded", async () => {
-  if (!document.getElementById("maptopmodule")) return;
-
-  const settings = window.GalaverseMapConfig.getSettings();
-
-  // Expanded bounds to 85 degrees to prevent Greenland/Arctic from being cut off
-  const worldBounds = L.latLngBounds(
-    L.latLng(-78, -180), 
-    L.latLng(75, 180)
-  );
-
-  const map = L.map("map", {
-    zoomControl: true,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    touchZoom: true,
-    dragging: true,
-    keyboard: false,
-    center: settings.center,
-    zoom: settings.zoom,
-    minZoom: settings.minZoom,
-    maxZoom: settings.maxZoom,
-    maxBounds: worldBounds,
-    maxBoundsViscosity: 1.0, // Smooth but firm edge
-    worldCopyJump: false,
-    zoomSnap: 0.25,
-    zoomDelta: 0.5,
-    bounceAtZoomLimits: false
-  });
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap contributors",
-    noWrap: false,
-    bounds: worldBounds
-  }).addTo(map);
-
-  map.on("moveend", function () {
-    map.panInsideBounds(worldBounds, { animate: false });
-  });
-
-  const markerGroup = L.featureGroup().addTo(map);
-
-  fetch("https://ai-feed-worker.ryanhomlee.workers.dev/api/cities")
-    .then(r => {
-      if (!r.ok) throw new Error("Cities API failed");
-      return r.json();
-    })
-    .then(cities => {
-      cities.forEach(c => {
-        const popupHTML = `
-          <div style="max-width:240px;">
-            <h3 style="margin:0 0 6px;font-weight:700;color:${c.color || "#000"}">
-              ${c.name}
-            </h3>
-            <p style="font-size:13px;line-height:1.4;margin-bottom:8px;">
-              ${c.desc}
-            </p>
-            ${
-              c.url
-                ? `<a href="${c.url}" target="_blank" style="font-size:13px;font-weight:600;color:${c.color};">
-                     ${c.url}
-                   </a>`
-                : ""
-            }
-          </div>
-        `;
-
-        // If city is far north (Lat > 60), we shift the popup downward
-        const isNorth = c.lat > 60;
-
-        L.marker([c.lat, c.lng])
-          .bindPopup(popupHTML, {
-            maxWidth: 260,
-            closeButton: true,
-            autoPan: true,
-            autoPanPadding: L.point(50, 50), // Keeps popup 50px away from map edges
-            offset: isNorth ? L.point(0, 80) : L.point(0, -40), // Flips position if in the North
-            className: 'custom-city-popup'
-          })
-          .addTo(markerGroup);
-      });
-
-      requestAnimationFrame(() => {
-        if (markerGroup.getLayers().length > 0) {
-          map.fitBounds(markerGroup.getBounds(), { padding: [50, 50], maxZoom: 4 });
-        }
-      });
-    })
-    .catch(err => console.error("Map error:", err));
-});
-
-		  let currentDate = new Date();
+	let currentDate = new Date();
 			let currentYear = currentDate.getFullYear();
 			let currentYearElement = document.getElementById("currentYear");
 			
@@ -1128,6 +1035,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 <script src="https://galaverse-shared.pages.dev/rankings.js"></script>
 <!-- ================= Typing Animation =============== -->	
 	  <script>
+		  
 	/*------------------Paris Berlin Stockholm Warsaw Sydney Melbourne London Copenhagen Madrid Africa-------------*/
 	// 🔹 Second Typing Animation
 	const words1 = [
