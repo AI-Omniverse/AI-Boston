@@ -442,13 +442,19 @@
 	  }
 	
 	  /* The Persistent Highlight State */
-	  .tile-wrapper.active {
+	  /* .tile-wrapper.active {
 	    background: var(--brand) !important;
 	  }
 	
 	  .tile-wrapper.active *:not(.explore-btn) {
 	    color: #fff !important;
-	  }
+	  } */
+		.tile-wrapper:hover {
+    background: var(--brand);
+}
+		.tile-wrapper:hover *:not(.explore-btn) {
+    color: #fff;
+}
 	  /* Line Clamping for 4 rows */
 	  .line-clamp-4 {
 	    display: -webkit-box;
