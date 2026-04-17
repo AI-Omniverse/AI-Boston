@@ -428,6 +428,27 @@
 	</section>
 	
 	<style>
+	.tile-wrapper {
+	    background: #fff;
+	    border-radius: 8px;
+	    padding: 20px;
+	    box-shadow: 0 0px 20px #0000001a;
+	    transition: background 0.3s ease, color 0.3s ease;
+	    cursor: pointer;
+	  }
+	
+	  .tile-wrapper:nth-child(even) {
+	    background: #f3f3f3;
+	  }
+	
+	  /* The Persistent Highlight State */
+	  .tile-wrapper.active {
+	    background: var(--brand) !important;
+	  }
+	
+	  .tile-wrapper.active *:not(.explore-btn) {
+	    color: #fff !important;
+	  }
 	  /* Line Clamping for 4 rows */
 	  .line-clamp-4 {
 	    display: -webkit-box;
@@ -449,7 +470,7 @@
 	    font-size: 0.875rem;
 	    color: black;
 	    transition: all 0.2s;
-	    text-decoration: none;
+	    text-decoration: none;background: #fff;
 	  }
 	  
 	  .explore-btn:hover {
@@ -467,7 +488,16 @@
 	    border-radius: 50%;
 	  }
 	</style>
-
+<script>
+  document.querySelectorAll('.tile-wrapper').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      // Remove active class from all other cards
+      document.querySelectorAll('.tile-wrapper').forEach(c => c.classList.remove('active'));
+      // Add active class to this card
+      this.classList.add('active');
+    });
+  });
+</script>
   <!-- Footer -->
     <!-- Footer -->
     <footer class="text-center text-gray-600 text-sm mt-8 pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200">
