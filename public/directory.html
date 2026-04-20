@@ -294,9 +294,9 @@
 	            Neurala develops vision AI software that makes visual inspection of products faster, smarter, and more accessible for manufacturers. Neurala’s VIA (Visual Inspection Automation) platform improves the quality control process by detecting defects, reducing machine downtime, and scaling production and is patented by technology from NASA, DARPA, and Air Force.
 	          </p>
 	        </div>
-	        <a target="_blank" href="https://www.neurala.com/" class="explore-btn">
-	          Explore <span class="arrow-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-	        </a>
+			<button onclick="openModal('Neurala', 'Neurala develops vision AI software that makes visual inspection of products faster, smarter, and more accessible for manufacturers. Neurala’s VIA (Visual Inspection Automation) platform improves the quality control process by detecting defects, reducing machine downtime, and scaling production and is patented by technology from NASA, DARPA, and Air Force.', 'https://www.neurala.com/')" class="explore-btn">
+	          Explore <span class="arrow-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+	        </button>	        
 	      </div>
 	
 	      <div class="tile-wrapper p-8 border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between text-center bg-white">
@@ -398,6 +398,14 @@
 	    </div>
 	  </div>
 	</section>
+	<div id="companyModal" class="modal-overlay hidden" onclick="closeModal(event)">
+	  <div class="modal-content" onclick="event.stopPropagation()">
+	    <button class="close-modal" onclick="closeModal(event)">&times;</button>
+	    <h2 id="modalTitle" class="text-3xl font-bold mb-4"></h2>
+	    <p id="modalDescription" class="text-lg leading-relaxed text-gray-700 mb-8"></p>
+	    <a id="modalWebsite" href="#" target="_blank" class="website-btn">Website</a>
+	  </div>
+	</div>
 	
 	<style>
 	.tile-wrapper {
@@ -436,7 +444,7 @@
 	  }
 	
 	  /* Explore Button Styling */
-	  .tile-wrapper:hover a.explore-btn {
+	  .tile-wrapper:hover .explore-btn {
     background: #fff;
     color: var(--brand);
 }
@@ -477,7 +485,7 @@
     color: var(--brand);
     stroke: var(--brand);
 }
-.tile-wrapper:hover a.explore-btn span.arrow-icon {
+.tile-wrapper:hover .explore-btn span.arrow-icon {
     background: var(--brand);
 }
 
@@ -489,11 +497,52 @@
     color: var(--brand);
     stroke: var(--brand);
 }
-		.tile-wrapper:hover a.explore-btn span.arrow-icon svg {
+		.tile-wrapper:hover .explore-btn span.arrow-icon svg {
     fill: #fff;
     color: #fff;
     stroke: #fff;
 }
+		/* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  .hidden { display: none; }
+  .modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    text-align: left;
+  }
+  .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  .website-btn {
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.2s;
+  }
+  .website-btn:hover { opacity: 0.8; }
 	</style>
 <script>
   document.querySelectorAll('.tile-wrapper').forEach(card => {
@@ -504,6 +553,19 @@
       this.classList.add('active');
     });
   });
+  // Handle Modal Logic
+  function openModal(title, desc, link) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDescription').innerText = desc;
+    document.getElementById('modalWebsite').href = link;
+    document.getElementById('companyModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scroll
+  }
+
+  function closeModal(e) {
+    document.getElementById('companyModal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
 </script>
   <!-- Footer -->
     <!-- Footer -->
