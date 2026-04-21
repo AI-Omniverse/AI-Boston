@@ -954,57 +954,7 @@
       </div>
     </footer>
 
-    <script>
-	let currentDate = new Date();
-			let currentYear = currentDate.getFullYear();
-			let currentYearElement = document.getElementById("currentYear");
-			
-			// Ensure the element exists before trying to set its textContent
-			if (currentYearElement) {
-				currentYearElement.textContent = currentYear;
-			}
-		const menuToggle = document.getElementById('menuToggle');
-		const nav = document.querySelector('.navbar .header-links');
-		
-		function closeMenu() {
-		  menuToggle?.classList.remove('is-active');
-		  document.body.classList.remove('navbar-open');
-		}
-		
-		menuToggle?.addEventListener('click', () => {
-		  menuToggle.classList.toggle('is-active');
-		  document.body.classList.toggle('navbar-open');
-		});
-		
-		// Delegate clicks from the nav (works for all links inside)
-		nav?.addEventListener('click', (e) => {
-		  const link = e.target.closest('a.header-links__link');
-		  if (!link) return;
-		
-		  const openInNewTab = link.target === '_blank' || e.ctrlKey || e.metaKey;
-		
-		  if (openInNewTab) {
-			// Force-open the new tab, then close the menu
-			window.open(link.href, '_blank', 'noopener');
-			e.preventDefault();
-		  }
-		
-		  // Close the menu after the click has been handled
-		  requestAnimationFrame(closeMenu);
-		});
-		
-		// Middle-click (auxclick) also opens in a new tab on most browsers
-		nav?.addEventListener('auxclick', (e) => {
-		  if (e.button !== 1) return; // only middle button
-		  const link = e.target.closest('a.drawermenu__link');
-		  if (!link) return;
-		
-		  window.open(link.href, '_blank', 'noopener');
-		  e.preventDefault();
-		  requestAnimationFrame(closeMenu);
-		});
-
-	</script>
+<script src="https://galaverse-shared.pages.dev/global.js"></script>
 <!-- ================= MAP SCRIPT ================= -->
 <script src="https://galaverse-shared.pages.dev/map-config.js"></script>
 <script src="https://galaverse-shared.pages.dev/map-init.js"></script>
