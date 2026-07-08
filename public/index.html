@@ -340,593 +340,595 @@
 		  </div>	
 		</section>
 	</div>  
-    <!-- Introduction Section -->
-    <section id="intro_section" class="px-10 py-20 text-center">
-      <h2 class="text-gray-900 text-[40px] tracking-wide small--hide">
-        Boston's Artificial Intelligence is
-      </h2>
-      <h2 class="text-gray-900 text-[28px] tracking-wide large--hide">
-        Boston's AI is
-      </h2>
-      <h1
-        id="changing-word-robot"
-        
-        class="pb-4 mb-4 text-extrabold sm:text-normal text-[50px] h-[75px] sm:h-[150px] sm:text-[100px] text-black"
-      ></h1>
-    </section>
 
-    <!-- Main Content -->
-    <section
-      id="robosec"
-      class="flex flex-wrap justify-center items-stretch robosec px-10 gap-6"
-    >
-      <!-- Left: Chat + Mic -->
-      <div
-        class="flex-1 min-w-[280px] flex flex-col justify-center md:order-1 order-2"
-      >
-        <div class="space-y-3">
-          <div
-            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
-          >
-            Dia duit robot
-          </div>
-          <div
-            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
-          >
-            Hi human 🤖🍀
-          </div>
-          <div
-            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
-          >
-            Cad a tharla ag cóisir tae Boston?
-          </div>
-          <div
-            class="shadow chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
-          >
-            At the Boston Tea Party in 1773, American colonists protested British taxation by boarding ships in Boston Harbor and dumping an entire shipment of tea into the water.
-          </div>
-          <div
-            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base opacity-40"
-          >
-            Go raibh maith agat
-          </div>
-          <div
-            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base self-end ml-auto opacity-20"
-          >
-            You are welcome (tá fáilte romhat) 😄🍵
-          </div>
-        </div>
-        <div
-          class="mt-[-80px] flex justify-center relative mb-8 w-14 h-14 mx-auto"
-        >
-          <div class="absolute inset-0">
-            <span class="ripple"></span>
-            <span class="ripple"></span>
-            <span class="ripple"></span>
-          </div>
-          <div
-            class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-gray-800 to-black flex items-center justify-center shadow-lg"
-          >
-            <!-- Overlay -->
-            <div id="chatOverlay"></div>
-
-            <!-- Chatbox -->
-            <div
-              id="chatbox"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="chatTitle"
-            >
-              <div id="chatTop">
-                <span style="font-weight: 600">Boston AI Assistant</span>
-                <button id="closeChat" aria-label="Close">✕</button>
-              </div>
-
-              <div id="chatMessages" aria-live="polite"></div>
-
-              <div id="chatInputArea">
-                <input
-                  id="chatInput"
-                  type="text"
-                  placeholder="Type a message..."
-                  aria-label="Message"
-                />
-                <button id="sendButton">Send</button>
-              </div>
-            </div>
-
-            <!-- Floating Mic Button -->
-            <button id="micButton" title="Speak" aria-label="Speak">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="white"
-                viewBox="0 0 24 24"
-                class="w-5 h-5 relative z-10"
-              >
-                <path
-                  d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3zm-1 18.93A7.996 7.996 0 0 1 4.07 13H6a6 6 0 0 0 12 0h1.93A7.996 7.996 0 0 1 13 19.93V23h-2v-3.07z"
-                ></path>
-              </svg>
-            </button>
-            <!-- Mic hint: place this immediately after the mic button markup -->
-            <div
-              id="micHint"
-              class="mic-hint"
-              role="status"
-              aria-live="polite"
-              aria-hidden="false"
-            >
-              <div class="mic-hint__content">
-                <span class="mic-hint__text">Ask me<br />something!</span>
-                <button
-                  id="micHintClose"
-                  class="mic-hint__close"
-                  aria-label="Dismiss hint"
-                >
-                  &times;
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Center: Robot -->
-      <div
-        class="flex-1 min-w-[280px] sm:pl-5 sm:pr-5 text-center flex items-center justify-center md:order-2 order-1"
-      >
-        <img src="r1.png" alt="Robot" class="mx-auto max-w-[400px] w-full" />
-      </div>
-
-      <!-- Right: Text + CTA -->
-      <div class="flex-1 min-w-[280px] flex flex-col justify-center pt-2 sm:pt-6 pl-0 md:order-3 order-3">
-        <img class="large--hide waveimg" src="soundwavee.png" alt="">
-        <div class="sm:mb-4">
-          <p class="mobilecityimage_text text-subtitl_size text-black leading-relaxed mb-6 mt-2 sm:mt-12 text-[19px]" >
-            Boston sits near the top of the global AI map by leaning hard on its universities, hospitals, and life science institutions, where lab automation, surgical robotics, and clinical AI help turn research into real life treatments for patients.
-		  <img src="boston-city.png" alt="Robot" class="large--hide mx-auto w-full">Beantown feels like it's half beautiful cobble-stone streets and half college campus with a wicked nerd energy and drive to build the next unicorn. Cambridge trailblazes AI with MIT and Harvard labs, Innovation District hosts data cloud startups, and Allston houses an indie maker scene that together pave an AI and robotics future that is clinical, civic, and a little stubbornly New England.									
-          </p>
-          <div class="flex gap-4 mb-6 btn_withlovedby">
-            <a
-              href="#galaverseaiconnect"
-              class="px-6 py-2 rounded-full bg-black text-white font-bold anchorlink customlinhyt"
-              >Be seen</a
-            >
-            <div class="mb-ww4 text-left">
-              <div class="flex items-center gap-2">
-                <div class="flex -space-x-3">
-                  <img
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
-                  />
-                  <img
-                    src="https://randomuser.me/api/portraits/women/44.jpg"
-                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
-                  />
-                  <img
-                    src="https://randomuser.me/api/portraits/men/65.jpg"
-                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
-                  />
-                </div>
-                <div>
-                  <p class="text-sm text-gray-500 mb-1">Loved by more than</p>
-                  <p class="text-xl font-semibold text-gray-800">10k+ users</p>
-                </div>
-              </div>
-            </div>
-            <!----<a href="criteria.html" class="px-6 py-2 rounded-full border border-transparent text-black underline flex items-center gap-2">
-           How do we connect?
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black fill-black" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
-            </a>---->
-          </div>
-        </div>
-      </div>
-    </section>
-	  
-    <!-- Fullwidth Map -->
-    <section
-      id="galaverseaimap"
-      class="w-full py-20 pb-8 px-4 sm:px-6 lg:px-12"
-    style="display:none;">
-      <div class=" relative z-10 w-full mb-4 mob-mt-0 text-center">
-        <h1
-          
-          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
-        >
-          Galaverse
-        </h1>
-        <p
-          class="text-subtitl_size pl-5 pr-5 text-black max-w-5xl mx-auto"
-          
-        >
-          From Boston to Shanghai. From Denver to Dublin. Click a connected city to access their domain.							
-        </p>
-        <p class="text-subtitl_size" >
-          <a
-            href="www.galaverse-ai.org"
-            class="text-subtitl_size text-black mt-4"
-            style="
-              ;
-              margin-top: 10px;
-              display: inline-block;
-            "
-            >www.galaverse-ai.org</a
-          >
-        </p>
-      </div>
-      <div class="h-[400px] sm:h-[500px]" id="map"></div>
-    </section>
-
-    <!-- Hero Section -->
-    <section
-      id="galaverseaivisionaries"
-      class="relative z-10 w-full mob-mt-0 pb-4 pt-20 text-center"
-    >
-      <div class="container">
-        <h1
-          
-          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
-        >
-          Boston Visionaries
-        </h1>
-        <p
-          class="pl-5 pr-5 text-black max-w-5xl mx-auto text-subtitl_size"
-          
-        >
-          Boston’s AI and robotics scene encompasses both the region’s hardest challenges and its most impressive strengths, from Mass General using diagnostic imaging models and <b>surgical robotics</b>, to crushing winters of snow and ice where <b>storm prediction</b> and fleet routing tools guide plow deployment, to its world-leading healthcare networks where artificial intelligence powers <b>drug discovery</b>, genomics, and lab automation, to the thriving sports culture at Fenway Park and the Garden where computer vision, <b>automated drone cameras</b>, and advanced analytics make broadcasts and in-stadium visual experiences more immersive, and finally to the renowned universities that pioneer advances in <b>academic artificial intelligence</b>.
-        </p>
-        <!-- Swiper Container -->
-        <div class="swiper mySwiperTiles">
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Piaggio Fast Forward</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Piaggio Fast Forward builds cargo-carrying robots that blend innovative technology with sustainable mobility to help people move items from one place to another. Our flagship robot, Gita, uses a first-of-its-kind, hands-free following technology to accompany and assist people through everyday errands.
-                  <br /><br />
-                  <a target="_blank" href="https://piaggiofastforward.com/"
-                    >https://piaggiofastforward.com/</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Neurala</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Neurala develops vision AI software that makes visual inspection of products faster, smarter, and more accessible for manufacturers. Neurala’s VIA (Visual Inspection Automation) platform improves the quality control process by detecting defects, reducing machine downtime, and scaling production and is patented by technology from NASA, DARPA, and Air Force.
-                  <br /><br />
-                  <a target="_blank" href="https://www.neurala.com/"
-                    >https://www.neurala.com/</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Aura Intelligent Systems</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Aura Intelligent Systems makes AI imaging radar that provides high-resolution spatial awareness solutions for autonomous mobility and intelligent edge applications. Aura enables 5D situational awareness that is resilient to interference, jamming, and urban complexity with its patented QuadRay™ technology, that enables safer drones, vehicles, and mobility networks.
-                  <br /><br />
-                  <a target="_blank" href="https://www.auraisystems.com/"
-                    >https://www.auraisystems.com/</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">MassRobotics</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  MassRobotics is the world’s largest independent robotics hub, with a goal to accelerate innovation, commercialization, and adoption in robotics and physical AI. It's headquartered in Boston but has a global reach, by providing startups and entrepreneurs with custom workspaces, prototyping facilities, resources, and connections to help them scale, network, and hopefully succeed.
-                  <br /><br />
-                  <a target="_blank" href="http://www.massrobotics.org/">http://www.massrobotics.org/</a>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Nextera Robotics</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Nextera Robotics builds its patented AI-powered Didge, which is disrupting construction management with on the ground data that improves safety, tracks progress, enhances quality control, and prevents costly mistakes. The Didge platform provides automated reports, alerts, and dashboards to teams for a shared source of truth to enable proactive decisions.
-                  <br /><br />
-                  <a target="_blank" href="https://nexterarobotics.com/"
-                    >https://nexterarobotics.com/</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Krevera</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Krevera provides AI-vision agents that continuously monitor production, automatically adjust processes, and significantly reduce defects. Its machine learning inspection processes give you full quality control of your plastic injection molding production facilities.
-                  <br /><br />
-                  <a target="_blank" href="https://krevera.com/">https://krevera.com/</a>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Volta Labs. Inc.</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Volta Labs develops a full-stack digital fluidics platform including hardware, software, chemistry, and biology, that maximizes genomics sample prep performance, scalability, and consistency. Volta helps scientists focus on discovery, and turns complex biology into a simple, efficient, push-button experience.
-                  <br /><br />
-                  <a target="_blank" href="https://www.voltalabs.com/">https://www.voltalabs.com/</a>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Neo Cybernetica</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Neo Cybernetica is advancing cybernetics technology, defined as the science of communications and automatic control systems in both machines and living things, using breakthroughs in AI, robotics, neuroscience, and cognitive sciences.
-                  <br /><br />
-                  <a target="_blank" href="https://www.neocybernetica.com/">https://www.neocybernetica.com/</a>
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Perceptive (formerly Cyberdontics)</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Perceptive is advancing the future of dentistry with AI-powered imaging and robotic systems. Our handheld intraoral scanner combines machine learning hardware and software with advanced OCT technology to capture high-resolution 3D data that is even below the gum line, through fluids, and beneath the tooth's surface.
-                  <br /><br />
-                  <a target="_blank" href="https://www.perceptive.io/"
-                    >https://www.perceptive.io/</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="tile-wrapper">
-                <div class="tile-title">Saturday Robotics</div>
-                <p
-                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
-                  
-                >
-                  Saturday Robotics is a modern robotics laundry company that builds autonomous washing and drying solutions to simplify daily life while reducing our impact on the planet. Simply leave your laundry on your porch, and Saturday Robotics will pick it up, and autonomously clean, fold, and pack them, for greater efficiency and sustainability.
-                  <br /><br />
-                  <a target="_blank" href="https://yaysaturday.com/howitworks"
-                    >https://yaysaturday.com/howitworks</a
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Navigation Arrows -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-
-          <!-- Pagination Dots -->
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="ai-news" class="galaverse-news-section">
-	  <div class="container">
-	    <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">Latest news in Boston AI</h1>	
-	    <!-- <div id="ai-news-status" style="font-size:12px;opacity:0.7;margin-bottom:12px;">
-	      Loading latest updates…
-	    </div> 
-	    <div id="ai-news-grid" class="galaverse-news-grid"></div>-->
-		<div class="ai-news-layout">
-		    <!-- COLUMN 1 -->
-		    <div class="ai-news-col col-1" id="news-col-a"></div>		
-		    <!-- COLUMN 2 -->
-		    <div class="ai-news-col col-2" id="news-col-bc"></div>		
-		    <!-- COLUMN 3 -->
-		    <div class="ai-news-col col-3" id="news-col-def"></div>		
-		</div>
-	  </div>
-	</section>
-
-	<section id="ai-events" class="relative z-10 w-full mt-16 pb-8 pt-8 text-center">
-	  <div class="container">
-		  <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
-		      Upcoming AI Events
-		    </h1>
-		<div class="ai-events-week">
-		  <!-- <div class="ai-events-label">
-		    EVENTS<br>THIS<br>WEEK
-		  </div> -->
+	<div class="mobile-overflow-wrapper">
+	    <!-- Introduction Section -->
+	    <section id="intro_section" class="px-10 py-20 text-center">
+	      <h2 class="text-gray-900 text-[40px] tracking-wide small--hide">
+	        Boston's Artificial Intelligence is
+	      </h2>
+	      <h2 class="text-gray-900 text-[28px] tracking-wide large--hide">
+	        Boston's AI is
+	      </h2>
+	      <h1
+	        id="changing-word-robot"
+	        
+	        class="pb-4 mb-4 text-extrabold sm:text-normal text-[50px] h-[75px] sm:h-[150px] sm:text-[100px] text-black"
+	      ></h1>
+	    </section>
 	
-		  <div class="ai-events-grid" id="ai-events-grid">
-		    <!-- JS injects tiles here -->
+	    <!-- Main Content -->
+	    <section
+	      id="robosec"
+	      class="flex flex-wrap justify-center items-stretch robosec px-10 gap-6"
+	    >
+	      <!-- Left: Chat + Mic -->
+	      <div
+	        class="flex-1 min-w-[280px] flex flex-col justify-center md:order-1 order-2"
+	      >
+	        <div class="space-y-3">
+	          <div
+	            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
+	          >
+	            Dia duit robot
+	          </div>
+	          <div
+	            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
+	          >
+	            Hi human 🤖🍀
+	          </div>
+	          <div
+	            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black"
+	          >
+	            Cad a tharla ag cóisir tae Boston?
+	          </div>
+	          <div
+	            class="shadow chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base text-black self-end ml-auto"
+	          >
+	            At the Boston Tea Party in 1773, American colonists protested British taxation by boarding ships in Boston Harbor and dumping an entire shipment of tea into the water.
+	          </div>
+	          <div
+	            class="chat-left max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base opacity-40"
+	          >
+	            Go raibh maith agat
+	          </div>
+	          <div
+	            class="chat-right max-w-xs bg-white p-3 rounded-3xl border border-gray-200 text-base self-end ml-auto opacity-20"
+	          >
+	            You are welcome (tá fáilte romhat) 😄🍵
+	          </div>
+	        </div>
+	        <div
+	          class="mt-[-80px] flex justify-center relative mb-8 w-14 h-14 mx-auto"
+	        >
+	          <div class="absolute inset-0">
+	            <span class="ripple"></span>
+	            <span class="ripple"></span>
+	            <span class="ripple"></span>
+	          </div>
+	          <div
+	            class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-gray-800 to-black flex items-center justify-center shadow-lg"
+	          >
+	            <!-- Overlay -->
+	            <div id="chatOverlay"></div>
+	
+	            <!-- Chatbox -->
+	            <div
+	              id="chatbox"
+	              role="dialog"
+	              aria-modal="true"
+	              aria-labelledby="chatTitle"
+	            >
+	              <div id="chatTop">
+	                <span style="font-weight: 600">Boston AI Assistant</span>
+	                <button id="closeChat" aria-label="Close">✕</button>
+	              </div>
+	
+	              <div id="chatMessages" aria-live="polite"></div>
+	
+	              <div id="chatInputArea">
+	                <input
+	                  id="chatInput"
+	                  type="text"
+	                  placeholder="Type a message..."
+	                  aria-label="Message"
+	                />
+	                <button id="sendButton">Send</button>
+	              </div>
+	            </div>
+	
+	            <!-- Floating Mic Button -->
+	            <button id="micButton" title="Speak" aria-label="Speak">
+	              <svg
+	                xmlns="http://www.w3.org/2000/svg"
+	                fill="white"
+	                viewBox="0 0 24 24"
+	                class="w-5 h-5 relative z-10"
+	              >
+	                <path
+	                  d="M12 1a3 3 0 0 1 3 3v8a3 3 0 0 1-6 0V4a3 3 0 0 1 3-3zm-1 18.93A7.996 7.996 0 0 1 4.07 13H6a6 6 0 0 0 12 0h1.93A7.996 7.996 0 0 1 13 19.93V23h-2v-3.07z"
+	                ></path>
+	              </svg>
+	            </button>
+	            <!-- Mic hint: place this immediately after the mic button markup -->
+	            <div
+	              id="micHint"
+	              class="mic-hint"
+	              role="status"
+	              aria-live="polite"
+	              aria-hidden="false"
+	            >
+	              <div class="mic-hint__content">
+	                <span class="mic-hint__text">Ask me<br />something!</span>
+	                <button
+	                  id="micHintClose"
+	                  class="mic-hint__close"
+	                  aria-label="Dismiss hint"
+	                >
+	                  &times;
+	                </button>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	
+	      <!-- Center: Robot -->
+	      <div
+	        class="flex-1 min-w-[280px] sm:pl-5 sm:pr-5 text-center flex items-center justify-center md:order-2 order-1"
+	      >
+	        <img src="r1.png" alt="Robot" class="mx-auto max-w-[400px] w-full" />
+	      </div>
+	
+	      <!-- Right: Text + CTA -->
+	      <div class="flex-1 min-w-[280px] flex flex-col justify-center pt-2 sm:pt-6 pl-0 md:order-3 order-3">
+	        <img class="large--hide waveimg" src="soundwavee.png" alt="">
+	        <div class="sm:mb-4">
+	          <p class="mobilecityimage_text text-subtitl_size text-black leading-relaxed mb-6 mt-2 sm:mt-12 text-[19px]" >
+	            Boston sits near the top of the global AI map by leaning hard on its universities, hospitals, and life science institutions, where lab automation, surgical robotics, and clinical AI help turn research into real life treatments for patients.
+			  <img src="boston-city.png" alt="Robot" class="large--hide mx-auto w-full">Beantown feels like it's half beautiful cobble-stone streets and half college campus with a wicked nerd energy and drive to build the next unicorn. Cambridge trailblazes AI with MIT and Harvard labs, Innovation District hosts data cloud startups, and Allston houses an indie maker scene that together pave an AI and robotics future that is clinical, civic, and a little stubbornly New England.									
+	          </p>
+	          <div class="flex gap-4 mb-6 btn_withlovedby">
+	            <a
+	              href="#galaverseaiconnect"
+	              class="px-6 py-2 rounded-full bg-black text-white font-bold anchorlink customlinhyt"
+	              >Be seen</a
+	            >
+	            <div class="mb-ww4 text-left">
+	              <div class="flex items-center gap-2">
+	                <div class="flex -space-x-3">
+	                  <img
+	                    src="https://randomuser.me/api/portraits/men/32.jpg"
+	                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+	                  />
+	                  <img
+	                    src="https://randomuser.me/api/portraits/women/44.jpg"
+	                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+	                  />
+	                  <img
+	                    src="https://randomuser.me/api/portraits/men/65.jpg"
+	                    class="w-12 h-12 rounded-full border-[3px] border-white shadow-lg"
+	                  />
+	                </div>
+	                <div>
+	                  <p class="text-sm text-gray-500 mb-1">Loved by more than</p>
+	                  <p class="text-xl font-semibold text-gray-800">10k+ users</p>
+	                </div>
+	              </div>
+	            </div>
+	            <!----<a href="criteria.html" class="px-6 py-2 rounded-full border border-transparent text-black underline flex items-center gap-2">
+	           How do we connect?
+	              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black fill-black" viewBox="0 0 24 24">
+	                <path d="M8 5v14l11-7z"></path>
+	              </svg>
+	            </a>---->
+	          </div>
+	        </div>
+	      </div>
+	    </section>
+		  
+	    <!-- Fullwidth Map -->
+	    <section
+	      id="galaverseaimap"
+	      class="w-full py-20 pb-8 px-4 sm:px-6 lg:px-12"
+	    style="display:none;">
+	      <div class=" relative z-10 w-full mb-4 mob-mt-0 text-center">
+	        <h1
+	          
+	          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
+	        >
+	          Galaverse
+	        </h1>
+	        <p
+	          class="text-subtitl_size pl-5 pr-5 text-black max-w-5xl mx-auto"
+	          
+	        >
+	          From Boston to Shanghai. From Denver to Dublin. Click a connected city to access their domain.							
+	        </p>
+	        <p class="text-subtitl_size" >
+	          <a
+	            href="www.galaverse-ai.org"
+	            class="text-subtitl_size text-black mt-4"
+	            style="
+	              ;
+	              margin-top: 10px;
+	              display: inline-block;
+	            "
+	            >www.galaverse-ai.org</a
+	          >
+	        </p>
+	      </div>
+	      <div class="h-[400px] sm:h-[500px]" id="map"></div>
+	    </section>
+	
+	    <!-- Hero Section -->
+	    <section
+	      id="galaverseaivisionaries"
+	      class="relative z-10 w-full mob-mt-0 pb-4 pt-20 text-center"
+	    >
+	      <div class="container">
+	        <h1
+	          
+	          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-[#000000]"
+	        >
+	          Boston Visionaries
+	        </h1>
+	        <p
+	          class="pl-5 pr-5 text-black max-w-5xl mx-auto text-subtitl_size"
+	          
+	        >
+	          Boston’s AI and robotics scene encompasses both the region’s hardest challenges and its most impressive strengths, from Mass General using diagnostic imaging models and <b>surgical robotics</b>, to crushing winters of snow and ice where <b>storm prediction</b> and fleet routing tools guide plow deployment, to its world-leading healthcare networks where artificial intelligence powers <b>drug discovery</b>, genomics, and lab automation, to the thriving sports culture at Fenway Park and the Garden where computer vision, <b>automated drone cameras</b>, and advanced analytics make broadcasts and in-stadium visual experiences more immersive, and finally to the renowned universities that pioneer advances in <b>academic artificial intelligence</b>.
+	        </p>
+	        <!-- Swiper Container -->
+	        <div class="swiper mySwiperTiles">
+	          <div class="swiper-wrapper">
+	            <!-- Slides -->
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Piaggio Fast Forward</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Piaggio Fast Forward builds cargo-carrying robots that blend innovative technology with sustainable mobility to help people move items from one place to another. Our flagship robot, Gita, uses a first-of-its-kind, hands-free following technology to accompany and assist people through everyday errands.
+	                  <br /><br />
+	                  <a target="_blank" href="https://piaggiofastforward.com/"
+	                    >https://piaggiofastforward.com/</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Neurala</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Neurala develops vision AI software that makes visual inspection of products faster, smarter, and more accessible for manufacturers. Neurala’s VIA (Visual Inspection Automation) platform improves the quality control process by detecting defects, reducing machine downtime, and scaling production and is patented by technology from NASA, DARPA, and Air Force.
+	                  <br /><br />
+	                  <a target="_blank" href="https://www.neurala.com/"
+	                    >https://www.neurala.com/</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Aura Intelligent Systems</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Aura Intelligent Systems makes AI imaging radar that provides high-resolution spatial awareness solutions for autonomous mobility and intelligent edge applications. Aura enables 5D situational awareness that is resilient to interference, jamming, and urban complexity with its patented QuadRay™ technology, that enables safer drones, vehicles, and mobility networks.
+	                  <br /><br />
+	                  <a target="_blank" href="https://www.auraisystems.com/"
+	                    >https://www.auraisystems.com/</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">MassRobotics</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  MassRobotics is the world’s largest independent robotics hub, with a goal to accelerate innovation, commercialization, and adoption in robotics and physical AI. It's headquartered in Boston but has a global reach, by providing startups and entrepreneurs with custom workspaces, prototyping facilities, resources, and connections to help them scale, network, and hopefully succeed.
+	                  <br /><br />
+	                  <a target="_blank" href="http://www.massrobotics.org/">http://www.massrobotics.org/</a>
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Nextera Robotics</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Nextera Robotics builds its patented AI-powered Didge, which is disrupting construction management with on the ground data that improves safety, tracks progress, enhances quality control, and prevents costly mistakes. The Didge platform provides automated reports, alerts, and dashboards to teams for a shared source of truth to enable proactive decisions.
+	                  <br /><br />
+	                  <a target="_blank" href="https://nexterarobotics.com/"
+	                    >https://nexterarobotics.com/</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Krevera</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Krevera provides AI-vision agents that continuously monitor production, automatically adjust processes, and significantly reduce defects. Its machine learning inspection processes give you full quality control of your plastic injection molding production facilities.
+	                  <br /><br />
+	                  <a target="_blank" href="https://krevera.com/">https://krevera.com/</a>
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Volta Labs. Inc.</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Volta Labs develops a full-stack digital fluidics platform including hardware, software, chemistry, and biology, that maximizes genomics sample prep performance, scalability, and consistency. Volta helps scientists focus on discovery, and turns complex biology into a simple, efficient, push-button experience.
+	                  <br /><br />
+	                  <a target="_blank" href="https://www.voltalabs.com/">https://www.voltalabs.com/</a>
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Neo Cybernetica</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Neo Cybernetica is advancing cybernetics technology, defined as the science of communications and automatic control systems in both machines and living things, using breakthroughs in AI, robotics, neuroscience, and cognitive sciences.
+	                  <br /><br />
+	                  <a target="_blank" href="https://www.neocybernetica.com/">https://www.neocybernetica.com/</a>
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Perceptive (formerly Cyberdontics)</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Perceptive is advancing the future of dentistry with AI-powered imaging and robotic systems. Our handheld intraoral scanner combines machine learning hardware and software with advanced OCT technology to capture high-resolution 3D data that is even below the gum line, through fluids, and beneath the tooth's surface.
+	                  <br /><br />
+	                  <a target="_blank" href="https://www.perceptive.io/"
+	                    >https://www.perceptive.io/</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	            <div class="swiper-slide">
+	              <div class="tile-wrapper">
+	                <div class="tile-title">Saturday Robotics</div>
+	                <p
+	                  class="pl-5 pr-5 text-base text-black max-w-3xl mx-auto"
+	                  
+	                >
+	                  Saturday Robotics is a modern robotics laundry company that builds autonomous washing and drying solutions to simplify daily life while reducing our impact on the planet. Simply leave your laundry on your porch, and Saturday Robotics will pick it up, and autonomously clean, fold, and pack them, for greater efficiency and sustainability.
+	                  <br /><br />
+	                  <a target="_blank" href="https://yaysaturday.com/howitworks"
+	                    >https://yaysaturday.com/howitworks</a
+	                  >
+	                </p>
+	              </div>
+	            </div>
+	          </div>
+	
+	          <!-- Navigation Arrows -->
+	          <div class="swiper-button-prev"></div>
+	          <div class="swiper-button-next"></div>
+	
+	          <!-- Pagination Dots -->
+	          <div class="swiper-pagination"></div>
+	        </div>
+	      </div>
+	    </section>
+	
+	    <section id="ai-news" class="galaverse-news-section">
+		  <div class="container">
+		    <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">Latest news in Boston AI</h1>	
+		    <!-- <div id="ai-news-status" style="font-size:12px;opacity:0.7;margin-bottom:12px;">
+		      Loading latest updates…
+		    </div> 
+		    <div id="ai-news-grid" class="galaverse-news-grid"></div>-->
+			<div class="ai-news-layout">
+			    <!-- COLUMN 1 -->
+			    <div class="ai-news-col col-1" id="news-col-a"></div>		
+			    <!-- COLUMN 2 -->
+			    <div class="ai-news-col col-2" id="news-col-bc"></div>		
+			    <!-- COLUMN 3 -->
+			    <div class="ai-news-col col-3" id="news-col-def"></div>		
+			</div>
 		  </div>
-		</div>
-	  </div>
-	</section>
-
-	<section
-	  id="ai-stocks"
-	  class="relative z-10 w-full mt-16 pb-8 pt-8 text-center"
-	>
-	  <div class="containerr">
-		<h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
-	      AI Watchlist
-	    </h1>
+		</section>
+	
+		<section id="ai-events" class="relative z-10 w-full mt-16 pb-8 pt-8 text-center">
+		  <div class="container">
+			  <h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
+			      Upcoming AI Events
+			    </h1>
+			<div class="ai-events-week">
+			  <!-- <div class="ai-events-label">
+			    EVENTS<br>THIS<br>WEEK
+			  </div> -->
 		
-	    <div class="stock-ticker">
-		  <div class="ticker-track" id="tickerTrack">
-		    Loading market data...
+			  <div class="ai-events-grid" id="ai-events-grid">
+			    <!-- JS injects tiles here -->
+			  </div>
+			</div>
 		  </div>
-		</div>
-	  </div>
-	</section>
-	  
-    <!-- Contact -->
-    <section
-      id="galaverseaiconnect"
-      class="relative py-20 px-6 overflow-hidden"
-    >
-      <div class="max-w-2xl mx-auto text-center mb-8 z-10 relative">
-        <h1
-          
-          class="text-3xl md:text-5xl font-bold text-[#000000] leading-tight step_into"
-        >
-          Welcome to Boston, Galaverse						
-        </h1>
-        <p
-          
-          class="text-subtitl_size text-black"
-        >
-          Enter to be seen.
-        </p>
-      </div>
-
-      <!-- Contact Card -->
-
-      <!---<h1>Contact Form</h1>
-  <form id="contact-form">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-  </form>
-
-  <h1>Newsletter Signup</h1>
-  <form id="newsletter-form">
-    <input type="email" name="email" placeholder="Your Email" required />
-    <button type="submit">Subscribe</button>
-  </form>--->
-
-      <div
-        class="max-w-3xl mx-auto bg-white shadow-2xl contact_section rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border border-gray-100"
-      >
-        <form id="contact-form" class="space-y-6 md:space-y-6 space-y-4"><input type="hidden" name="formType" value="contact">
-          <div class="relative">
-            <label
-              for="email"
-              class="block text-sm -mt-[1vw] font-medium text-gray-700 mb-1"
-              >Email Address</label
-            >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="you@example.com"
-              required
-              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            />
-          </div>
-
-          <div class="relative">
-            <label
-              for="message"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Message</label
-            >
-            <textarea
-              id="message"
-              rows="3"
-              name="message"
-              placeholder="Type your message here..."
-              required
-              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition md:rows-5 rows-3"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg md:!mt-6 !mt-4"
-          >
-            🚀 Send Message
-          </button>
-        </form>
-      </div>
-
-      <!-- Decorative Circles -->
-      <div
-        class="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full opacity-40 z-0"
-      ></div>
-      <div
-        class="absolute bottom-0 right-0 w-56 h-56 bg-blue-200 rounded-full opacity-30 z-0"
-      ></div>
-    </section>
-
-    <!-- Footer -->
-    <footer
-      class="text-center text-gray-600 text-sm pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200"
-    >
-      <div class="text-sm footer__links">
-        <a href="legal-disclaimer.html" title="Legal" class="footer__link"
-          >Legal Disclaimer</a
-        >
-        <a
-          href="website-disclaimer.html"
-          title="website-disclaimer"
-          class="footer__link"
-          >Website Disclaimer</a
-        >
-        <a
-          href="ai-content-technology-disclaimer.html"
-          title="AI Content & Technology disclaimer"
-          class="footer__link"
-          >AI Content & Technology Disclaimer</a
-        >
-        <a
-          href="privacy-policy.html"
-          title="Privacy Policy"
-          class="footer__link"
-          >Privacy Policy</a
-        >
-        <a
-          href="terms-of-service.html"
-          title="Terms of Service"
-          class="footer__link"
-          >Terms of Service</a
-        >
-        <a
-          href="california-consumer-privacy-act.html"
-          title="California Consumer Privacy Act (CCPA)"
-          class="footer__link"
-          >California Consumer Privacy Act (CCPA)</a
-        >
-        <a
-          href="web-accessibility-disclaimer.html"
-          title="California Consumer Privacy Act (CCPA)"
-          class="footer__link"
-          >Web Accessibility Disclaimer</a
-        >
-      </div>
-      <div class="footer_copyright">
-        &copy; <span id="currentYear"></span> Boston, Galaverse AI. All rights reserved.
-      </div>
-    </footer>
-	  
+		</section>
+	
+		<section
+		  id="ai-stocks"
+		  class="relative z-10 w-full mt-16 pb-8 pt-8 text-center"
+		>
+		  <div class="containerr">
+			<h1  style=" " class="text-3xl md:text-5xl  font-bold mb-8 leading-tight text-[#000000] text-center">
+		      AI Watchlist
+		    </h1>
+			
+		    <div class="stock-ticker">
+			  <div class="ticker-track" id="tickerTrack">
+			    Loading market data...
+			  </div>
+			</div>
+		  </div>
+		</section>
+		  
+	    <!-- Contact -->
+	    <section
+	      id="galaverseaiconnect"
+	      class="relative py-20 px-6 overflow-hidden"
+	    >
+	      <div class="max-w-2xl mx-auto text-center mb-8 z-10 relative">
+	        <h1
+	          
+	          class="text-3xl md:text-5xl font-bold text-[#000000] leading-tight step_into"
+	        >
+	          Welcome to Boston, Galaverse						
+	        </h1>
+	        <p
+	          
+	          class="text-subtitl_size text-black"
+	        >
+	          Enter to be seen.
+	        </p>
+	      </div>
+	
+	      <!-- Contact Card -->
+	
+	      <!---<h1>Contact Form</h1>
+	  <form id="contact-form">
+	    <input type="text" name="name" placeholder="Your Name" required />
+	    <input type="email" name="email" placeholder="Your Email" required />
+	    <textarea name="message" placeholder="Your Message" required></textarea>
+	    <button type="submit">Send</button>
+	  </form>
+	
+	  <h1>Newsletter Signup</h1>
+	  <form id="newsletter-form">
+	    <input type="email" name="email" placeholder="Your Email" required />
+	    <button type="submit">Subscribe</button>
+	  </form>--->
+	
+	      <div
+	        class="max-w-3xl mx-auto bg-white shadow-2xl contact_section rounded-3xl p-10 md:p-12 relative z-10 backdrop-blur-sm border border-gray-100"
+	      >
+	        <form id="contact-form" class="space-y-6 md:space-y-6 space-y-4"><input type="hidden" name="formType" value="contact">
+	          <div class="relative">
+	            <label
+	              for="email"
+	              class="block text-sm -mt-[1vw] font-medium text-gray-700 mb-1"
+	              >Email Address</label
+	            >
+	            <input
+	              type="email"
+	              id="email"
+	              name="email"
+	              placeholder="you@example.com"
+	              required
+	              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+	            />
+	          </div>
+	
+	          <div class="relative">
+	            <label
+	              for="message"
+	              class="block text-sm font-medium text-gray-700 mb-1"
+	              >Message</label
+	            >
+	            <textarea
+	              id="message"
+	              rows="3"
+	              name="message"
+	              placeholder="Type your message here..."
+	              required
+	              class="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition md:rows-5 rows-3"
+	            ></textarea>
+	          </div>
+	
+	          <button
+	            type="submit"
+	            class="w-full from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg md:!mt-6 !mt-4"
+	          >
+	            🚀 Send Message
+	          </button>
+	        </form>
+	      </div>
+	
+	      <!-- Decorative Circles -->
+	      <div
+	        class="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full opacity-40 z-0"
+	      ></div>
+	      <div
+	        class="absolute bottom-0 right-0 w-56 h-56 bg-blue-200 rounded-full opacity-30 z-0"
+	      ></div>
+	    </section>
+	
+	    <!-- Footer -->
+	    <footer
+	      class="text-center text-gray-600 text-sm pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200"
+	    >
+	      <div class="text-sm footer__links">
+	        <a href="legal-disclaimer.html" title="Legal" class="footer__link"
+	          >Legal Disclaimer</a
+	        >
+	        <a
+	          href="website-disclaimer.html"
+	          title="website-disclaimer"
+	          class="footer__link"
+	          >Website Disclaimer</a
+	        >
+	        <a
+	          href="ai-content-technology-disclaimer.html"
+	          title="AI Content & Technology disclaimer"
+	          class="footer__link"
+	          >AI Content & Technology Disclaimer</a
+	        >
+	        <a
+	          href="privacy-policy.html"
+	          title="Privacy Policy"
+	          class="footer__link"
+	          >Privacy Policy</a
+	        >
+	        <a
+	          href="terms-of-service.html"
+	          title="Terms of Service"
+	          class="footer__link"
+	          >Terms of Service</a
+	        >
+	        <a
+	          href="california-consumer-privacy-act.html"
+	          title="California Consumer Privacy Act (CCPA)"
+	          class="footer__link"
+	          >California Consumer Privacy Act (CCPA)</a
+	        >
+	        <a
+	          href="web-accessibility-disclaimer.html"
+	          title="California Consumer Privacy Act (CCPA)"
+	          class="footer__link"
+	          >Web Accessibility Disclaimer</a
+	        >
+	      </div>
+	      <div class="footer_copyright">
+	        &copy; <span id="currentYear"></span> Boston, Galaverse AI. All rights reserved.
+	      </div>
+	    </footer>
+	</div>
 <div id="ecosystem-modal" class="ecosystem-modal">
   <div class="ecosystem-modal-backdrop"></div>
   <div class="ecosystem-modal-content">
