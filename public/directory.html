@@ -434,7 +434,8 @@
     justify-content: space-between;
     width: fit-content;
     padding: 0.5rem 1.25rem;
-    border: 1px solid var(--brand);
+    /* border: 1px solid 
+color-mix(in srgb, var(--brand) 20%, transparent); */
     border-radius: 9999px;
     font-weight: 600;
     font-size: 0.875rem;
@@ -442,9 +443,9 @@
     transition: all 0.2s;
     text-decoration: none;
     background: 
-color-mix(in srgb, var(--brand) 30%, transparent);
+color-mix(in srgb, var(--brand) 20%, transparent);
     margin: auto;
-    color: var(--brand);
+    color: #000;
 }
 	  
 	  .explore-btn:hover {
@@ -452,32 +453,32 @@ color-mix(in srgb, var(--brand) 30%, transparent);
 	  }
 	
 	  .arrow-icon {
-    margin-left: 0.75rem;
+    margin-left: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: 
-color-mix(in srgb, var(--brand) 70%, transparent);
-    border-radius: 50%;
+    /* width: 1.5rem; */
+    /* height: 1.5rem; */
+    /* background-color: 
+color-mix(in srgb, var(--brand) 70%, transparent); */
+    /* border-radius: 50%; */
 }
 		span.arrow-icon svg {
-    fill: #fff;
-    color: #fff;
-    stroke: #fff;
+    fill: #000;
+    color: #000;
+    stroke: #000;
 }
 .tile-wrapper:hover .explore-btn span.arrow-icon {
-    background: var(--brand);
+    /* background: var(--brand); */
 }
 
 .tile-wrapper:hover *:not(.explore-btn) {
     color: #fff;
 }
 		.tile-wrapper:hover .explore-btn span.arrow-icon svg {
-    fill: #fff;
-    color: #fff;
-    stroke: #fff;
+    fill: var(--brand);
+    color: var(--brand);
+    stroke: var(--brand);
 }
 		/* Modal Styles */
   .modal-overlay {
