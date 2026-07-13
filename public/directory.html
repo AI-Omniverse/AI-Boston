@@ -75,6 +75,23 @@
 		section#galaverseaivisionaries {
     background: #f5f0e6;
 }
+
+		#syncedpages_title{
+			font-size:76px;
+			color:#111111;
+		}
+		#companies-subtitle{
+			font-size:36px;
+			color:#3D3C3B
+		}
+		@media (max-width:768px){
+			#syncedpages_title{
+				font-size:46px;
+			}
+			#companies-subtitle{
+				font-size:26px;
+			}
+		}
     </style>
     <link rel="stylesheet" href="https://galaverse-shared.pages.dev/global.css" />
 	  <!-- <link rel="stylesheet" href="style.css" /> -->
@@ -188,18 +205,51 @@
       </div>
     </div>
 
-	<section class="py-8 md:py-16">
-	  <div class="container mx-auto px-4">
+	<section class="syncedpages__intro_section" class="py-8 md:py-16">
+	  <div class="container mx-auto px-10">
+		<div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 items-center">
+	      <!-- Left Content -->
+	      <div>
+	        <h1 id="syncedpages_title" class="leading-none font-light tracking-tight text-[#111111]">
+		      Companies
+		    </h1>
+		
+		    <p id="companies-subtitle"
+		       class="mt-6 syncedpages-subtitle">
+		      Stakeholders in the AI ecosystem
+		    </p>
+	        <p class="syncedpages-subtitle mt-4">
+	          The companies, startups, unicorns, and visionaries shaping
+	          artificial intelligence in Boston.
+	        </p>
 	
-	    <h1 class="text-[42px] md:text-[72px] leading-none font-light tracking-tight text-[#111111]">
-	      Companies
-	    </h1>
-	
-	    <p id="companies-subtitle"
-	       class="mt-6 text-[22px] md:text-[30px] text-[#3D3C3B]">
-	      Stakeholders in the AI ecosystem
-	    </p>
-	
+	      </div>
+	      <!-- Right Icon -->
+	      <div class="flex justify-center lg:justify-end">
+	        <div
+	          class="w-[180px] h-[180px] md:w-[260px] md:h-[260px]
+	                 rounded-full border-[4px] border-[var(--brand)]
+	                 flex items-center justify-center bg-[#D0D0CF]"
+	        >
+	          <img
+	            src="https://galaverse-shared.pages.dev/shared/Galaverse-AI-Companies-Subpage-Icon.png"
+	            alt="Companies"
+	            class="w-[90px] md:w-[140px] h-auto"
+	          >
+	        </div>
+	      </div>
+	    </div>
+	    <!-- Down Arrow -->
+	    <div class="flex justify-center mt-12">
+	      <a
+	        href="#galaverseaivisionaries"
+	        class="w-[70px] h-[70px] rounded-full border-[4px] border-[var(--brand)]
+	               flex items-center justify-center text-[40px]
+	               text-black hover:scale-105 transition"
+	      >
+	        ↓
+	      </a>
+	    </div>
 	  </div>
 	</section>
 
