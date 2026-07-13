@@ -255,7 +255,23 @@
 	      
 	      <div class="tile-wrapper p-8 border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between text-left bg-white">
 	        <div class="p-8">
-	          <div class="tile-title font-bold text-2xl mb-4 text-black">Piaggio Fast Forward</div>
+	          <!-- <div class="tile-title font-bold text-2xl mb-4 text-black">Piaggio Fast Forward</div> -->
+			  <div class="flex items-center gap-3 mb-4">
+				  <div class="tile-title font-bold text-2xl text-black">
+				    Piaggio Fast Forward
+				  </div>				
+				  <div class="gai-verified">				
+				    <img
+				      src="https://galaverse-shared.pages.dev/GAI-Verified-Badge-Icon.png"
+				      alt="GAI Verified"
+				      class="w-7 h-7"
+				    >				
+				    <div class="gai-tooltip">
+				      GAI Verified
+				    </div>				
+				  </div>				
+			  </div>
+				
 	          <p class="text-base mb-4">Industry: Robotics &amp; Logistics</p>
 			  <p class="text-base text-black overflow-hidden line-clamp-4 mb-6">
 	            Piaggio Fast Forward builds cargo-carrying robots that blend innovative technology with sustainable mobility to help people move items from one place to another. Our flagship robot, Gita, uses a first-of-its-kind, hands-free following technology to accompany and assist people through everyday errands.
@@ -397,6 +413,59 @@
 	</div>
 	
 	<style>
+		.gai-verified{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  cursor:pointer;
+}
+
+.gai-verified img{
+  width:28px;
+  height:28px;
+  display:block;
+}
+
+.gai-tooltip{
+  position:absolute;
+  bottom:calc(100% + 10px);
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+
+  background:#111;
+  color:#fff;
+
+  padding:8px 12px;
+  border-radius:8px;
+
+  font-size:13px;
+  font-weight:600;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:all .2s ease;
+
+  z-index:100;
+}
+
+.gai-tooltip:after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+
+  border-width:6px;
+  border-style:solid;
+  border-color:#111 transparent transparent transparent;
+}
+
+.gai-verified:hover .gai-tooltip{
+  opacity:1;
+  visibility:visible;
+}
 	.tile-wrapper {
 	    background: #fff;
 	    border-radius: 40px;
