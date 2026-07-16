@@ -406,6 +406,7 @@
 	</div>
 	
 	<style>
+		
 		.gai-verified {
     position: relative;
     display: inline-flex;
@@ -603,6 +604,12 @@ color-mix(in srgb, var(--brand) 70%, transparent); */
     transition: opacity 0.2s;
   }
   .website-btn:hover { opacity: 0.8; }
+
+@media (max-width: 768px) {
+		.page-directory .tile-wrapper {
+    padding: 25px;
+ }
+}
 	</style>
 <script>
   document.querySelectorAll('.tile-wrapper').forEach(card => {
