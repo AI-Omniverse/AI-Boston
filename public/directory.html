@@ -253,19 +253,16 @@
 	        <div class="p-8">
 	          <!-- <div class="tile-title font-bold text-2xl mb-4 text-black">Piaggio Fast Forward</div> -->
 			  <div class="tilewithverifiedicon flex items-center gap-2 mb-4">
-				  <div class="tile-title font-bold text-2xl text-black">
-				    Piaggio Fast Forward
-				  </div>				
-				  <div class="gai-verified">				
-				    <img
-				      src="https://galaverse-shared.pages.dev/GAI-Verified-Badge-Icon.png"
-				      alt="GAI Verified"
-				      class="w-7 h-7"
-				    >				
-				    <div class="gai-tooltip">
-				      GAI Verified
-				    </div>				
-				  </div>				
+				  <div class="tile-title font-bold text-2xl text-black inline">
+				    Piaggio Fast Forward 
+				    
+				    <span class="gai-verified inline-block align-middle ml-1.5 relative">				
+				      <img src="https://galaverse-shared.pages.dev/GAI-Verified-Badge-Icon.png" alt="GAI Verified" class="w-7 h-7">				
+				      <div class="gai-tooltip">
+				        GAI Verified
+				      </div>				
+				    </span>
+				  </div>			
 			  </div>
 				
 	          <p class="text-base mb-4">Industry: Robotics &amp; Logistics</p>
@@ -409,11 +406,11 @@
 	</div>
 	
 	<style>
-		.gai-verified{
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  cursor:pointer;
+		.gai-verified {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 }
 .tilewithverifiedicon .tile-title {
     margin: 0;
@@ -478,7 +475,7 @@
 	  }
 		@media (max-width: 768px) {
 			.gai-verified img {
-			    width: 30px;
+			    width: 20px;
 			    height: auto;
 			}
 		}
