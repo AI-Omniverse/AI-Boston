@@ -248,7 +248,7 @@
 	    </h1> -->
 
 		<div class="featuredcompanies-directory">
-			<h2 class="text-4xl mb-8">
+			<h2 class="companies__title featuredcompanies__title">
 		    	Featured Companies
 			</h2>	
 		    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">	      
@@ -316,7 +316,7 @@
 		</div>
 
 		<div class="other_allcompanies">
-		  <h2 class="text-4xl mt-20 mb-6">
+		  <h2 class="companies__title allcompanies__title">
 		    All Companies
 		  </h2>
 
@@ -662,6 +662,12 @@ color-mix(in srgb, var(--brand) 70%, transparent); */
   border:0;
   cursor:pointer;
   font-size:18px;
+}
+.companies__title {
+    font-size: 28px;
+    text-align: left;
+    margin-bottom: 30px;
+    font-weight: bold;
 }
 @media (max-width: 768px) {
 		.page-directory .tile-wrapper {
