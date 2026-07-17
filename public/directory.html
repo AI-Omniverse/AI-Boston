@@ -642,7 +642,27 @@ color-mix(in srgb, var(--brand) 70%, transparent); */
     transition: opacity 0.2s;
   }
   .website-btn:hover { opacity: 0.8; }
+.company-filter-row{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-bottom:40px;
+  flex-wrap:wrap;
+}
 
+.company-filter-row select{
+  border:1px solid #cfcfcf;
+  border-radius:8px;
+  padding:6px 12px;
+  background:#fff;
+}
+
+.company-filter-row button{
+  background:none;
+  border:0;
+  cursor:pointer;
+  font-size:18px;
+}
 @media (max-width: 768px) {
 		.page-directory .tile-wrapper {
     padding: 25px;
