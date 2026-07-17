@@ -233,12 +233,280 @@
 	  </div>
 	</section>
 
-	<style>
-@media (max-width: 768px) {
-		
-}
-	</style>
+	<section class="jobs-page">
+	  <div class="jobs-header">
+	    <h1>AI Jobs</h1>
+	    <p>Find AI opportunities in Boston</p>
+	  </div>
+	
+	  <div class="jobs-layout">
+	
+	    <!-- LEFT COLUMN -->
+	
+	    <aside class="jobs-sidebar">
+	
+	      <div class="jobs-filters">
+	
+	        <select>
+	          <option>Location</option>
+	        </select>
+	
+	        <select>
+	          <option>Job Type</option>
+	        </select>
+	
+	        <select>
+	          <option>Experience</option>
+	        </select>
+	
+	      </div>
+	
+	      <div id="jobs-list"></div>
+	
+	    </aside>
+	
+	    <!-- RIGHT COLUMN -->
+	
+	    <main class="job-detail">
+	
+	      <div id="job-detail-content"></div>
+	
+	    </main>
+	
+	  </div>	
+	</section>
 
+	<style>
+		.jobs-page{
+  max-width:1400px;
+  margin:0 auto;
+  padding:40px 20px;
+}
+
+.jobs-layout{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:24px;
+  height:calc(100vh - 220px);
+}
+
+.jobs-sidebar{
+  overflow-y:auto;
+  border:1px solid #e5e5e5;
+  border-radius:16px;
+  background:#fff;
+}
+
+.job-detail{
+  overflow-y:auto;
+  border:1px solid #e5e5e5;
+  border-radius:16px;
+  background:#fff;
+  padding:40px;
+}
+
+.jobs-filters{
+  position:sticky;
+  top:0;
+  background:#fff;
+  padding:16px;
+  border-bottom:1px solid #eee;
+  display:flex;
+  gap:10px;
+  z-index:10;
+}
+
+.job-card{
+  padding:20px;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.job-card:hover{
+  background:#f8f8f8;
+}
+
+.job-card.active{
+  background:#eef8f2;
+  border-left:4px solid var(--brand);
+}
+
+.job-title{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.job-company{
+  font-size:16px;
+  margin-bottom:4px;
+}
+
+.job-meta{
+  font-size:14px;
+  color:#666;
+}
+
+.apply-btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 24px;
+  border-radius:999px;
+  background:#007a33;
+  color:#fff;
+  text-decoration:none;
+}
+
+@media(max-width:768px){
+
+  .jobs-layout{
+    display:block;
+    height:auto;
+  }
+
+  .job-detail{
+    display:none;
+  }
+
+}
+		@media (max-width: 768px) {
+				
+		}
+	</style>
+<script>
+	const jobs = [
+  {
+    title: "Senior AI Engineer",
+    company: "OpenAI Robotics",
+    location: "Boston, MA",
+    salary: "$180k - $240k",
+    type: "Full Time",
+    posted: "2 days ago",
+    description:
+      "Lead AI model development for robotics applications.",
+    applyUrl:"#"
+  },
+
+  {
+    title: "Machine Learning Scientist",
+    company: "Neurala",
+    location: "Boston, MA",
+    salary: "$140k - $190k",
+    type: "Full Time",
+    posted: "1 day ago",
+    description:
+      "Develop computer vision systems for industrial inspection.",
+    applyUrl:"#"
+  },
+
+  {
+    title: "AI Product Manager",
+    company: "MassRobotics",
+    location: "Boston, MA",
+    salary: "$150k - $200k",
+    type: "Full Time",
+    posted: "5 days ago",
+    description:
+      "Define AI product roadmap and ecosystem partnerships.",
+    applyUrl:"#"
+  }
+];
+const list =
+  document.getElementById("jobs-list");
+
+const detail =
+  document.getElementById("job-detail-content");
+
+function renderJobDetail(job){
+
+  detail.innerHTML = `
+    <h2>${job.title}</h2>
+
+    <h3>${job.company}</h3>
+
+    <p>
+      ${job.location}
+      •
+      ${job.type}
+    </p>
+
+    <p>
+      <strong>Salary:</strong>
+      ${job.salary}
+    </p>
+
+    <hr>
+
+    <p>${job.description}</p>
+
+    <a
+      href="${job.applyUrl}"
+      class="apply-btn"
+      target="_blank">
+      Apply Now
+    </a>
+  `;
+}
+
+jobs.forEach((job,index)=>{
+
+  const card =
+    document.createElement("div");
+
+  card.className =
+    "job-card";
+
+  card.innerHTML = `
+    <div class="job-title">
+      ${job.title}
+    </div>
+
+    <div class="job-company">
+      ${job.company}
+    </div>
+
+    <div class="job-meta">
+      ${job.location}
+    </div>
+
+    <div class="job-meta">
+      ${job.salary}
+    </div>
+
+    <div class="job-meta">
+      ${job.posted}
+    </div>
+  `;
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      document
+        .querySelectorAll(".job-card")
+        .forEach(el =>
+          el.classList.remove("active")
+        );
+
+      card.classList.add("active");
+
+      renderJobDetail(job);
+    }
+  );
+
+  list.appendChild(card);
+
+  if(index===0){
+
+    card.classList.add("active");
+
+    renderJobDetail(job);
+
+  }
+
+});
+</script>
   <!-- Footer -->
     <!-- Footer -->
     <footer class="text-center text-gray-600 text-sm mt-8 pb-6 bg-white/80 backdrop-blur-md border-t border-gray-200">
