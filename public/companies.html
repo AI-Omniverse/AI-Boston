@@ -229,12 +229,41 @@
 	      Boston AI Directory
 	    </h1> -->
 
-		<div class="featuredcompanies-directory">
-			<h2 class="companies__title featuredcompanies__title">
+		<!--<div class="featuredcompanies-directory">
+			 <h2 class="companies__title featuredcompanies__title">
 		    	Featured Companies
-			</h2>	
+			</h2>	 
 		    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">	      
-		      <div class="tile-wrapper border border-gray-200 shadow-sm flex flex-col justify-between text-left bg-white">
+		      
+			</div>
+		</div>-->
+
+		<div class="other_allcompanies">
+		  <h2 class="companies__title allcompanies__title">
+		    All Companies
+		  </h2>
+
+		  <div class="company-filter-row mb-10">
+		    <span>FILTER:</span>
+		
+		    <select id="industry-filter">
+		      <option>Industry</option>
+		    </select>
+		
+		    <button data-sort="type">
+		      Type
+		    </button>
+		
+		    <button data-sort="specialty">
+		      AI Specialties
+		    </button>
+		
+		    <button data-sort="size">
+		      Size
+		    </button>
+		  </div>
+		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			  <div class="tile-wrapper border border-gray-200 shadow-sm flex flex-col justify-between text-left bg-white">
 		        <div class="p-8">
 		          <!-- <div class="companytile__titlewrapper tilewithoutverifiedicon flex items-center gap-2 mb-4"> 				  <div class="tile-title font-bold text-2xl text-black inline"><span>Piaggio Fast Forward</div> -->
 				  <div class="companytile__titlewrapper tilewithverifiedicon flex items-center gap-2 mb-4">
@@ -294,34 +323,6 @@
 		          </button>
 		        </div>
 		      </div>
-			</div>
-		</div>
-
-		<div class="other_allcompanies">
-		  <h2 class="companies__title allcompanies__title">
-		    All Companies
-		  </h2>
-
-		  <div class="company-filter-row mb-10">
-		    <span>FILTER:</span>
-		
-		    <select id="industry-filter">
-		      <option>Industry</option>
-		    </select>
-		
-		    <button data-sort="type">
-		      Type
-		    </button>
-		
-		    <button data-sort="specialty">
-		      AI Specialties
-		    </button>
-		
-		    <button data-sort="size">
-		      Size
-		    </button>
-		  </div>
-		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">	  	
 		      <div class="tile-wrapper border border-gray-200 shadow-sm flex flex-col justify-between text-left bg-white">
 		        <div class="p-8">
 		          <div class="companytile__titlewrapper tilewithoutverifiedicon flex items-center gap-2 mb-4"> 				  <div class="tile-title font-bold text-2xl text-black inline"><span>MassRobotics</span></div></div>
